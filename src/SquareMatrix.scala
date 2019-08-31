@@ -2,9 +2,10 @@ class SquareMatrix {
   var allSquares = List[Square]();
 
   def initMatrix(size:Int) = {
-    for(xvalue <- 1 to size){
-      for(yvalue <- 1 to size){
-        val s = new Square(xvalue,yvalue,List.range(1,size));
+    allSquares = List()
+    for(xValue <- 1 to size){
+      for(yValue <- 1 to size){
+        val s = new Square(xValue,yValue,List.range(1,size));
         allSquares = allSquares :+ s;
       }
     }
@@ -45,8 +46,8 @@ class SquareMatrix {
   }
 
   def printIt(){
-    for(y<-List(1,2,3,4)){
-      for(x<-List(1,2,3,4)){
+    for(y<-List(1,2,3,4,5)){
+      for(x<-List(1,2,3,4,5)){
         var s = getSquare(x,y);
         print(s.possibleValues + " solved:" + s.isSolved + " ")
       }

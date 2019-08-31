@@ -19,12 +19,34 @@ object RunApp extends App {
     m.allSquares = m.allSquares :+ s2.addNeighbour(s1)
   }
 
+  implicit def doubleToInt(i:Double):Int = {
+    i.toInt
+  }
+
   def initMatrix(source:Array[String]) = { //TODO: implement multiple puzzles functionality
     val size = source(1).charAt(source(1).length-1)
-    m.initMatrix(size)
-    for (lineNr <- 2 to (source.length-1)) {
+    m.initMatrix(size.asDigit)
+    for (lineNr <- 2 until (source.length-1) by 2) {
+      println("Current lineNr: " + lineNr)
       val line = source(lineNr)
-
+      for (i <- 0 until line.length-1 by 4){
+        val char = source(lineNr).charAt(i)
+        val y = lineNr/2
+        if ( !char.toString.equals("_")) {
+          val x = i/4 +1
+          println("x: " + x + " y: " + y)
+          val s = m.getSquare(x,y)
+          m.allSquares = m.allSquares.filter(_ != s);
+          m.allSquares = m.allSquares :+ s.setValue(char.asDigit)
+        }
+        if (i+2<source(lineNr).length) {
+          val char2 = source(lineNr).charAt(i + 2)
+          if (char2.toString.equals("x")) {
+            val x = i/4 +1
+            connectNeighbours(m.getSquare(x,y),m.getSquare(x+1,y))
+          }
+        }
+      }
     }
   }
 
@@ -32,6 +54,7 @@ object RunApp extends App {
     println(f.getName())
     val lines = scala.io.Source.fromFile(f).mkString.split("\n")
     initMatrix(lines)
+    m.printIt()
     val numPuzzles = lines(0)
 
     var out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
