@@ -44,13 +44,14 @@ class SquareMatrix {
     allSquares = allSquares :+ s
   }
 
-  def printIt(){
-    for(y<-List(1,2,3,4)){
-      for(x<-List(1,2,3,4)){
-        var s = getSquare(x,y);
-        print(s.possibleValues + " solved:" + s.isSolved + " ")
+  def printIt(): Unit = {
+    for (x <- List(1, 2, 3, 4)) {
+      for (y <- List(1, 2, 3, 4)) {
+        val s = getSquare(x, y)
+        printf("%15s", s.possibleValues.mkString(", ") + " |")
       }
       println("")
+      println("------------------------------------------------------------")
     }
   }
 
