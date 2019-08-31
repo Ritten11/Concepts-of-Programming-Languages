@@ -10,19 +10,19 @@ class Square(xNumber:Int,yNumber:Int, values:List[Int], neighboursList:List[Squa
   }
 
   def setValue(solution:Int):Square = {
-    return new Square(this.x,this.y,this.neighbours, List(solution),true);
+    return new Square(this.x,this.y,List(solution),this.neighbours,true);
   }
 
   def addNeighbour(s:Square):Square = {
-    return new Square(this.x, this.y, this.neighbours:+s,this.possibleValues,this.solved)
+    return new Square(this.x, this.y,this.possibleValues,this.neighbours:+s,this.solved)
   }
 
   def removeValue(wrongSolution:Int): Square  ={
     val newlist = possibleValues.filter(_ != wrongSolution);
     if(newlist.length==1){
-      return new Square(this.x,this.y, this.neighbours, newlist,solved=true);
+      return new Square(this.x,this.y,newlist,this.neighbours,solved=true);
     }
-    return new Square(this.x,this.y,this.neighbours, newlist);
+    return new Square(this.x,this.y,newlist,this.neighbours);
   }
 
   def getCorrectValue():Int = {

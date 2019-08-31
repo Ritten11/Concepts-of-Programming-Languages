@@ -44,15 +44,6 @@ class SquareMatrix {
     allSquares = allSquares :+ s
   }
 
-  setValue(1,1,3)
-  setValue(1,2,4)
-  setValue(1,3,1)
-  setValue(2,2,2)
-  setValue(3,3,2)
-  setValue(4,2,1)
-  setValue(4,3,4)
-  setValue(4,4,3)
-
   def printIt(){
     for(y<-List(1,2,3,4)){
       for(x<-List(1,2,3,4)){
@@ -62,8 +53,6 @@ class SquareMatrix {
       println("")
     }
   }
-
-  printIt();
 
   def isValid(x:Int,y:Int,solution:Int):Boolean = { //TODO: Add neighbours rule
     for(s<-(getAllFromX(x):::getAllFromY(y))){
@@ -138,14 +127,12 @@ class SquareMatrix {
     allSquares  = allSquares ++ row.map((s:Square) => s.removeValue(setNumber))
   }
 
-  for (y <- 1 to 4) {
-    for (x <- 1 to 4) {
-      val s = getSquare(x, y)
-      if (s.isSolved)
-        updatePossValuesRow(y, s.getCorrectValue())
-      updatePossValuesColumn(x, s.getCorrectValue())
-    }
-  }
-
-  printIt()
+//  for (y <- 1 to 4) {
+//    for (x <- 1 to 4) {
+//      val s = getSquare(x, y)
+//      if (s.isSolved)
+//        updatePossValuesRow(y, s.getCorrectValue())
+//      updatePossValuesColumn(x, s.getCorrectValue())
+//    }
+//  }
 }
