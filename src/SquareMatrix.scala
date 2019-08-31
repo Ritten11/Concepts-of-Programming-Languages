@@ -49,10 +49,10 @@ class SquareMatrix {
     for (x <- List(1, 2, 3, 4, 5)) {
       for (y <- List(1, 2, 3, 4, 5)) {
         val s = getSquare(x, y)
-        printf("%15s", s.possibleValues.mkString(", ") + " |")
+        printf("%15s", s.possibleValues.mkString(", ") + "(" + s.neighbours.length + ") |")
       }
       println("")
-      println("------------------------------------------------------------")
+      println("---------------------------------------------------------------------------")
     }
   }
 

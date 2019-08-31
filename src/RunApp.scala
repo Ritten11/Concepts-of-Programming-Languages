@@ -14,7 +14,8 @@ object RunApp extends App {
   }
 
   def connectNeighbours(s1:Square,s2:Square) = {
-    m.allSquares = m.allSquares.filter((s:Square)=>(s!=s1 || s!=s2))
+    m.allSquares = m.allSquares.filter((s:Square)=>s!=s1)
+    m.allSquares = m.allSquares.filter((s:Square)=>s!=s2)
     m.allSquares = m.allSquares :+ s1.addNeighbour(s2)
     m.allSquares = m.allSquares :+ s2.addNeighbour(s1)
   }
@@ -26,23 +27,22 @@ object RunApp extends App {
   def initMatrix(source:Array[String]) = { //TODO: implement multiple puzzles functionality
     val size = source(1).charAt(source(1).length-1)
     m.initMatrix(size.asDigit)
-    for (lineNr <- 2 until (source.length-1) by 2) {
+    for (lineNr <- 2 until (source.length) by 2) {
       println("Current lineNr: " + lineNr)
       val line = source(lineNr)
-      for (i <- 0 until line.length-1 by 4){
+      for (i <- 0 until line.length by 4){
         val char = source(lineNr).charAt(i)
         val y = lineNr/2
         if ( !char.toString.equals("_")) {
           val x = i/4 +1
           println("x: " + x + " y: " + y)
-          val s = m.getSquare(x,y)
-          m.allSquares = m.allSquares.filter(_ != s);
-          m.allSquares = m.allSquares :+ s.setValue(char.asDigit)
+          m.setValue(x,y,char.asDigit)
         }
         if (i+2<source(lineNr).length) {
           val char2 = source(lineNr).charAt(i + 2)
           if (char2.toString.equals("x")) {
             val x = i/4 +1
+            //println("Connecting neighbours: (" + x +"," + y +")")
             connectNeighbours(m.getSquare(x,y),m.getSquare(x+1,y))
           }
         }

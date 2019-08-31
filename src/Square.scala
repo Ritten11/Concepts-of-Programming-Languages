@@ -10,7 +10,7 @@ class Square(xNumber: Int,
   val isSolved = solved;
 
   override def toString() = {
-    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "Neighbors: " + neighbours.mkString(",") +" solved:" + isSolved;
+    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length +" solved:" + isSolved;
   }
 
   def setValue(solution: Int): Square = {
