@@ -19,13 +19,19 @@ object RunApp extends App {
     m.allSquares = m.allSquares :+ s2.addNeighbour(s1)
   }
 
-  def initMatrix() = {
-    m.
+  def initMatrix(source:Array[String]) = { //TODO: implement multiple puzzles functionality
+    val size = source(1).charAt(source(1).length-1)
+    m.initMatrix(size)
+    for (lineNr <- 2 to (source.length-1)) {
+      val line = source(lineNr)
+
+    }
   }
 
   def solveSlitherLinks(f:File):Unit = {
     println(f.getName())
     val lines = scala.io.Source.fromFile(f).mkString.split("\n")
+    initMatrix(lines)
     val numPuzzles = lines(0)
 
     var out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
