@@ -1,5 +1,4 @@
-class Square(xNumber:Int,yNumber:Int, neighboursList:List[Square]=List(),
-             values:List[Int]=List(1,2,3,4),solved:Boolean=false) {
+class Square(xNumber:Int,yNumber:Int, values:List[Int], neighboursList:List[Square]=List(), solved:Boolean=false) {
   val x = xNumber;
   val y = yNumber;
   val neighbours = neighboursList;
@@ -12,6 +11,10 @@ class Square(xNumber:Int,yNumber:Int, neighboursList:List[Square]=List(),
 
   def setValue(solution:Int):Square = {
     return new Square(this.x,this.y,this.neighbours, List(solution),true);
+  }
+
+  def addNeighbour(s:Square):Square = {
+    return new Square(this.x, this.y, this.neighbours:+s,this.possibleValues,this.solved)
   }
 
   def removeValue(wrongSolution:Int): Square  ={

@@ -3,12 +3,24 @@ object RunApp extends App {
   val inputdir = "Input"; // Change to real input dir
   val outputdir = "Output"; // Change to real output dir
 
+  var m = new SquareMatrix;
+
   import java.io.File;
 
   val dir = new File(inputdir);
   println(dir)
   for(f<-dir.listFiles()){
     solveSlitherLinks(f)
+  }
+
+  def connectNeighbours(s1:Square,s2:Square) = {
+    m.allSquares = m.allSquares.filter((s:Square)=>(s!=s1 || s!=s2))
+    m.allSquares = m.allSquares :+ s1.addNeighbour(s2)
+    m.allSquares = m.allSquares :+ s2.addNeighbour(s1)
+  }
+
+  def initMatrix() = {
+    m.
   }
 
   def solveSlitherLinks(f:File):Unit = {
