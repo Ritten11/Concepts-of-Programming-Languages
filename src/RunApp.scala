@@ -6,6 +6,7 @@ object RunApp extends App {
   import java.io.File;
 
   val dir = new File(inputdir);
+  println(dir)
   for(f<-dir.listFiles()){
     solveSlitherLinks(f)
   }
