@@ -5,7 +5,7 @@ class SquareMatrix {
     allSquares = List()
     for(xValue <- 1 to size){
       for(yValue <- 1 to size){
-        val s = new Square(xValue,yValue,List.range(1,size));
+        val s = new Square(xValue,yValue,List.range(1,size+1));
         allSquares = allSquares :+ s;
       }
     }
@@ -45,9 +45,9 @@ class SquareMatrix {
     allSquares = allSquares :+ s
   }
 
-  def printIt(): Unit = {
-    for (x <- List(1, 2, 3, 4, 5)) {
-      for (y <- List(1, 2, 3, 4, 5)) {
+  def printIt(size:Int): Unit = {
+    for (y <- List.range(1,size+1)) {
+      for (x <- List.range(1,size+1)) {
         val s = getSquare(x, y)
         printf("%15s", s.possibleValues.mkString(", ") + "(" + s.neighbours.length + ") |")
       }
