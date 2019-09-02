@@ -2,12 +2,14 @@ class Square(xNumber: Int,
              yNumber: Int,
              values: List[Int],
              neighboursList: List[Square] = List(),
-             solved: Boolean = false) {
+             solved: Boolean = false,
+             valid: Boolean = true) {
   val x = xNumber;
   val y = yNumber;
   val neighbours = neighboursList;
   val possibleValues = values;
   val isSolved = solved;
+  val isValid = valid; //not sure if it is necessary
 
   override def toString() = {
     "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length +" solved:" + isSolved;

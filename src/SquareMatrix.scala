@@ -1,14 +1,16 @@
 class SquareMatrix {
   var allSquares = List[Square]();
+  var size:Int = -1; //not functional
 
-  def initMatrix(size:Int) = {
+  def initMatrix(sizeP:Int) = {
     allSquares = List()
-    for(xValue <- 1 to size){
-      for(yValue <- 1 to size){
-        val s = new Square(xValue,yValue,List.range(1,size+1));
+    for(xValue <- 1 to sizeP){
+      for(yValue <- 1 to sizeP){
+        val s = new Square(xValue,yValue,List.range(1,sizeP+1));
         allSquares = allSquares :+ s;
       }
     }
+    this.size = sizeP;
   }
 
 
@@ -45,9 +47,9 @@ class SquareMatrix {
     allSquares = allSquares :+ s
   }
 
-  def printIt(size:Int): Unit = {
-    for (y <- List.range(1,size+1)) {
-      for (x <- List.range(1,size+1)) {
+  def printIt(sizeP:Int): Unit = {
+    for (y <- List.range(1,sizeP+1)) {
+      for (x <- List.range(1,sizeP+1)) {
         val s = getSquare(x, y)
         printf("%15s", s.possibleValues.mkString(", ") + "(" + s.neighbours.length + ") |")
       }
@@ -55,11 +57,47 @@ class SquareMatrix {
       println("---------------------------------------------------------------------------")
     }
   }
+  def checkIfSquareExists(x:Int, y:Int):Boolean = {
+    if(x>0 && y>0 && x<size &&y<size){
+      return true;
+    }
+    return false;
+  }
 
   def isValid(x:Int,y:Int,solution:Int):Boolean = { //TODO: Add neighbours rule
+
+    //neighbor checking
+    val checkedSquare:Square = this.getSquare(x,y);
+    for(s:Square <- checkedSquare.neighbours){ //Check if neighbor is valid
+      val filterValues = s.possibleValues.filter((i:Int) => Math.abs(i-solution)==1);
+      if(filterValues.isEmpty){
+        return false
+      }
+    }
+
+    //not neighbor checking
+    val notNeighborsX =
+      for(xDifference <- List(1,-1); if(checkIfSquareExists(x+xDifference,y))
+      ;if(!checkedSquare.neighbours.contains(this.getSquare(x+xDifference,y))))
+        yield this.getSquare(x+xDifference,y);
+
+    val notNeighborsY =
+      for(yDifference <- List(1,-1); if(checkIfSquareExists(x,y+yDifference))
+          ;if(!checkedSquare.neighbours.contains(this.getSquare(x,y+yDifference))))
+        yield this.getSquare(x,y+yDifference);
+
+    val notNeighbors = notNeighborsX ::: notNeighborsY;
+
+    for(square:Square <- notNeighbors){
+      val filterValues = square.possibleValues.filter((i:Int) => Math.abs(i-solution)>1);
+      if(filterValues.isEmpty){
+        return false
+      }
+    }
+
     for(s<-(getAllFromX(x):::getAllFromY(y))){
-      var oneSquare = s.asInstanceOf[Square];
-      if(x!=oneSquare.x || y!=oneSquare.y){
+      val oneSquare = s.asInstanceOf[Square];
+      if(x!=oneSquare.x || y!=oneSquare.y){ //don't compare Square with itself
         if(oneSquare.isSolved==true && oneSquare.possibleValues(0)==solution){
           println("Has solution:"+oneSquare.x,oneSquare.y,oneSquare.possibleValues)
           return false;
