@@ -102,30 +102,15 @@ object RunApp extends App {
     out.print(numPuzzles + "\n")
 
     var sol = ""
-    out.print("puzzles 2\n");
-    out.print("size 4x4\n");
+    out.print("size " +  size + "x" + size + "\n");
 
-    out.print("1 3 2 4\n");
-
-    out.print("4 2 3 1\n");
-
-    out.print("3 4 1 2\n");
-
-    out.print("2 1 4 3\n");
-
-    out.print("size 5x5\n");
-
-    out.print("4 3 5 2 1\n");
-
-    out.print("2 4 3 1 5\n");
-
-    out.print("1 2 4 5 3\n");
-
-    out.print("3 5 1 4 2\n");
-
-    out.print("5 1 2 3 4\n");
-
-
+    for (y <- List.range(1,size+1)) {
+      for (x <- List.range(1,size+1)) {
+        val s = m.getSquare(x, y)
+        out.print(s.possibleValues(0) + " ");
+      }
+      out.print("\n")
+    }
     out.close();
   }
 

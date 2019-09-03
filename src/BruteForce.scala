@@ -5,9 +5,6 @@ class BruteForce(val squareMatrix: SquareMatrix) {
 
   def recursionSolver(x:Int, y:Int, sMatrix: SquareMatrix): Boolean = {
 
-  //  sMatrix.printIt(sMatrix.size)
-   // println("")
-
     if(!sMatrix.isCoordinateinRange(x,y)){
       return true;
     }
