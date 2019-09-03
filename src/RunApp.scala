@@ -17,40 +17,14 @@ object RunApp extends App {
   def connectNeighbours(s1:Square,s2:Square) = {
     m.allSquares = m.allSquares.filter((s:Square)=>s!=s1)
     m.allSquares = m.allSquares.filter((s:Square)=>s!=s2)
-    m.allSquares = m.allSquares :+ s1.addNeighbour(s2)
-    m.allSquares = m.allSquares :+ s2.addNeighbour(s1)
+    m.allSquares = m.allSquares :+ s1.addNeighbour(s2.x,s2.y)
+    m.allSquares = m.allSquares :+ s2.addNeighbour(s1.x,s1.y)
   }
 
   implicit def doubleToInt(i:Double):Int = {
     i.toInt
   }
 
-  /*def initMatrix(source:Array[String]) = { //TODO: implement multiple puzzles functionality
-    val size = source(1).charAt(source(1).length-1)
-    m.initMatrix(size.asDigit)
-    for (lineNr <- 2 until (source.length) by 2) {
-      println("Current lineNr: " + lineNr)
-      val line = source(lineNr)
-      for (i <- 0 until line.length by 4){
-        val char = source(lineNr).charAt(i)
-        val y = lineNr/2
-        if ( !char.toString.equals("_")) {
-          val x = i/4 +1
-          println("x: " + x + " y: " + y)
-          m.setValue(x,y,char.asDigit)
-        }
-        if (i+2<source(lineNr).length) {
-          val char2 = source(lineNr).charAt(i + 2)
-          if (char2.toString.equals("x")) {
-            val x = i/4 +1
-            //println("Connecting neighbours: (" + x +"," + y +")")
-            connectNeighbours(m.getSquare(x,y),m.getSquare(x+1,y))
-          }
-        }
-      }
-    }
-  }
-  */
 
   def isAllDigits(x: String) = x.map(Character.isDigit(_)).reduce(_&&_)
 
@@ -60,10 +34,10 @@ object RunApp extends App {
     }
     val input:String = line(index);
     if(isAllDigits(input)){
-      m.setValue(numberCount+1,y,Integer.valueOf(input));
+      m.setValue(numberCount+1,y,Integer.valueOf(input), true);
       addLineToMatrix(index+1,numberCount+1,y,line);
     }else if(input.equals("x")){
-      connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y));
+      connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y)); //change to coordinates
       addLineToMatrix(index+1, numberCount,y,line);
       return;
     }else{
@@ -117,7 +91,10 @@ object RunApp extends App {
     val size = Integer.valueOf(listSize(1).split("x")(0));
     initMatrix(size, source._1, source._2);
 
-    m.printIt(size);
+
+    val a:BruteForce = new BruteForce(m);
+    a.solve();
+    this.m.printIt(m.size);
 
     val numPuzzles = lines(0)
 
