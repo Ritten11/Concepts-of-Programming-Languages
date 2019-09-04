@@ -1,16 +1,15 @@
-class SquareMatrix {
+class SquareMatrix(s:Int){
   var allSquares = List[Square]();
-  var size:Int = -1; //not functional
+  val size:Int = s;
 
-  def initMatrix(sizeP:Int) = {
+  def initMatrix() = {
     allSquares = List()
-    for(xValue <- 1 to sizeP){
-      for(yValue <- 1 to sizeP){
-        val s = new Square(xValue,yValue,List.range(1,sizeP+1));
+    for(xValue <- 1 to this.size){
+      for(yValue <- 1 to this.size){
+        val s = new Square(xValue,yValue,List.range(1,this.size+1));
         allSquares = allSquares :+ s;
       }
     }
-    this.size = sizeP;
   }
 
   def getAllFromX(i:Int):List[Square] = {

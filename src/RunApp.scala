@@ -3,14 +3,13 @@ object RunApp extends App {
   val inputdir = "Input"; // Change to real input dir
   val outputdir = "Output"; // Change to real output dir
 
-  var m = new SquareMatrix;
+  var m = new SquareMatrix(0);
 
   import java.io.File;
 
   val dir = new File(inputdir);
   println(dir)
   for(f<-dir.listFiles()){
-    m = new SquareMatrix;
     solveSlitherLinks(f)
   }
 
@@ -63,8 +62,8 @@ object RunApp extends App {
     return tmp;
   }
 
-  def initMatrix(size:Int ,numberSource:Array[List[String]], neighborSource:Array[List[String]]) = { //TODO: implement multiple puzzles functionality
-    m.initMatrix(size)
+  def initMatrix(numberSource:Array[List[String]], neighborSource:Array[List[String]]) = { //TODO: implement multiple puzzles functionality
+    m.initMatrix()
     for(line <- numberSource){
       addLineToMatrix(0,0,numberSource.indexOf(line)+1,line);
     }
@@ -89,7 +88,9 @@ object RunApp extends App {
     val source = getInputAsLists(lines);
     val listSize = lines(1).split(" ").map((s:String)=>s.toList.filter(_>= ' ').mkString);
     val size = Integer.valueOf(listSize(1).split("x")(0));
-    initMatrix(size, source._1, source._2);
+    
+    m = new SquareMatrix(size);
+    initMatrix(source._1, source._2);
 
 
     val a:BruteForce = new BruteForce(m);
