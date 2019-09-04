@@ -40,11 +40,18 @@ class BruteForce(val squareMatrix: SquareMatrix) {
 
   //improvable: change all values with just possible values
   def tryNumbers(x:Int, y:Int, startValue:Int, sMatrix: SquareMatrix):Boolean = {
-    for(number <- startValue to sMatrix.size){
+    println("Looking at cell: (" + x + "," + y + ")")
+    println("PossValues greater or equal to startValue " + startValue + ": " + sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue).mkString(" "))
+    println("Instead trying numbers: " + (startValue to sMatrix.size).mkString(" ") + " while possValues: " + sMatrix.getSquare(x,y).possibleValues.mkString(" "))
+    sMatrix.printIt(sMatrix.size)
+    for(number <- sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)){ //TODO: changing "startValue to sMatrix.size" to "sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)" makes the matrix unsolvable PROBLEM: possValues is not correct
+      print("Checking number: " + number)
       if(sMatrix.isValid(x,y,number)){
+        println(" -> Valid number!")
         sMatrix.setValue(x,y,number,false);
         return true;
       }
+      println("")
     }
     return false;
   }
