@@ -12,10 +12,8 @@ object RunApp extends App {
   }
 
   def connectNeighbours(s1:Square,s2:Square, m:SquareMatrix):SquareMatrix = {
-    m.allSquares = m.allSquares.filter((s:Square)=>s!=s1)
-    m.allSquares = m.allSquares.filter((s:Square)=>s!=s2)
-    m.allSquares = m.allSquares :+ s1.addNeighbour(s2.x,s2.y)
-    m.allSquares = m.allSquares :+ s2.addNeighbour(s1.x,s1.y)
+    val newList = m.allSquares.filter((s:Square)=>s!=s1).filter((s:Square)=>s!=s2)
+    return new SquareMatrix(m.size,newList :+ s1.addNeighbour(s2.x,s2.y) :+ s2.addNeighbour(s1.x,s1.y))
   }
 
   implicit def doubleToInt(i:Double):Int = {
@@ -42,7 +40,7 @@ object RunApp extends App {
   }
 
   def initSquareList(size:Int):List[Square] = {
-    var allSquares = List()[Square]
+    var allSquares = List[Square]()
     for(xValue <- 1 to size){
       for(yValue <- 1 to size){
         val s = new Square(xValue,yValue,List.range(1,size+1));
@@ -70,19 +68,20 @@ object RunApp extends App {
   }
 
   def initMatrix(numberSource:Array[List[String]], neighborSource:Array[List[String]], size:Int):SquareMatrix = { //TODO: implement multiple puzzles functionality
-    val m = new SquareMatrix(size, initSquareList(size))
+    var m = new SquareMatrix(size, initSquareList(size))
     for(line <- numberSource){ //TODO: Make it recursive
-      addLineToMatrix(0,0,numberSource.indexOf(line)+1,line, m);
+      m = addLineToMatrix(0,0,numberSource.indexOf(line)+1,line, m);
     }
     for(lineNumber <- 0 to neighborSource.length-1){
       for(columnNumber <- 0 to neighborSource(lineNumber).length-1){
         if(neighborSource(lineNumber)(columnNumber).equals("x")){
           val s1:Square = m.getSquare(columnNumber+1,lineNumber+1);
           val s2:Square = m.getSquare(columnNumber+1,lineNumber+2);
-          this.connectNeighbours(s1,s2);
+          m = connectNeighbours(s1,s2,m);
         }
       }
     }
+    return m;
   }
 
 
