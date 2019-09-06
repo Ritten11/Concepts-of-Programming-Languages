@@ -1,4 +1,6 @@
-class SquareMatrix(s:Int, square:List[Square]){
+class SquareMatrix(s:Int,
+                   square:List[Square]){
+
   val allSquares = square;
   val size:Int = s;
 
@@ -111,11 +113,12 @@ class SquareMatrix(s:Int, square:List[Square]){
     return true;
   }
 
-  def removeIfNotValid(x:Int,y:Int,solution:Int){
+  def removeIfNotValid(x:Int,y:Int,solution:Int):SquareMatrix = {
     if(!isValid(x,y,solution)){
       println("removing",x,y,solution)
-      removeValue(x,y,solution)
+      return removeValue(x,y,solution)
     }
+    return this
   }
 
   /*for(x<-List(1,2,3,4)){
