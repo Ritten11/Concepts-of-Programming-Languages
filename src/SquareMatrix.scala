@@ -1,16 +1,6 @@
-class SquareMatrix(s:Int){
-  var allSquares = List[Square]();
+class SquareMatrix(s:Int, square:List[Square]){
+  val allSquares = square;
   val size:Int = s;
-
-  def initMatrix() = {
-    allSquares = List()
-    for(xValue <- 1 to this.size){
-      for(yValue <- 1 to this.size){
-        val s = new Square(xValue,yValue,List.range(1,this.size+1));
-        allSquares = allSquares :+ s;
-      }
-    }
-  }
 
   def getAllFromX(i:Int):List[Square] = {
     return allSquares.filter(_.x == i)
@@ -24,12 +14,10 @@ class SquareMatrix(s:Int){
     return allSquares.filter(_.x == x).filter(_.y == y)(0)
   }
 
-  def setValue(x:Int,y:Int,solution:Int, isStartValue:Boolean = false) = {
-    var s = getSquare(x,y)
-    allSquares = allSquares.filter(_ != s)
-    s = s.setValue(solution,isStartValue)
-    allSquares = allSquares :+ s
-   // updateNeighbours(x,y);
+  def setValue(x:Int,y:Int,solution:Int, isStartValue:Boolean = false):SquareMatrix = {
+    val s = getSquare(x,y)
+    val newList = allSquares.filter(_ != s)
+    return new SquareMatrix(this.size, newList :+ s.setValue(solution,isStartValue))
   }
 
  /* def updateNeighbours(x:Int, y:Int):Unit = { // das hier sollte nicht so ganz stimmen
@@ -47,18 +35,16 @@ class SquareMatrix(s:Int){
 
   */
 
-  def setSquare(square:Square):Unit = {
+  def setSquare(square:Square):SquareMatrix = {
     val s = getSquare(square.x,square.y);
-    allSquares = allSquares.filter(_ != s);
-    allSquares = allSquares :+ square;
+    return new SquareMatrix(size, allSquares.filter(_ != s) :+ s);
   }
 
-  def removeValue(x:Int,y:Int,wrongSolution:Int) = {
+  def removeValue(x:Int,y:Int,wrongSolution:Int):SquareMatrix = {
 
-    var s = getSquare(x,y)
-    allSquares = allSquares.filter(_ != s)
-    s = s.removeValue(wrongSolution)
-    allSquares = allSquares :+ s
+    val s = getSquare(x,y)
+    val newList = allSquares.filter(_ != s)
+    return new SquareMatrix(this.size, newList:+ s.removeValue(wrongSolution))
   }
 
   def printIt(sizeP:Int): Unit = {
@@ -71,7 +57,7 @@ class SquareMatrix(s:Int){
       println("---------------------------------------------------------------------------")
     }
   }
-  def isCoordinateinRange(x:Int, y:Int):Boolean = {
+  def isCoordinateInRange(x:Int, y:Int):Boolean = {
     if(x>0 && y>0 && x<=size &&y<=size){
       return true;
     }
@@ -97,11 +83,11 @@ class SquareMatrix(s:Int){
 
     //not neighbor checking
     val notNeighborsX =
-      for(xDifference <- List(1,-1); if(isCoordinateinRange(x+xDifference,y)))
+      for(xDifference <- List(1,-1); if(isCoordinateInRange(x+xDifference,y)))
         yield Array(x+xDifference,y);
 
     val notNeighborsY =
-      for(yDifference <- List(1,-1); if(isCoordinateinRange(x,y+yDifference)))
+      for(yDifference <- List(1,-1); if(isCoordinateInRange(x,y+yDifference)))
         yield Array(x,y+yDifference);
 
     val notNeighbors = (notNeighborsX ::: notNeighborsY).

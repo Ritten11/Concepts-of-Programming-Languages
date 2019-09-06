@@ -3,9 +3,7 @@ object RunApp extends App {
   val inputdir = "Input"; // Change to real input dir
   val outputdir = "Output"; // Change to real output dir
 
-  var m = new SquareMatrix(0);
-
-  import java.io.File;
+  //var m = new SquareMatrix(0);
 
   val dir = new File(inputdir);
   println(dir)
@@ -13,7 +11,7 @@ object RunApp extends App {
     solveSlitherLinks(f)
   }
 
-  def connectNeighbours(s1:Square,s2:Square) = {
+  def connectNeighbours(s1:Square,s2:Square, m:SquareMatrix):SquareMatrix = {
     m.allSquares = m.allSquares.filter((s:Square)=>s!=s1)
     m.allSquares = m.allSquares.filter((s:Square)=>s!=s2)
     m.allSquares = m.allSquares :+ s1.addNeighbour(s2.x,s2.y)
@@ -27,22 +25,31 @@ object RunApp extends App {
 
   def isAllDigits(x: String) = x.map(Character.isDigit(_)).reduce(_&&_)
 
-  def addLineToMatrix(index:Int, numberCount: Int,y:Int, line:List[String]):Unit = {
+  def addLineToMatrix(index:Int, numberCount: Int,y:Int, line:List[String], m:SquareMatrix):SquareMatrix = {
     if(index >=line.length){
-      return;
+      return m; //TODO: is this correct?
     }
     val input:String = line(index);
     if(isAllDigits(input)){
-      m.setValue(numberCount+1,y,Integer.valueOf(input), true);
-      addLineToMatrix(index+1,numberCount+1,y,line);
+      val m1 = m.setValue(numberCount+1,y,Integer.valueOf(input), true);
+      return addLineToMatrix(index+1,numberCount+1,y,line, m1);
     }else if(input.equals("x")){
-      connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y)); //change to coordinates
-      addLineToMatrix(index+1, numberCount,y,line);
-      return;
+      val m1= connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y),m); //change to coordinates
+      return addLineToMatrix(index+1, numberCount,y,line, m1);
     }else{
-      addLineToMatrix(index+1,numberCount+1,y,line);
-      return;
+      return addLineToMatrix(index+1,numberCount+1,y,line, m);
     }
+  }
+
+  def initSquareList(size:Int):List[Square] = {
+    var allSquares = List()[Square]
+    for(xValue <- 1 to size){
+      for(yValue <- 1 to size){
+        val s = new Square(xValue,yValue,List.range(1,size+1));
+        allSquares = allSquares :+ s;
+      }
+    }
+    allSquares
   }
 
   def getInputAsLists(lines:Array[String]):Tuple2[Array[List[String]],Array[List[String]]] = {
@@ -62,10 +69,10 @@ object RunApp extends App {
     return tmp;
   }
 
-  def initMatrix(numberSource:Array[List[String]], neighborSource:Array[List[String]]) = { //TODO: implement multiple puzzles functionality
-    m.initMatrix()
-    for(line <- numberSource){
-      addLineToMatrix(0,0,numberSource.indexOf(line)+1,line);
+  def initMatrix(numberSource:Array[List[String]], neighborSource:Array[List[String]], size:Int):SquareMatrix = { //TODO: implement multiple puzzles functionality
+    val m = new SquareMatrix(size, initSquareList(size))
+    for(line <- numberSource){ //TODO: Make it recursive
+      addLineToMatrix(0,0,numberSource.indexOf(line)+1,line, m);
     }
     for(lineNumber <- 0 to neighborSource.length-1){
       for(columnNumber <- 0 to neighborSource(lineNumber).length-1){
@@ -88,14 +95,13 @@ object RunApp extends App {
     val source = getInputAsLists(lines);
     val listSize = lines(1).split(" ").map((s:String)=>s.toList.filter(_>= ' ').mkString);
     val size = Integer.valueOf(listSize(1).split("x")(0));
-    
-    m = new SquareMatrix(size);
-    initMatrix(source._1, source._2);
+
+    val m = initMatrix(source._1, source._2, size);
 
 
     val a:BruteForce = new BruteForce(m);
     a.solve();
-    this.m.printIt(m.size);
+    m.printIt(m.size);
 
     val numPuzzles = lines(0)
 
