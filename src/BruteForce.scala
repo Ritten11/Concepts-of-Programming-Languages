@@ -24,18 +24,15 @@ class BruteForce(val squareMatrix: SquareMatrix) {
       return recursionSolver(x+i,y+j, sMatrix);
     }
 
-    while(check == false){
-        if(!tryNumbers(x,y, startValue, sMatrix)){//Wenn alles ausprobiert wurde, gehe zurück und probiere da alles zu aus
-          sMatrix.setSquare(new Square(x,y,List.range(1,sMatrix.size+1), s.neighbours));
-          return false;
-        }
-        startValue+=1;
-        check = recursionSolver(x+i,y+j, sMatrix);
+    do{
+      if(!tryNumbers(x,y, startValue, sMatrix)){
+        sMatrix.setSquare(new Square(x,y,List.range(1,sMatrix.size+1), s.neighbours));
+        return false;
+      }
+      startValue+=1;
+    }while(!recursionSolver(x+i,y+j, sMatrix))
 
-        if(check){
-          return true;
-        }
-    }
+    
     return true;
   }
 
