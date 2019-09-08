@@ -128,7 +128,7 @@ object RunApp extends App {
     val out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
     out.print(numPuzzles + "\n")
 
-    / sol = ""
+    //sol = ""
     out.print("size " +  size + "x" + size + "\n");
 
     for (y <- List.range(1,size+1)) {
