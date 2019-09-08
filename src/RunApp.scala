@@ -6,7 +6,7 @@ object RunApp extends App {
 
 
   val dir = new File(inputdir);
-  println(dir)
+  //println(dir)
   for (f <- dir.listFiles()) {
     solveSlitherLinks(f)
   }
@@ -72,7 +72,7 @@ object RunApp extends App {
 
   def addLineToMatrix(index: Int, numberCount: Int, y: Int, line: List[String], m: SquareMatrix): SquareMatrix = {
     if (index >= line.length) {
-      return m; //TODO: is this correct?
+      return m;
     }
     val input: String = line(index);
     if (isAllDigits(input)) {
@@ -112,24 +112,27 @@ object RunApp extends App {
     println(f.getName())
     val lines = scala.io.Source.fromFile(f).mkString.split("\n")
 
-    //initMatrix(lines)
-
     val source = getInputAsLists(lines);
     val listSize = lines(1).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString);
     val size = Integer.valueOf(listSize(1).split("x")(0));
 
     val m = initMatrix(source._1, source._2, size);
 
+    m.printIt(m.size);
+    println("")
 
     val a: BruteForce = new BruteForce(m);
     val solved = a.solve();
+
+    solved._2.printIt(solved._2.size);
+    println("")
+    println("")
 
     val numPuzzles = lines(0)
 
     val out = new PrintWriter(new File(outputdir + "/" + f.getName()), "UTF-8")
     out.print(numPuzzles + "\n")
 
-    //sol = ""
     out.print("size " + size + "x" + size + "\n");
 
     for (y <- List.range(1, size + 1)) {
