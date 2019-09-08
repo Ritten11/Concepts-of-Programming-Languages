@@ -10,8 +10,6 @@ class BruteForce(val squareMatrix: SquareMatrix) {
     }
     val s:Square = sMatrix.getSquare(x,y);
 
-    var startValue:Int = 1;
-
     val (i,j):Tuple2[Int,Int] =  //next step
     if(x == sMatrix.size){
       (-sMatrix.size+1,1)
@@ -19,24 +17,21 @@ class BruteForce(val squareMatrix: SquareMatrix) {
       (1,0)
     }
 
-    if(s.isStartValue){
-      return recursionSolver(x+i,y+j, sMatrix);
-    }
-
-    do{
+    for (startValue <- sMatrix.getSquare(x,y).possibleValues){
+      println("startValue: " + startValue)
       val tuple = tryNumbers(x,y,startValue,sMatrix)
       if(!tuple._1){
-        return (false,sMatrix); //TODO: Can be removed if the recursion is fully functional
+        return (false,sMatrix);
       }
-      startValue+=1;
+//      startValue+=1;
       val tmp = recursionSolver(x+i,y+j, tuple._2);
       if (tmp._1){
         return tmp
       }
-    }while(true)
+    }
 
     
-    return (true,sMatrix);
+    return (false,sMatrix);
   }
 
   //improvable: change all values with just possible values
@@ -44,7 +39,7 @@ class BruteForce(val squareMatrix: SquareMatrix) {
     println("Looking at cell: (" + x + "," + y + ")")
     println("PossValues greater or equal to startValue " + startValue + ": " + sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue).mkString(" "))
     println("Instead trying numbers: " + (startValue to sMatrix.size).mkString(" ") + " while possValues: " + sMatrix.getSquare(x,y).possibleValues.mkString(" "))
-    for(number <- startValue to sMatrix.size){ //TODO: changing "startValue to sMatrix.size" to "sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)" makes the matrix unsolvable PROBLEM: possValues is not correct
+    for(number <- sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)){ //TODO: changing "startValue to sMatrix.size" to "sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)" makes the matrix unsolvable PROBLEM: possValues is not correct
       print("Checking number: " + number)
       if(sMatrix.isValid(x,y,number)){
         println(" -> Valid number!")

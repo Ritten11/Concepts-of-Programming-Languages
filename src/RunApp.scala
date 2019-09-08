@@ -122,7 +122,6 @@ object RunApp extends App {
 
     val a:BruteForce = new BruteForce(m);
     val solved = a.solve();
-    solved._2.printIt(solved._2.size);
 
     val numPuzzles = lines(0)
 
