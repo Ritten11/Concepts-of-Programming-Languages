@@ -34,9 +34,9 @@ class SquareMatrix(s: Int,
     return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution))
   }
 
-  def printIt(sizeP: Int): Unit = {
-    for (y <- List.range(1, sizeP + 1)) {
-      for (x <- List.range(1, sizeP + 1)) {
+  def printIt(): Unit = {
+    for (y <- List.range(1, size + 1)) {
+      for (x <- List.range(1, size + 1)) {
         val s = getSquare(x, y)
         printf("%15s", s.possibleValues.mkString(", ") + "(" + s.neighbours.length + ") |")
       }
