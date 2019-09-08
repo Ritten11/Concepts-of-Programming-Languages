@@ -1,4 +1,6 @@
-import java.io._;
+import java.io._
+
+import RunApp.iterateOverNumberSource;
 object RunApp extends App {
   val inputdir = "Input"; // Change to real input dir
   val outputdir = "Output"; // Change to real output dir
@@ -22,22 +24,6 @@ object RunApp extends App {
 
 
   def isAllDigits(x: String) = x.map(Character.isDigit(_)).reduce(_&&_)
-
-  def addLineToMatrix(index:Int, numberCount: Int,y:Int, line:List[String], m:SquareMatrix):SquareMatrix = {
-    if(index >=line.length){
-      return m; //TODO: is this correct?
-    }
-    val input:String = line(index);
-    if(isAllDigits(input)){
-      val m1 = m.setValue(numberCount+1,y,Integer.valueOf(input), true);
-      return addLineToMatrix(index+1,numberCount+1,y,line, m1);
-    }else if(input.equals("x")){
-      val m1= connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y),m); //change to coordinates
-      return addLineToMatrix(index+1, numberCount,y,line, m1);
-    }else{
-      return addLineToMatrix(index+1,numberCount+1,y,line, m);
-    }
-  }
 
   def initSquareList(size:Int):List[Square] = {
     var allSquares = List[Square]()
@@ -66,23 +52,59 @@ object RunApp extends App {
     val tmp= Tuple2(numberSource.map(_.map(_.toString)), neighborSource.map(_.toList.map(_.toString)));
     return tmp;
   }
+  def iterateOverNumberSource(i:Int, numberSource:Array[List[String]], m:SquareMatrix):SquareMatrix = {
+    if(i==numberSource.length-1){
+      return addLineToMatrix(0,0,i+1,numberSource(i), m);
+    }
+    val tmpMatrix = addLineToMatrix(0,0,i+1,numberSource(i), m);
+    return iterateOverNumberSource(i+1,numberSource,tmpMatrix);
+  }
+
+  def iterateOverNeighbourSource(i:Int, neighbourSource:Array[List[String]],m:SquareMatrix): SquareMatrix ={
+    if(i==neighbourSource.length-1){
+      return addNeighbourLineToMatrix(0,i+1,neighbourSource(i), m);
+    }
+    val tmpMatrix = addNeighbourLineToMatrix(0,i+1,neighbourSource(i), m);
+    return iterateOverNeighbourSource(i+1,neighbourSource,tmpMatrix);
+  }
+
+  def addLineToMatrix(index:Int, numberCount: Int,y:Int, line:List[String], m:SquareMatrix):SquareMatrix = {
+    if(index >=line.length){
+      return m; //TODO: is this correct?
+    }
+    val input:String = line(index);
+    if(isAllDigits(input)){
+      val m1 = m.setValue(numberCount+1,y,Integer.valueOf(input), true);
+      return addLineToMatrix(index+1,numberCount+1,y,line, m1);
+    }else if(input.equals("x")){
+      val m1= connectNeighbours(m.getSquare(numberCount,y),m.getSquare(numberCount+1,y),m); //change to coordinates
+      return addLineToMatrix(index+1, numberCount,y,line, m1);
+    }else{
+      return addLineToMatrix(index+1,numberCount+1,y,line, m);
+    }
+  }
+
+  def addNeighbourLineToMatrix(index:Int, y:Int ,line:List[String], m:SquareMatrix):SquareMatrix = {
+    if(index >=line.length){
+      return m;
+    }
+    val input:String = line(index);
+    if(input.equals("x")){
+      val s1:Square = m.getSquare(index+1,y);
+      val s2:Square = m.getSquare(index+1,y+1);
+      val tmpMatrix = connectNeighbours(s1,s2,m);
+      return addNeighbourLineToMatrix(index+1,y,line,tmpMatrix);
+    }
+    return addNeighbourLineToMatrix(index+1,y,line,m);
+  }
 
   def initMatrix(numberSource:Array[List[String]], neighborSource:Array[List[String]], size:Int):SquareMatrix = { //TODO: implement multiple puzzles functionality
-    var m = new SquareMatrix(size, initSquareList(size))
-    for(line <- numberSource){ //TODO: Make it recursive
-      m = addLineToMatrix(0,0,numberSource.indexOf(line)+1,line, m);
-    }
-    for(lineNumber <- 0 to neighborSource.length-1){
-      for(columnNumber <- 0 to neighborSource(lineNumber).length-1){
-        if(neighborSource(lineNumber)(columnNumber).equals("x")){
-          val s1:Square = m.getSquare(columnNumber+1,lineNumber+1);
-          val s2:Square = m.getSquare(columnNumber+1,lineNumber+2);
-          m = connectNeighbours(s1,s2,m);
-        }
-      }
-    }
-    return m;
+    val m = new SquareMatrix(size, initSquareList(size))
+    val m2 = iterateOverNumberSource(0,numberSource,m);
+    val m3 = iterateOverNeighbourSource(0,neighborSource,m2);
+    return m3
   }
+
 
 
   def solveSlitherLinks(f:File):Unit = {
@@ -107,7 +129,7 @@ object RunApp extends App {
     val out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
     out.print(numPuzzles + "\n")
 
-    //var sol = ""
+    / sol = ""
     out.print("size " +  size + "x" + size + "\n");
 
     for (y <- List.range(1,size+1)) {
