@@ -1,6 +1,9 @@
 class BruteForce(val squareMatrix: SquareMatrix) {
   def solve(): Tuple2[Boolean, SquareMatrix] = {
-    return recursionSolver(1, 1, squareMatrix);
+    val rules = new Rules
+    val matrix = rules.applyRules(squareMatrix)
+    matrix.printIt(matrix.size)
+    return recursionSolver(1, 1, matrix);
   }
 
   def recursionSolver(x: Int, y: Int, sMatrix: SquareMatrix): Tuple2[Boolean, SquareMatrix] = {
@@ -44,8 +47,10 @@ class BruteForce(val squareMatrix: SquareMatrix) {
       if (sMatrix.isValid(x, y, number)) {
         println(" -> Valid number!")
         val m = sMatrix.setValue(x, y, number, false);
-        m.printIt(m.size)
-        return (true, m);
+        val rules = new Rules
+        val m2 = rules.applyRules(m)
+        m2.printIt(m2.size)
+        return (true, m2);
       }
       println("")
     }

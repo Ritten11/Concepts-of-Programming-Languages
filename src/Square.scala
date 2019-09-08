@@ -32,6 +32,14 @@ class Square(xNumber: Int,
     return new Square(this.x, this.y, newlist, this.neighbours);
   }
 
+  def removeValues(wrongSolutions: List[Int]): Square = {
+    val newList = possibleValues.filter(!wrongSolutions.contains(_));
+    if (newList.length == 1) {
+      return new Square(this.x, this.y, newList, this.neighbours, solved = true);
+    }
+    return new Square(this.x, this.y, newList, this.neighbours);
+  }
+
   def getCorrectValue(): Int = {
     if (this.isSolved) {
       return this.possibleValues(0)
