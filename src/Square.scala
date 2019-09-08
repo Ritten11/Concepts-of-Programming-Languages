@@ -13,15 +13,15 @@ class Square(xNumber: Int,
 
 
   override def toString() = {
-    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length +" solved:" + isSolved;
+    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length + " solved:" + isSolved;
   }
 
-  def setValue(solution: Int, startValue:Boolean = false): Square = {
+  def setValue(solution: Int, startValue: Boolean = false): Square = {
     return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue);
   }
 
-  def addNeighbour(x:Int,y:Int): Square = {
-    return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x,y), this.solved, this.isStartValue)
+  def addNeighbour(x: Int, y: Int): Square = {
+    return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x, y), this.solved, this.isStartValue)
   }
 
   def removeValue(wrongSolution: Int): Square = {
