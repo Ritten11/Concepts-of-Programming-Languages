@@ -5,13 +5,42 @@ class Rules() {
   //3. Remove all values from squares which are not possible
 
   def applyRules(matrix: SquareMatrix): SquareMatrix = {
-    val matrixRow = removeRedundantValuesInRow(matrix)
-    val matrixColumn = removeRedundantValuesInColumn(matrixRow)
+    val matrixRow = removeRedundantValuesInRows(matrix)
+    val matrixColumn = removeRedundantValuesInColumns(matrixRow)
 
     return matrixColumn
   }
 
-  def removeRedundantValuesInRow(matrix: SquareMatrix): SquareMatrix = {
+  def applyRules(matrix: SquareMatrix,
+                 square: Square): SquareMatrix = {
+    val matrixRow = removeRedundantValuesInRow(matrix, square)
+    val matrixColumn = removeRedundantValuesInColumn(matrixRow, square)
+
+    return matrixColumn
+  }
+
+  def removeRedundantValuesInRow(matrix: SquareMatrix,
+                                 square: Square): SquareMatrix = {
+    val allSquares = matrix.allSquares.filter(_.x != square.x)
+    var newSquareList = List[Square]()
+
+    val xSquares = matrix.getAllFromX(square.x)
+    newSquareList = newSquareList ::: getUpdatedSquares(xSquares) ::: allSquares
+    return new SquareMatrix(matrix.size, newSquareList)
+  }
+
+  def removeRedundantValuesInColumn(matrix: SquareMatrix,
+                                    square: Square): SquareMatrix = {
+    val allSquares = matrix.allSquares.filter(_.y != square.y)
+    var newSquareList = List[Square]()
+
+    val ySquares = matrix.getAllFromY(square.y)
+
+    newSquareList = newSquareList ::: getUpdatedSquares(ySquares) ::: allSquares
+    return new SquareMatrix(matrix.size, newSquareList)
+  }
+
+  def removeRedundantValuesInRows(matrix: SquareMatrix): SquareMatrix = {
     val sizeP = matrix.allSquares.size
     var newSquareList = List[Square]()
 
@@ -22,7 +51,7 @@ class Rules() {
     return new SquareMatrix(matrix.size, newSquareList)
   }
 
-  def removeRedundantValuesInColumn(matrix: SquareMatrix): SquareMatrix = {
+  def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
     val sizeP = matrix.allSquares.size
     var newSquareList = List[Square]()
 
