@@ -99,20 +99,20 @@ object RunApp extends App {
 
 
     val a:BruteForce = new BruteForce(m);
-    a.solve();
-    m.printIt(m.size);
+    val solved = a.solve();
+    solved._2.printIt(solved._2.size);
 
     val numPuzzles = lines(0)
 
-    var out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
+    val out = new PrintWriter( new File(outputdir+"/"+f.getName()) , "UTF-8")
     out.print(numPuzzles + "\n")
 
-    var sol = ""
+    //var sol = ""
     out.print("size " +  size + "x" + size + "\n");
 
     for (y <- List.range(1,size+1)) {
       for (x <- List.range(1,size+1)) {
-        val s = m.getSquare(x, y)
+        val s = solved._2.getSquare(x, y)
         out.print(s.possibleValues(0) + " ");
       }
       out.print("\n")
