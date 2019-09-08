@@ -118,19 +118,31 @@ object RunApp extends App {
 
     val m = initMatrix(source._1, source._2, size);
 
-    m.printIt(m.size);
+    m.printIt();
     println("")
 
     val a: BruteForce = new BruteForce(m);
+
+    val startTime = System.nanoTime
+
     val solved = a.solve();
 
-    solved._2.printIt(solved._2.size);
+    val endTime = System.nanoTime
+
+    val duration = endTime - startTime
+
+    println("Time for solving: " + duration/1000000000)
+
+    solved._2.printIt();
     println("")
     println("")
 
     val numPuzzles = lines(0)
 
-    val out = new PrintWriter(new File(outputdir + "/" + f.getName()), "UTF-8")
+    val outDir = new File(outputdir)
+    outDir.mkdir()
+    val out = new PrintWriter(outputdir + "/" + f.getName(), "UTF-8")
+
     out.print(numPuzzles + "\n")
 
     out.print("size " + size + "x" + size + "\n");

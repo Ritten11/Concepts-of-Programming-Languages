@@ -24,7 +24,7 @@ class SquareMatrix(s: Int,
 
   def setSquare(square: Square): SquareMatrix = {
     val s = getSquare(square.x, square.y);
-    return new SquareMatrix(size, allSquares.filter(_ != s) :+ s);
+    return new SquareMatrix(size, allSquares.filter(_ != s) :+ square);
   }
 
   def removeValue(x: Int, y: Int, wrongSolution: Int): SquareMatrix = {
@@ -34,9 +34,9 @@ class SquareMatrix(s: Int,
     return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution))
   }
 
-  def printIt(sizeP: Int): Unit = {
-    for (y <- List.range(1, sizeP + 1)) {
-      for (x <- List.range(1, sizeP + 1)) {
+  def printIt(): Unit = {
+    for (y <- List.range(1, size + 1)) {
+      for (x <- List.range(1, size + 1)) {
         val s = getSquare(x, y)
         printf("%15s", s.possibleValues.mkString(", ") + "(" + s.neighbours.length + ") |")
       }

@@ -21,7 +21,7 @@ class Square(xNumber: Int,
   }
 
   def setValues(solution: List[Int], startValue: Boolean = false): Square = {
-    return new Square(this.x, this.y, solution, this.neighbours, true, startValue);
+    return new Square(this.x, this.y, solution, this.neighbours, false, startValue);
   }
 
   def addNeighbour(x: Int, y: Int): Square = {
