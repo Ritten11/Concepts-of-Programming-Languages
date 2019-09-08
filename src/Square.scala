@@ -20,6 +20,10 @@ class Square(xNumber: Int,
     return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue);
   }
 
+  def setValues(solution: List[Int], startValue: Boolean = false): Square = {
+    return new Square(this.x, this.y, solution, this.neighbours, true, startValue);
+  }
+
   def addNeighbour(x: Int, y: Int): Square = {
     return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x, y), this.solved, this.isStartValue)
   }

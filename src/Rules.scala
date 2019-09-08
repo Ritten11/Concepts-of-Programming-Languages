@@ -11,6 +11,21 @@ class Rules() {
     return matrixColumn
   }
 
+  def updateNeighbours(square: Square, matrix: SquareMatrix, idx:Int):SquareMatrix = {
+    if (idx == square.neighbours.length - 1){
+      return matrix;
+    }
+    val neighbour = matrix.getSquare(square.neighbours(idx)(0),square.neighbours(idx)(1))
+    if (square.isSolved) {
+      val neighbourValues = List[Int](square.getCorrectValue()+1,square.getCorrectValue()-1)
+      val newPossValues = neighbour.possibleValues.intersect(neighbourValues)
+      updateNeighbours(square, matrix.setSquare(neighbour.setValues(newPossValues)),idx+1)
+    }
+
+
+    return updateNeighbours(square,matrix,idx+1);
+  }
+
   def removeRedundantValuesInRow(matrix: SquareMatrix): SquareMatrix = {
     val sizeP = matrix.allSquares.size
     var newSquareList = List[Square]()
