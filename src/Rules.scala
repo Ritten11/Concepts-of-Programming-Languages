@@ -9,6 +9,7 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
 
     val matrixRow = removeRedundantValuesInRows(matrix)
     val matrixColumn = removeRedundantValuesInColumns(matrixRow)
+
     return matrixColumn
   }
 
@@ -66,29 +67,35 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
     return reApplyRules(newMatrix,updatedSquares)
   }
 
-
   def removeRedundantValuesInRows(matrix: SquareMatrix): SquareMatrix = {
-    val sizeP = matrix.allSquares.size
-    var newSquareList = List[Square]()
-
-    for (x <- 1 to sizeP) {
-      val xSquares = matrix.getAllFromX(x)
-      val solvedSquares = xSquares.filter(_.isSolved)
-      newSquareList = newSquareList ::: getUpdatedSquares(xSquares) ::: solvedSquares
-    }
-    return new SquareMatrix(matrix.size, newSquareList)
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInRows(0,List[Square](),matrix)));
   }
 
-  def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
+  def removeRedundantValuesInRows(index:Int, squareList:List[Square], matrix: SquareMatrix) : List[Square] = {
     val sizeP = matrix.allSquares.size
-    var newSquareList = List[Square]()
-
-    for (y <- 1 to sizeP) {
-      val ySquares = matrix.getAllFromY(y)
-      val solvedSquares = ySquares.filter(_.isSolved)
-      newSquareList = newSquareList ::: getUpdatedSquares(ySquares) ::: solvedSquares
+    if(index == sizeP){
+      return squareList;
     }
-    return new SquareMatrix(matrix.size, newSquareList)
+    val ySquares = matrix.getAllFromY(index +1)
+    val solvedSquares = ySquares.filter(_.isSolved)
+    val tmpSquareList = squareList ::: getUpdatedSquares(ySquares) ::: solvedSquares
+    return(removeRedundantValuesInRows(index+1, tmpSquareList, matrix));
+  }
+
+
+  def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInColumns(0,List[Square](),matrix)));
+  }
+
+  def removeRedundantValuesInColumns(index:Int, squareList:List[Square], matrix: SquareMatrix): List[Square] = {
+    val sizeP = matrix.allSquares.size
+    if(index == sizeP){
+      return squareList
+    }
+    val xSquares = matrix.getAllFromX(index +1)
+    val solvedSquares = xSquares.filter(_.isSolved)
+    val tmpSquareList = squareList ::: getUpdatedSquares(xSquares) ::: solvedSquares
+    return(removeRedundantValuesInColumns(index+1, tmpSquareList, matrix))
   }
 
   private def getUpdatedSquares(squares: List[Square]): List[Square] = {
