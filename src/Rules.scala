@@ -6,21 +6,21 @@ class Rules() { //TODO: 1. Re-apply rules if square is set to solved (rule 1 is 
   //3. Remove all values from squares which are not possible
 
   def applyRules(matrix: SquareMatrix): SquareMatrix = {
+
     val matrixRow = removeRedundantValuesInRows(matrix)
     val matrixColumn = removeRedundantValuesInColumns(matrixRow)
-
     return matrixColumn
   }
 
   def applyRules(matrix: SquareMatrix,
                  square: Square): SquareMatrix = {
-    println("Original matrix: ")
-    matrix.printIt()
+    //println("Original matrix: ")
+    //matrix.printIt()
     val matrixRow = removeRedundantValuesInRow(matrix, square)
     val matrixColumn = removeRedundantValuesInColumn(matrixRow, square)
     val matrixNeighbour = updateNeighbours(matrixColumn, square, 0)
-    println("Updated matrix: ")
-    matrixNeighbour.printIt()
+   // println("Updated matrix: ")
+    //matrixNeighbour.printIt()
 
     return matrixNeighbour
   }
@@ -33,11 +33,9 @@ class Rules() { //TODO: 1. Re-apply rules if square is set to solved (rule 1 is 
     if (neighbour.isSolved){
       return matrix;
     }
-    println("Updating neighbour: " + neighbour.toString())
     if (square.isSolved) {
       val neighbourValues = List[Int](square.getCorrectValue()+1,square.getCorrectValue()-1)
       val newPossValues = neighbour.possibleValues.intersect(neighbourValues)
-      println("newPossValues: " + newPossValues.mkString(" "))
       if (newPossValues.length == 1) {
         return updateNeighbours(applyRules(matrix.setSquare(neighbour.setValue(newPossValues(0))),neighbour),
           square,
@@ -67,26 +65,32 @@ class Rules() { //TODO: 1. Re-apply rules if square is set to solved (rule 1 is 
     return new SquareMatrix(matrix.size, newSquareList)
   }
 
-  def removeRedundantValuesInRows(matrix: SquareMatrix): SquareMatrix = {
-    val sizeP = matrix.allSquares.size
-    var newSquareList = List[Square]()
-
-    for (x <- 1 to sizeP) {
-      val xSquares = matrix.getAllFromX(x)
-      newSquareList = newSquareList ::: getUpdatedSquares(xSquares)
-    }
-    return new SquareMatrix(matrix.size, newSquareList)
+  def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInColumns(0,List[Square](),matrix)));
   }
 
-  def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
+  def removeRedundantValuesInColumns(index:Int, squareList:List[Square], matrix: SquareMatrix): List[Square] = {
     val sizeP = matrix.allSquares.size
-    var newSquareList = List[Square]()
-
-    for (y <- 1 to sizeP) {
-      val ySquares = matrix.getAllFromY(y)
-      newSquareList = newSquareList ::: getUpdatedSquares(ySquares)
+    if(index == sizeP){
+      return squareList;
     }
-    return new SquareMatrix(matrix.size, newSquareList)
+    val ySquares = matrix.getAllFromX(index +1)
+    val tmpSquareList = squareList ::: getUpdatedSquares(ySquares)
+    return(removeRedundantValuesInColumns(index+1, tmpSquareList, matrix));
+  }
+
+  def removeRedundantValuesInRows(matrix: SquareMatrix): SquareMatrix = {
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInRows(0,List[Square](),matrix)));
+  }
+
+  def removeRedundantValuesInRows(index:Int, squareList:List[Square], matrix: SquareMatrix) : List[Square] = {
+    val sizeP = matrix.allSquares.size
+    if(index == sizeP){
+      return squareList;
+    }
+    val xSquares = matrix.getAllFromY(index +1)
+    val tmpSquareList = squareList ::: getUpdatedSquares(xSquares)
+    return(removeRedundantValuesInRows(index+1, tmpSquareList, matrix));
   }
 
   private def getUpdatedSquares(squares: List[Square]): List[Square] = {
