@@ -53,6 +53,11 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
     val updatedSquares = getUpdatedSquares(xSquares)
     val newSquareList = updatedSquares ::: allSquaresWithoutX ::: solvedX
     val newMatrix = new SquareMatrix(matrix.size, newSquareList)
+    for (s <- updatedSquares.filter(_.isSolved) ) {
+      if (!newMatrix.isValid(s.x, s.y, s.getCorrectValue())){
+        return matrix
+      }
+    }
     return reApplyRules(newMatrix,updatedSquares)
   }
 
@@ -64,6 +69,11 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
     val updatedSquares = getUpdatedSquares(ySquares)
     val newSquareList = updatedSquares ::: allSquaresWithoutY ::: solvedY
     val newMatrix = new SquareMatrix(matrix.size, newSquareList)
+    for (s <- updatedSquares.filter(_.isSolved) ) {
+      if (!newMatrix.isValid(s.x, s.y, s.getCorrectValue())){
+        return matrix
+      }
+    }
     return reApplyRules(newMatrix,updatedSquares)
   }
 
