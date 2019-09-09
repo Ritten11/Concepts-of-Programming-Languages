@@ -47,28 +47,23 @@ class Rules() { //TODO: 1. Re-apply rules if square is set to solved (rule 1 is 
       }
     }
 
-
     return updateNeighbours(matrix, square, idx+1);
   }
 
   def removeRedundantValuesInRow(matrix: SquareMatrix,
                                  square: Square): SquareMatrix = {
     val allSquares = matrix.allSquares.filter(_.x != square.x)
-    var newSquareList = List[Square]()
-
     val xSquares = matrix.getAllFromX(square.x)
-    newSquareList = newSquareList ::: getUpdatedSquares(xSquares) ::: allSquares
+    val newSquareList = getUpdatedSquares(xSquares) ::: allSquares
     return new SquareMatrix(matrix.size, newSquareList)
   }
 
   def removeRedundantValuesInColumn(matrix: SquareMatrix,
                                     square: Square): SquareMatrix = {
     val allSquares = matrix.allSquares.filter(_.y != square.y)
-    var newSquareList = List[Square]()
-
     val ySquares = matrix.getAllFromY(square.y)
 
-    newSquareList = newSquareList ::: getUpdatedSquares(ySquares) ::: allSquares
+    val newSquareList = getUpdatedSquares(ySquares) ::: allSquares
     return new SquareMatrix(matrix.size, newSquareList)
   }
 
