@@ -19,15 +19,19 @@ class BruteForce(val squareMatrix: SquareMatrix) {
         (1, 0)
       }
 
-    for (startValue <- sMatrix.getSquare(x, y).possibleValues) {
-      val tuple = tryNumbers(x, y, startValue, sMatrix)
-      if (!tuple._1) {
-        return (false, sMatrix);
-      }
-      //      startValue+=1;
-      val tmp = recursionSolver(x + i, y + j, tuple._2);
-      if (tmp._1) {
-        return tmp
+    if (s.isSolved){
+      return recursionSolver(x + i, y + j, sMatrix)
+    } else {
+      for (startValue <- sMatrix.getSquare(x, y).possibleValues) {
+        val tuple = tryNumbers(x, y, startValue, sMatrix)
+        if (!tuple._1) {
+          return (false, sMatrix);
+        }
+        //      startValue+=1;
+        val tmp = recursionSolver(x + i, y + j, tuple._2);
+        if (tmp._1) {
+          return tmp
+        }
       }
     }
 

@@ -1,48 +1,50 @@
 class BruteForce(val squareMatrix: SquareMatrix) {
-  def solve():Unit = {
-    recursionSolver(1,1,squareMatrix);
+  def solve(): Tuple2[Boolean, SquareMatrix] = {
+    val rules = new Rules
+    val matrix = rules.applyRules(squareMatrix)
+    return recursionSolver(1, 1, matrix);
   }
 
-  def recursionSolver(x:Int, y:Int, sMatrix: SquareMatrix): Boolean = {
+  def recursionSolver(x: Int, y: Int, sMatrix: SquareMatrix): Tuple2[Boolean, SquareMatrix] = {
 
-    if(!sMatrix.isCoordinateinRange(x,y)){
-      return true;
+    if (!sMatrix.isCoordinateInRange(x, y)) {
+      return (true, sMatrix);
     }
-    val s:Square = sMatrix.getSquare(x,y);
+    val s: Square = sMatrix.getSquare(x, y);
 
-    var startValue:Int = 1;
-
-    val (i,j):Tuple2[Int,Int] =  //next step
-    if(x == sMatrix.size){
-      (-sMatrix.size+1,1)
-    }else{
-      (1,0)
-    }
-
-    if(s.isStartValue){
-      return recursionSolver(x+i,y+j, sMatrix);
-    }
-
-    do{
-      if(!tryNumbers(x,y, startValue, sMatrix)){
-        sMatrix.setSquare(new Square(x,y,List.range(1,sMatrix.size+1), s.neighbours));
-        return false;
+    val (i, j): Tuple2[Int, Int] = //next step
+      if (x == sMatrix.size) {
+        (-sMatrix.size + 1, 1)
+      } else {
+        (1, 0)
       }
-      startValue+=1;
-    }while(!recursionSolver(x+i,y+j, sMatrix))
+
+    for (startValue <- sMatrix.getSquare(x, y).possibleValues) {
+      val tuple = tryNumbers(x, y, startValue, sMatrix)
+      if (!tuple._1) {
+        return (false, sMatrix);
+      }
+      //      startValue+=1;
+      val tmp = recursionSolver(x + i, y + j, tuple._2);
+      if (tmp._1) {
+        return tmp
+      }
+    }
 
 
-    return true;
+    return (false, sMatrix);
   }
 
   //improvable: change all values with just possible values
-  def tryNumbers(x:Int, y:Int, startValue:Int, sMatrix: SquareMatrix):Boolean = {
-    for(number <- startValue to sMatrix.size){
-      if(sMatrix.isValid(x,y,number)){
-        sMatrix.setValue(x,y,number,false);
-        return true;
+  def tryNumbers(x: Int, y: Int, startValue: Int, sMatrix: SquareMatrix): Tuple2[Boolean, SquareMatrix] = {
+    for (number <- sMatrix.getSquare(x, y).possibleValues.filter(_ >= startValue)) { //TODO: changing "startValue to sMatrix.size" to "sMatrix.getSquare(x,y).possibleValues.filter(_ >= startValue)" makes the matrix unsolvable PROBLEM: possValues is not correct
+      if (sMatrix.isValid(x, y, number)) {
+        val m = sMatrix.setValue(x, y, number, false);
+        val rules = new Rules
+        val m2 = rules.applyRules(m, m.getSquare(x,y))
+        return (true, m2);
       }
     }
-    return false;
+    return (false, sMatrix);
   }
 }
