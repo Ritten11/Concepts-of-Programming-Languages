@@ -100,17 +100,17 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
 
   private def getUpdatedSquares(squares: List[Square]): List[Square] = {
     val solvedSquares = squares.filter(_.isSolved)
-    var updatedSquareList = List[Square]()
 
-    var solutions = List[Int]()
-    for (s <- solvedSquares) {
-      solutions = solutions :+ s.possibleValues.head
-    }
+    val solutions:List[Int] =
+      for (s <- solvedSquares)
+        yield s.possibleValues.head
 
     val notSolved = squares.filter(!_.isSolved)
-    for (s <- notSolved) {
-      updatedSquareList = updatedSquareList :+ s.removeValues(solutions)
-    }
+
+    val updatedSquareList:List[Square] =
+    for (s <- notSolved)
+      yield s.removeValues(solutions)
+
     return updatedSquareList
   }
 
