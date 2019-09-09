@@ -1,4 +1,4 @@
-puzzle 4
+puzzle5
 size 9x9
 _ x 5   _   _   _   _   7   _   3
 x               x                

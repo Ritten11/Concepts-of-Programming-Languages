@@ -131,6 +131,16 @@ object RunApp extends App {
 
     val solved = a.solve();
 
+    //check if solved puzzle is right
+    var test = true;
+    for(a <- solved._2.allSquares){
+      if(!solved._2.isValid(a.x,a.y,a.possibleValues(0))){
+        test = false;
+        println(a.x + " , " + a.y)
+      }
+    }
+    println(test)
+
     val endTime = System.nanoTime
 
     val duration = endTime - startTime
