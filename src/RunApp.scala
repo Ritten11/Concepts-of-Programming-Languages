@@ -46,11 +46,14 @@ object RunApp extends App {
       for (i <- 0 to source.length - 1 if i % 2 == 1)
         yield source(i);
 
-    val numberSource = (numberSourceTmp.toArray.map((s: String) => s.toList.filter(_ > ' ')));
+    val numberSource =
+      (for (entry <- numberSourceTmp)
+        yield ((for (s <- entry.split(" ")) yield s).filter(!_.equals(""))).toList).toArray
+
     val neighborSource = neighborSourceTmp.toArray.
       map((s: String) => ((s.toArray).indices.collect { case i if i % 4 == 0 => s(i) })); //also filters line breaker
 
-    val tmp = Tuple2(numberSource.map(_.map(_.toString)), neighborSource.map(_.toList.map(_.toString)));
+    val tmp = Tuple2(numberSource, neighborSource.map(_.toList.map(_.toString)));
     return tmp;
   }
 
@@ -109,15 +112,16 @@ object RunApp extends App {
 
 
   def solveSlitherLinks(f: File): Unit = {
+
     println(f.getName())
     val lines = scala.io.Source.fromFile(f).mkString.split("\n")
 
-    val source = getInputAsLists(lines);
+
     val listSize = lines(1).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString);
     val size = Integer.valueOf(listSize(1).split("x")(0));
 
+    val source = getInputAsLists(lines);
     val m = initMatrix(source._1, source._2, size);
-
     m.printIt();
     println("")
 
@@ -131,7 +135,7 @@ object RunApp extends App {
 
     val duration = endTime - startTime
 
-    println("Time for solving: " + duration/1000000000)
+    println("Time for solving: " + duration / 1000000000 + " seconds")
 
     solved._2.printIt();
     println("")
@@ -147,14 +151,20 @@ object RunApp extends App {
 
     out.print("size " + size + "x" + size + "\n");
 
-    for (y <- List.range(1, size + 1)) {
-      for (x <- List.range(1, size + 1)) {
-        val s = solved._2.getSquare(x, y)
-        out.print(s.possibleValues(0) + " ");
+    if((solved._2.allSquares.filter((s:Square)=>s.isSolved==true)).length==(size*size)){
+      for (y <- List.range(1, size + 1)) {
+        for (x <- List.range(1, size + 1)) {
+          val s = solved._2.getSquare(x, y)
+          out.print(s.possibleValues(0) + " ");
+        }
+        out.print("\n")
       }
-      out.print("\n")
+    }else{
+      out.print("This puzzle is not solvable");
     }
     out.close();
+
+
   }
 
 
