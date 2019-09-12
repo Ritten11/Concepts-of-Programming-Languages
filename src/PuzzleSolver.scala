@@ -1,7 +1,7 @@
 import java.io._
 
 object PuzzleSolver extends App {
-  //TODO handle multiple puzzles in one file
+
   val inputdir = "Input"; //TODO Change to real input dir "puzzle_unsolved.txt"
   val outputdir = "Output"; //TODO§ Change to real output dir "puzzle_solved.txt"
 
@@ -41,7 +41,7 @@ object PuzzleSolver extends App {
   }
 
   def getInputAsLists(lines: Array[String]): (Array[List[String]], Array[List[String]]) = {
-    val source = (lines.splitAt(2))._2;
+    val source = (lines.splitAt(1))._2;
     val numberSourceTmp =
       for (i <- 0 to source.length - 1 if i % 2 == 0)
         yield source(i);
@@ -128,60 +128,72 @@ object PuzzleSolver extends App {
 
   def solveSlitherLinks(f: File): Unit = {
     println(f.getName())
-    val lines = scala.io.Source.fromFile(f).mkString.split("\n")
-    val listSize = lines(1).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString);
-    val size = Integer.valueOf(listSize(1).split("x")(0));
 
-    val source = getInputAsLists(lines);
-    val m = initMatrix(source._1, source._2, size);
-    m.printIt();
-    println("")
+    val puzzles = scala.io.Source.fromFile(f).mkString.split("size ")
 
-    val a: BruteForce = new BruteForce(m);
-    val startTime = System.nanoTime
-    val solved = a.solve();
-    val matrix = solved._2;
-
-    //check if solved puzzle is right
-    var test = true;
-    for (a <- matrix.allSquares) {
-      if (!matrix.isValid(a.x, a.y, a.possibleValues(0))) {
-        test = false;
-        println("X: " + a.x + "  Y: " + a.y + " Value: " + a.getCorrectValue())
-      }
-    }
-    println(test)
-
-    val endTime = System.nanoTime
-    val duration = endTime - startTime
-
-    println("Time for solving: " + duration / 1000000000 + " seconds")
-
-    matrix.printIt();
-    println("")
-    println("")
-
-    val numPuzzles = lines(0)
+    val numPuzzles = puzzles(0)
 
     val outDir = new File(outputdir)
     outDir.mkdir()
     val out = new PrintWriter(outputdir + "/" + f.getName(), "UTF-8")
 
-    out.print(numPuzzles + "\n")
-    out.print("size " + size + "x" + size + "\n");
+    out.print(numPuzzles)
 
-    if ((matrix.allSquares.filter((s: Square) => s.isSolved == true)).length == (size * size)) {
-      for (y <- List.range(1, size + 1)) {
-        for (x <- List.range(1, size + 1)) {
-          val s = matrix.getSquare(x, y)
-          out.print(s.possibleValues(0) + " ");
+    for(puzzle <- puzzles if puzzles.indexOf(puzzle)>0) {
+      val lines = puzzle.split("\n")
+      val listSize = lines(0).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString);
+      val size = Integer.valueOf(listSize(0).split("x")(0));
+      println("")
+
+      val source = getInputAsLists(lines);
+      val m = initMatrix(source._1, source._2, size);
+
+      m.printIt();
+      println("")
+
+      val a: BruteForce = new BruteForce(m);
+      val startTime = System.nanoTime
+      val solved = a.solve();
+      val matrix = solved._2;
+
+      //check if solved puzzle is right
+      var test = true;
+      for (a <- matrix.allSquares) {
+        if (!matrix.isValid(a.x, a.y, a.possibleValues(0))) {
+          test = false;
+          println("X: " + a.x + "  Y: " + a.y + " Value: " + a.getCorrectValue())
         }
-        out.print("\n")
       }
-    } else {
-      out.print("This puzzle is not solvable");
+      println(test)
+
+      val endTime = System.nanoTime
+
+      matrix.printIt()
+      val duration = endTime - startTime
+
+      println("Time for solving: " + duration / 1000000000 + " seconds")
+
+      matrix.printIt();
+      println("")
+      println("")
+
+      out.print("size " + size + "x" + size + "\n");
+
+      if ((matrix.allSquares.filter((s: Square) => s.isSolved == true)).length == (size * size)) {
+        for (y <- List.range(1, size + 1)) {
+          for (x <- List.range(1, size + 1)) {
+            val s = matrix.getSquare(x, y)
+            out.print(s.possibleValues(0) + " ");
+          }
+          out.print("\n")
+        }
+      } else {
+        out.print("This puzzle is not solvable\n");
+      }
+
     }
     out.close();
+
   }
 }
 
