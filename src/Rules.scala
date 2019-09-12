@@ -34,6 +34,10 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
       val neighbourValues = List[Int](square.getCorrectValue()+1,square.getCorrectValue()-1)
       val newPossValues = neighbour.possibleValues.intersect(neighbourValues)
       if (newPossValues.length == 1) {
+        if (!matrix.isValid(neighbour.x, neighbour.y, newPossValues(0))){
+          //println("setting matrix to invalid because of square: " +neighbour.toString())
+          return matrix.setInvalidMatrix()
+        }
         return updateNeighbours(applyRules(matrix.setSquare(neighbour.setValue(newPossValues(0))),neighbour),
           square,
           idx+1)
@@ -55,7 +59,7 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
     val newMatrix = new SquareMatrix(matrix.size, newSquareList)
     for (s <- updatedSquares.filter(_.isSolved) ) {
       if (!newMatrix.isValid(s.x, s.y, s.getCorrectValue())){
-        return matrix
+        return matrix.setInvalidMatrix()
       }
     }
     return reApplyRules(newMatrix,updatedSquares)
@@ -71,7 +75,7 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
     val newMatrix = new SquareMatrix(matrix.size, newSquareList)
     for (s <- updatedSquares.filter(_.isSolved) ) {
       if (!newMatrix.isValid(s.x, s.y, s.getCorrectValue())){
-        return matrix
+        return matrix.setInvalidMatrix()
       }
     }
     return reApplyRules(newMatrix,updatedSquares)
@@ -126,7 +130,7 @@ class Rules() { //TODO: 1. Check if there are empty possValues to stop recursion
 
   private def reApplyRules(matrix:SquareMatrix, updateSquares:List[Square]):SquareMatrix = {
     val solvedSquares = updateSquares.filter(_.isSolved)
-    if (solvedSquares.isEmpty) {
+    if (solvedSquares.isEmpty) {//} || !matrix.isValid(solvedSquares(0).x,solvedSquares(0).y,solvedSquares(0).getCorrectValue())) {
       return matrix;
     }
     return reApplyRules(applyRules(matrix,solvedSquares(0)), solvedSquares.splitAt(1)._2)

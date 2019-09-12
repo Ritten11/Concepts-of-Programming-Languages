@@ -1,8 +1,10 @@
 class SquareMatrix(s: Int,
-                   square: List[Square]) {
+                   square: List[Square],
+                   b: Boolean = true) {
 
   val allSquares = square;
   val size: Int = s;
+  val valSolution: Boolean = b
 
   def getAllFromX(i: Int): List[Square] = {
     return allSquares.filter(_.x == i)
@@ -19,19 +21,23 @@ class SquareMatrix(s: Int,
   def setValue(x: Int, y: Int, solution: Int, isStartValue: Boolean = false): SquareMatrix = {
     val s = getSquare(x, y)
     val newList = allSquares.filter(_ != s)
-    return new SquareMatrix(this.size, newList :+ s.setValue(solution, isStartValue))
+    return new SquareMatrix(size, newList :+ s.setValue(solution, isStartValue), valSolution)
+  }
+
+  def setInvalidMatrix():SquareMatrix = {
+    return new SquareMatrix(size, allSquares, false)
   }
 
   def setSquare(square: Square): SquareMatrix = {
     val s = getSquare(square.x, square.y);
-    return new SquareMatrix(size, allSquares.filter(_ != s) :+ square);
+    return new SquareMatrix(size, allSquares.filter(_ != s) :+ square, valSolution);
   }
 
   def removeValue(x: Int, y: Int, wrongSolution: Int): SquareMatrix = {
 
     val s = getSquare(x, y)
     val newList = allSquares.filter(_ != s)
-    return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution))
+    return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution), valSolution)
   }
 
   def printIt(): Unit = {

@@ -42,7 +42,7 @@ class BruteForce(val squareMatrix: SquareMatrix) {
         val m = sMatrix.setValue(x, y, number, false);
         val rules = new Rules
         val m2 = rules.applyRules(m, m.getSquare(x,y))
-        return (true, m2);
+        return (m2.valSolution, m2);
       }
     }
     return (false, sMatrix);

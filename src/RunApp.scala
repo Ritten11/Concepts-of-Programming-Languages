@@ -133,6 +133,7 @@ object RunApp extends App {
 
     //check if solved puzzle is right
     var test = true;
+    println("Invalid squares:")
     for(a <- solved._2.allSquares){
       if(!solved._2.isValid(a.x,a.y,a.possibleValues(0))){
         test = false;
