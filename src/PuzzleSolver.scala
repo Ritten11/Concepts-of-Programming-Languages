@@ -1,17 +1,19 @@
 import java.io._
 
-object RunApp extends App {
-  val inputdir = "Input"; // Change to real input dir
-  val outputdir = "Output"; // Change to real output dir
+object PuzzleSolver extends App {
+  //TODO handle multiple puzzles in one file
+  val inputdir = "Input"; //TODO Change to real input dir "puzzle_unsolved.txt"
+  val outputdir = "Output"; //TODO§ Change to real output dir "puzzle_solved.txt"
 
 
   val dir = new File(inputdir);
-  //println(dir)
   for (f <- dir.listFiles()) {
     solveSlitherLinks(f)
   }
 
-  def connectNeighbours(s1: Square, s2: Square, m: SquareMatrix): SquareMatrix = {
+  def connectNeighbours(s1: Square,
+                        s2: Square,
+                        m: SquareMatrix): SquareMatrix = {
     val newList = m.allSquares.filter((s: Square) => s != s1).filter((s: Square) => s != s2)
     return new SquareMatrix(m.size, newList :+ s1.addNeighbour(s2.x, s2.y) :+ s2.addNeighbour(s1.x, s1.y))
   }
@@ -20,10 +22,12 @@ object RunApp extends App {
     i.toInt
   }
 
-
   def isAllDigits(x: String) = x.map(Character.isDigit(_)).reduce(_ && _)
 
-  def initSquareList(x: Int, y: Int, l: List[Square], size: Int): List[Square] = {
+  def initSquareList(x: Int,
+                     y: Int,
+                     l: List[Square],
+                     size: Int): List[Square] = {
     if (x > size) {
       return initSquareList(0, y + 1, l, size);
     }
@@ -34,10 +38,9 @@ object RunApp extends App {
     val s = new Square(x, y, List.range(1, size + 1));
     val tmpList = l :+ s;
     return initSquareList(x + 1, y, tmpList, size);
-
   }
 
-  def getInputAsLists(lines: Array[String]): Tuple2[Array[List[String]], Array[List[String]]] = {
+  def getInputAsLists(lines: Array[String]): (Array[List[String]], Array[List[String]]) = {
     val source = (lines.splitAt(2))._2;
     val numberSourceTmp =
       for (i <- 0 to source.length - 1 if i % 2 == 0)
@@ -57,7 +60,9 @@ object RunApp extends App {
     return tmp;
   }
 
-  def iterateOverNumberSource(i: Int, numberSource: Array[List[String]], m: SquareMatrix): SquareMatrix = {
+  def iterateOverNumberSource(i: Int,
+                              numberSource: Array[List[String]],
+                              m: SquareMatrix): SquareMatrix = {
     if (i == numberSource.length - 1) {
       return addLineToMatrix(0, 0, i + 1, numberSource(i), m);
     }
@@ -65,7 +70,9 @@ object RunApp extends App {
     return iterateOverNumberSource(i + 1, numberSource, tmpMatrix);
   }
 
-  def iterateOverNeighbourSource(i: Int, neighbourSource: Array[List[String]], m: SquareMatrix): SquareMatrix = {
+  def iterateOverNeighbourSource(i: Int,
+                                 neighbourSource: Array[List[String]],
+                                 m: SquareMatrix): SquareMatrix = {
     if (i == neighbourSource.length - 1) {
       return addNeighbourLineToMatrix(0, i + 1, neighbourSource(i), m);
     }
@@ -73,7 +80,11 @@ object RunApp extends App {
     return iterateOverNeighbourSource(i + 1, neighbourSource, tmpMatrix);
   }
 
-  def addLineToMatrix(index: Int, numberCount: Int, y: Int, line: List[String], m: SquareMatrix): SquareMatrix = {
+  def addLineToMatrix(index: Int,
+                      numberCount: Int,
+                      y: Int,
+                      line: List[String],
+                      m: SquareMatrix): SquareMatrix = {
     if (index >= line.length) {
       return m;
     }
@@ -89,7 +100,10 @@ object RunApp extends App {
     }
   }
 
-  def addNeighbourLineToMatrix(index: Int, y: Int, line: List[String], m: SquareMatrix): SquareMatrix = {
+  def addNeighbourLineToMatrix(index: Int,
+                               y: Int,
+                               line: List[String],
+                               m: SquareMatrix): SquareMatrix = {
     if (index >= line.length) {
       return m;
     }
@@ -103,20 +117,18 @@ object RunApp extends App {
     return addNeighbourLineToMatrix(index + 1, y, line, m);
   }
 
-  def initMatrix(numberSource: Array[List[String]], neighborSource: Array[List[String]], size: Int): SquareMatrix = { //TODO: implement multiple puzzles functionality
+  def initMatrix(numberSource: Array[List[String]],
+                 neighborSource: Array[List[String]],
+                 size: Int): SquareMatrix = { //TODO: implement multiple puzzles functionality
     val m = new SquareMatrix(size, initSquareList(1, 1, List[Square](), size))
     val m2 = iterateOverNumberSource(0, numberSource, m);
     val m3 = iterateOverNeighbourSource(0, neighborSource, m2);
     return m3
   }
 
-
   def solveSlitherLinks(f: File): Unit = {
-
     println(f.getName())
     val lines = scala.io.Source.fromFile(f).mkString.split("\n")
-
-
     val listSize = lines(1).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString);
     val size = Integer.valueOf(listSize(1).split("x")(0));
 
@@ -126,28 +138,26 @@ object RunApp extends App {
     println("")
 
     val a: BruteForce = new BruteForce(m);
-
     val startTime = System.nanoTime
-
     val solved = a.solve();
+    val matrix = solved._2;
 
     //check if solved puzzle is right
     var test = true;
-    for(a <- solved._2.allSquares){
-      if(!solved._2.isValid(a.x,a.y,a.possibleValues(0))){
+    for (a <- matrix.allSquares) {
+      if (!matrix.isValid(a.x, a.y, a.possibleValues(0))) {
         test = false;
-        println(a.x + " , " + a.y)
+        println("X: " + a.x + "  Y: " + a.y + " Value: " + a.getCorrectValue())
       }
     }
     println(test)
 
     val endTime = System.nanoTime
-
     val duration = endTime - startTime
 
     println("Time for solving: " + duration / 1000000000 + " seconds")
 
-    solved._2.printIt();
+    matrix.printIt();
     println("")
     println("")
 
@@ -158,26 +168,21 @@ object RunApp extends App {
     val out = new PrintWriter(outputdir + "/" + f.getName(), "UTF-8")
 
     out.print(numPuzzles + "\n")
-
     out.print("size " + size + "x" + size + "\n");
 
-    if((solved._2.allSquares.filter((s:Square)=>s.isSolved==true)).length==(size*size)){
+    if ((matrix.allSquares.filter((s: Square) => s.isSolved == true)).length == (size * size)) {
       for (y <- List.range(1, size + 1)) {
         for (x <- List.range(1, size + 1)) {
-          val s = solved._2.getSquare(x, y)
+          val s = matrix.getSquare(x, y)
           out.print(s.possibleValues(0) + " ");
         }
         out.print("\n")
       }
-    }else{
+    } else {
       out.print("This puzzle is not solvable");
     }
     out.close();
-
-
   }
-
-
 }
 
 

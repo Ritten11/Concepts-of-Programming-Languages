@@ -12,11 +12,15 @@ class SquareMatrix(s: Int,
     return allSquares.filter(_.y == i)
   }
 
-  def getSquare(x: Int, y: Int): Square = {
+  def getSquare(x: Int,
+                y: Int): Square = {
     return allSquares.filter(_.x == x).filter(_.y == y)(0)
   }
 
-  def setValue(x: Int, y: Int, solution: Int, isStartValue: Boolean = false): SquareMatrix = {
+  def setValue(x: Int,
+               y: Int,
+               solution: Int,
+               isStartValue: Boolean = false): SquareMatrix = {
     val s = getSquare(x, y)
     val newList = allSquares.filter(_ != s)
     return new SquareMatrix(this.size, newList :+ s.setValue(solution, isStartValue))
@@ -27,8 +31,10 @@ class SquareMatrix(s: Int,
     return new SquareMatrix(size, allSquares.filter(_ != s) :+ square);
   }
 
-  def removeValue(x: Int, y: Int, wrongSolution: Int): SquareMatrix = {
-
+  //TODO Remove since its handled in Square
+  def removeValue(x: Int,
+                  y: Int,
+                  wrongSolution: Int): SquareMatrix = {
     val s = getSquare(x, y)
     val newList = allSquares.filter(_ != s)
     return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution))
@@ -45,14 +51,17 @@ class SquareMatrix(s: Int,
     }
   }
 
-  def isCoordinateInRange(x: Int, y: Int): Boolean = {
+  def isCoordinateInRange(x: Int,
+                          y: Int): Boolean = {
     if (x > 0 && y > 0 && x <= size && y <= size) {
       return true;
     }
     return false;
   }
 
-  def isValid(x: Int, y: Int, solution: Int): Boolean = {
+  def isValid(x: Int,
+              y: Int,
+              solution: Int): Boolean = {
 
     val checkedSquare: Square = this.getSquare(x, y);
 
@@ -96,11 +105,13 @@ class SquareMatrix(s: Int,
         return false
       }
     }
-
     return true;
   }
 
-  def removeIfNotValid(x: Int, y: Int, solution: Int): SquareMatrix = {
+  //TODO Remove since this is now done in the Rules
+  def removeIfNotValid(x: Int,
+                       y: Int,
+                       solution: Int): SquareMatrix = {
     if (!isValid(x, y, solution)) {
       println("removing", x, y, solution)
       return removeValue(x, y, solution)
@@ -108,7 +119,8 @@ class SquareMatrix(s: Int,
     return this
   }
 
-  def listContainsArray(list: List[Array[Int]], array: Array[Int]): Boolean = {
+  def listContainsArray(list: List[Array[Int]],
+                        array: Array[Int]): Boolean = {
     for (l <- list) {
       if (l(0) == array(0) && l(1) == array(1)) {
         return true;

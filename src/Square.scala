@@ -16,15 +16,18 @@ class Square(xNumber: Int,
     "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length + " solved:" + isSolved;
   }
 
-  def setValue(solution: Int, startValue: Boolean = false): Square = {
+  def setValue(solution: Int,
+               startValue: Boolean = false): Square = {
     return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue);
   }
 
-  def setValues(solution: List[Int], startValue: Boolean = false): Square = {
+  def setValues(solution: List[Int],
+                startValue: Boolean = false): Square = {
     return new Square(this.x, this.y, solution, this.neighbours, false, startValue);
   }
 
-  def addNeighbour(x: Int, y: Int): Square = {
+  def addNeighbour(x: Int,
+                   y: Int): Square = {
     return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x, y), this.solved, this.isStartValue)
   }
 
