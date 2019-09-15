@@ -27,11 +27,11 @@ class Rules() {
                        square: Square,
                        idx: Int): SquareMatrix = {
     if (idx > square.neighbours.length - 1) {
-      return matrix;
+      return matrix
     }
     val neighbour = matrix.getSquare(square.neighbours(idx)(0), square.neighbours(idx)(1))
     if (neighbour.isSolved) {
-      return matrix;
+      return matrix
     }
     if (square.isSolved) {
       val neighbourValues = List[Int](square.getCorrectValue() + 1, square.getCorrectValue() - 1)
@@ -49,7 +49,7 @@ class Rules() {
       }
     }
 
-    return updateNeighbours(matrix, square, idx + 1);
+    return updateNeighbours(matrix, square, idx + 1)
   }
 
   def removeRedundantValuesInColumn(matrix: SquareMatrix,
@@ -85,7 +85,7 @@ class Rules() {
   }
 
   def removeRedundantValuesInRows(matrix: SquareMatrix): SquareMatrix = {
-    return (new SquareMatrix(matrix.size, removeRedundantValuesInRows(0, List[Square](), matrix)));
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInRows(0, List[Square](), matrix)))
   }
 
   def removeRedundantValuesInRows(index: Int,
@@ -93,17 +93,17 @@ class Rules() {
                                   matrix: SquareMatrix): List[Square] = {
     val sizeP = matrix.allSquares.size
     if (index == sizeP) {
-      return squareList;
+      return squareList
     }
     val ySquares = matrix.getAllFromY(index + 1)
     val solvedSquares = ySquares.filter(_.isSolved)
     val tmpSquareList = squareList ::: getUpdatedSquares(ySquares) ::: solvedSquares
-    return (removeRedundantValuesInRows(index + 1, tmpSquareList, matrix));
+    return (removeRedundantValuesInRows(index + 1, tmpSquareList, matrix))
   }
 
 
   def removeRedundantValuesInColumns(matrix: SquareMatrix): SquareMatrix = {
-    return (new SquareMatrix(matrix.size, removeRedundantValuesInColumns(0, List[Square](), matrix)));
+    return (new SquareMatrix(matrix.size, removeRedundantValuesInColumns(0, List[Square](), matrix)))
   }
 
   def removeRedundantValuesInColumns(index: Int,
@@ -139,7 +139,7 @@ class Rules() {
                            updateSquares: List[Square]): SquareMatrix = {
     val solvedSquares = updateSquares.filter(_.isSolved)
     if (solvedSquares.isEmpty) {//} || !matrix.isValid(solvedSquares(0).x,solvedSquares(0).y,solvedSquares(0).getCorrectValue())) {
-      return matrix;
+      return matrix
     }
     return reApplyRules(applyRules(matrix, solvedSquares(0)), solvedSquares.splitAt(1)._2)
   }

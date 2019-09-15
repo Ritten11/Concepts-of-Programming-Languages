@@ -4,26 +4,26 @@ class Square(xNumber: Int,
              neighboursList: List[Array[Int]] = List(),
              solved: Boolean = false,
              startValue: Boolean = false) {
-  val x = xNumber;
-  val y = yNumber;
-  val neighbours = neighboursList;
-  val possibleValues = values;
-  val isSolved = solved;
-  val isStartValue = startValue; //not sure if it is necessary
+  val x = xNumber
+  val y = yNumber
+  val neighbours = neighboursList
+  val possibleValues = values
+  val isSolved = solved
+  val isStartValue = startValue
 
 
   override def toString() = {
-    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length + " solved:" + isSolved;
+    "x:" + x + " y:" + y + " " + possibleValues.mkString(",") + "#Neighbors: " + neighbours.length + " solved:" + isSolved
   }
 
   def setValue(solution: Int,
                startValue: Boolean = false): Square = {
-    return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue);
+    return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue)
   }
 
   def setValues(solution: List[Int],
                 startValue: Boolean = false): Square = {
-    return new Square(this.x, this.y, solution, this.neighbours, false, startValue);
+    return new Square(this.x, this.y, solution, this.neighbours, false, startValue)
   }
 
   def addNeighbour(x: Int,
@@ -32,26 +32,26 @@ class Square(xNumber: Int,
   }
 
   def removeValue(wrongSolution: Int): Square = {
-    val newlist = possibleValues.filter(_ != wrongSolution);
+    val newlist = possibleValues.filter(_ != wrongSolution)
     if (newlist.length == 1) {
-      return new Square(this.x, this.y, newlist, this.neighbours, solved = true);
+      return new Square(this.x, this.y, newlist, this.neighbours, solved = true)
     }
-    return new Square(this.x, this.y, newlist, this.neighbours);
+    return new Square(this.x, this.y, newlist, this.neighbours)
   }
 
   def removeValues(wrongSolutions: List[Int]): Square = {
-    val newList = possibleValues.filter(!wrongSolutions.contains(_));
+    val newList = possibleValues.filter(!wrongSolutions.contains(_))
     if (newList.length == 1) {
-      return new Square(this.x, this.y, newList, this.neighbours, solved = true);
+      return new Square(this.x, this.y, newList, this.neighbours, solved = true)
     }
-    return new Square(this.x, this.y, newList, this.neighbours);
+    return new Square(this.x, this.y, newList, this.neighbours)
   }
 
   def getCorrectValue(): Int = {
     if (this.isSolved) {
       return this.possibleValues(0)
     } else {
-      return 0;
+      return 0
     }
   }
 }

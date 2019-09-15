@@ -2,8 +2,8 @@ class SquareMatrix(s: Int,
                    square: List[Square],
                    b: Boolean = true) {
 
-  val allSquares = square;
-  val size: Int = s;
+  val allSquares = square
+  val size: Int = s
   val valSolution: Boolean = b
 
   def getAllFromX(i: Int): List[Square] = {
@@ -33,17 +33,8 @@ class SquareMatrix(s: Int,
   }
 
   def setSquare(square: Square): SquareMatrix = {
-    val s = getSquare(square.x, square.y);
-    return new SquareMatrix(size, allSquares.filter(_ != s) :+ square, valSolution);
-  }
-
-  //TODO Remove since its handled in Square
-  def removeValue(x: Int,
-                  y: Int,
-                  wrongSolution: Int): SquareMatrix = {
-    val s = getSquare(x, y)
-    val newList = allSquares.filter(_ != s)
-    return new SquareMatrix(this.size, newList :+ s.removeValue(wrongSolution), valSolution)
+    val s = getSquare(square.x, square.y)
+    return new SquareMatrix(size, allSquares.filter(_ != s) :+ square, valSolution)
   }
 
   def printIt(): Unit = {
@@ -60,33 +51,33 @@ class SquareMatrix(s: Int,
   def isCoordinateInRange(x: Int,
                           y: Int): Boolean = {
     if (x > 0 && y > 0 && x <= size && y <= size) {
-      return true;
+      return true
     }
-    return false;
+    return false
   }
 
   def isValid(x: Int,
               y: Int,
               solution: Int): Boolean = {
 
-    val checkedSquare: Square = this.getSquare(x, y);
+    val checkedSquare: Square = this.getSquare(x, y)
 
     for (s <- (getAllFromX(x) ::: getAllFromY(y))) {
-      val oneSquare = s.asInstanceOf[Square];
+      val oneSquare = s.asInstanceOf[Square]
       if (x != oneSquare.x || y != oneSquare.y) { //don't compare Square with itself
         if (oneSquare.isSolved == true && oneSquare.possibleValues(0) == solution) {
-          return false;
+          return false
         }
       }
     }
 
     //neighbor checking
     for (array <- checkedSquare.neighbours) { //Check if neighbor is valid
-      val xNeighbor = array(0);
-      val yNeighbor = array(1);
-      // val filterValues = s.possibleValues.filter((i:Int) => Math.abs(i-solution)==1);
-      val mapValues = this.getSquare(xNeighbor, yNeighbor).possibleValues.map((i: Int) => Math.abs(i - solution));
-      val filterValues = mapValues.filter(_ == 1);
+      val xNeighbor = array(0)
+      val yNeighbor = array(1)
+      // val filterValues = s.possibleValues.filter((i:Int) => Math.abs(i-solution)==1)
+      val mapValues = this.getSquare(xNeighbor, yNeighbor).possibleValues.map((i: Int) => Math.abs(i - solution))
+      val filterValues = mapValues.filter(_ == 1)
 
       if (filterValues.isEmpty) {
         return false
@@ -95,43 +86,32 @@ class SquareMatrix(s: Int,
 
     //not neighbor checking
     val notNeighborsX =
-      for (xDifference <- List(1, -1); if (isCoordinateInRange(x + xDifference, y)))
-        yield Array(x + xDifference, y);
+      for (xDifference <- List(1, -1) if (isCoordinateInRange(x + xDifference, y)))
+        yield Array(x + xDifference, y)
 
     val notNeighborsY =
-      for (yDifference <- List(1, -1); if (isCoordinateInRange(x, y + yDifference)))
-        yield Array(x, y + yDifference);
+      for (yDifference <- List(1, -1) if (isCoordinateInRange(x, y + yDifference)))
+        yield Array(x, y + yDifference)
 
     val notNeighbors = (notNeighborsX ::: notNeighborsY).
       filter((a: Array[Int]) => (!listContainsArray(checkedSquare.neighbours, a)))
 
     for (coordinate <- notNeighbors) {
-      val filterValues = this.getSquare(coordinate(0), coordinate(1)).possibleValues.filter((i: Int) => Math.abs(i - solution) > 1);
+      val filterValues = this.getSquare(coordinate(0), coordinate(1)).possibleValues.filter((i: Int) => Math.abs(i - solution) > 1)
       if (filterValues.isEmpty) {
         return false
       }
     }
-    return true;
-  }
-
-  //TODO Remove since this is now done in the Rules
-  def removeIfNotValid(x: Int,
-                       y: Int,
-                       solution: Int): SquareMatrix = {
-    if (!isValid(x, y, solution)) {
-      println("removing", x, y, solution)
-      return removeValue(x, y, solution)
-    }
-    return this
+    return true
   }
 
   def listContainsArray(list: List[Array[Int]],
                         array: Array[Int]): Boolean = {
     for (l <- list) {
       if (l(0) == array(0) && l(1) == array(1)) {
-        return true;
+        return true
       }
     }
-    return false;
+    return false
   }
 }
