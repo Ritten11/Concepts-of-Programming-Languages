@@ -2,14 +2,13 @@ class Square(xNumber: Int,
              yNumber: Int,
              values: List[Int],
              neighboursList: List[Array[Int]] = List(),
-             solved: Boolean = false,
-             startValue: Boolean = false) {
+             solved: Boolean = false){
   val x = xNumber;
   val y = yNumber;
   val neighbours = neighboursList;
   val possibleValues = values;
   val isSolved = solved;
-  val isStartValue = startValue; //not sure if it is necessary
+
 
 
   override def toString() = {
@@ -18,17 +17,17 @@ class Square(xNumber: Int,
 
   def setValue(solution: Int,
                startValue: Boolean = false): Square = {
-    return new Square(this.x, this.y, List(solution), this.neighbours, true, startValue);
+    return new Square(this.x, this.y, List(solution), this.neighbours, true);
   }
 
   def setValues(solution: List[Int],
                 startValue: Boolean = false): Square = {
-    return new Square(this.x, this.y, solution, this.neighbours, false, startValue);
+    return new Square(this.x, this.y, solution, this.neighbours, false);
   }
 
   def addNeighbour(x: Int,
                    y: Int): Square = {
-    return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x, y), this.solved, this.isStartValue)
+    return new Square(this.x, this.y, this.possibleValues, this.neighbours :+ Array(x, y), this.solved);
   }
 
   def removeValue(wrongSolution: Int): Square = {

@@ -38,7 +38,6 @@ class Rules() {
       val newPossValues = neighbour.possibleValues.intersect(neighbourValues)
       if (newPossValues.length == 1) {
         if (!matrix.isValid(neighbour.x, neighbour.y, newPossValues(0))){
-          //println("setting matrix to invalid because of square: " +neighbour.toString())
           return matrix.setInvalidMatrix()
         }
         return updateNeighbours(applyRules(matrix.setSquare(neighbour.setValue(newPossValues(0))),neighbour),
