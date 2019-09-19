@@ -139,39 +139,26 @@ object PuzzleSolver extends App {
       val lines = puzzle.split("\n")
       val listSize = lines(0).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString)
       val size = Integer.valueOf(listSize(0).split("x")(0))
-      println("")
+      //println("")
 
       val source = getInputAsLists(lines)
       val m = initMatrix(source._1, source._2, size)
 
-      m.printIt()
-      println("")
+      //m.printIt()
+      //println("")
 
       val a: BruteForce = new BruteForce(m)
-      val startTime = System.nanoTime
+      //val startTime = System.nanoTime
       val solved = a.solve()
       val matrix = solved._2
+      //val endTime = System.nanoTime
+      //matrix.printIt()
+      //val duration = endTime - startTime
+      //println("Time for solving: " + duration / 1000000000 + " seconds")
 
-      //check if solved puzzle is right
-      var test = true
-      for (a <- matrix.allSquares) {
-        if (!matrix.isValid(a.x, a.y, a.possibleValues(0))) {
-          test = false
-          println("X: " + a.x + "  Y: " + a.y + " Value: " + a.getCorrectValue())
-        }
-      }
-      println(test)
-
-      val endTime = System.nanoTime
-
-      matrix.printIt()
-      val duration = endTime - startTime
-
-      println("Time for solving: " + duration / 1000000000 + " seconds")
-
-      matrix.printIt()
-      println("")
-      println("")
+      //matrix.printIt()
+      //println("")
+      //println("")
 
       out.print("size " + size + "x" + size + "\n")
 
