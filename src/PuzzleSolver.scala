@@ -26,13 +26,23 @@ object PuzzleSolver extends App {
                      l: List[Square],
                      size: Int): List[Square] = {
     if (x > size) {
-      return initSquareList(0, y + 1, l, size)
+      return initSquareList(1, y + 1, l, size)
     }
     if (y > size) {
       return l
     }
+    val notNeighboursX =
+      for(xN <- List(1,-1) if isCoordinateInRange(x+xN,y,size))
+        yield Array(x+xN, y)
 
-    val s = new Square(x, y, List.range(1, size + 1))
+    val notNeighboursY =
+      for(yN <- List(1,-1) if isCoordinateInRange(x,y+yN,size))
+        yield Array(x, y+yN)
+
+    val notNeighbours = notNeighboursX ::: notNeighboursY;
+
+
+    val s = new Square(x, y, List.range(1, size + 1), List(), notNeighbours)
     val tmpList = l :+ s
     return initSquareList(x + 1, y, tmpList, size)
   }
@@ -139,26 +149,14 @@ object PuzzleSolver extends App {
       val lines = puzzle.split("\n")
       val listSize = lines(0).split(" ").map((s: String) => s.toList.filter(_ >= ' ').mkString)
       val size = Integer.valueOf(listSize(0).split("x")(0))
-      //println("")
 
       val source = getInputAsLists(lines)
       val m = initMatrix(source._1, source._2, size)
 
-      //m.printIt()
-      //println("")
-
       val a: BruteForce = new BruteForce(m)
-      //val startTime = System.nanoTime
       val solved = a.solve()
       val matrix = solved._2
-      //val endTime = System.nanoTime
-      //matrix.printIt()
-      //val duration = endTime - startTime
-      //println("Time for solving: " + duration / 1000000000 + " seconds")
 
-      //matrix.printIt()
-      //println("")
-      //println("")
 
       out.print("size " + size + "x" + size + "\n")
 
@@ -177,6 +175,17 @@ object PuzzleSolver extends App {
     }
     out.close()
   }
+
+
+  def isCoordinateInRange(x: Int,
+                          y: Int,
+                          size: Int): Boolean = {
+    if (x > 0 && y > 0 && x <= size && y <= size) {
+      return true
+    }
+    return false
+  }
+
 }
 
 
