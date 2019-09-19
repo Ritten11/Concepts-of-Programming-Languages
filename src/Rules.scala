@@ -137,7 +137,7 @@ class Rules() {
   private def reApplyRules(matrix: SquareMatrix,
                            updateSquares: List[Square]): SquareMatrix = {
     val solvedSquares = updateSquares.filter(_.isSolved)
-    if (solvedSquares.isEmpty) {//} || !matrix.isValid(solvedSquares(0).x,solvedSquares(0).y,solvedSquares(0).getCorrectValue())) {
+    if (solvedSquares.isEmpty) {
       return matrix
     }
     return reApplyRules(applyRules(matrix, solvedSquares(0)), solvedSquares.splitAt(1)._2)
