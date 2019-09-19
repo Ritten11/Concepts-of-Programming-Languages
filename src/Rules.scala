@@ -1,7 +1,4 @@
 class Rules() {
-  //TODO: 1. Check if there are empty possValues to stop recursion
-  //TODO: 2. Let BruteForce skip square if it is solved (the first TODO is a prerequisite for this)
-
   //1. Remove number from possible value in row and column if its already set as solution
   //2. Remove all values from neighbors squares which are not possible
   //3. Remove all values from squares which are not possible
@@ -19,8 +16,41 @@ class Rules() {
     val matrixRow = removeRedundantValuesInRow(matrix, square)
     val matrixColumn = removeRedundantValuesInColumn(matrixRow, square)
     val matrixNeighbour = updateNeighbours(matrixColumn, square, 0)
+    val matrixNotNeighbour = updateNotNeighbours(matrixNeighbour, square, 0)
 
-    return matrixNeighbour
+    return matrixNotNeighbour
+  }
+
+  def updateNotNeighbours(matrix:SquareMatrix,
+                          square: Square,
+                          idx:Int): SquareMatrix = {
+    if (idx > square.notNeighbours.length - 1) {
+      return matrix
+    }
+    val notNeighbour = matrix.getSquare(square.notNeighbours(idx)(0), square.notNeighbours(idx)(1))
+    if (notNeighbour.isSolved) {
+      return matrix
+    }
+
+    if (square.isSolved) {
+      val notNeighbourValues = List.range(1,matrix.size+1).
+        filter((i:Int) => (i!=square.getCorrectValue() + 1 &&i!=square.getCorrectValue() - 1 &&i!=square.getCorrectValue()))
+
+      val newPossValues = notNeighbour.possibleValues.intersect(notNeighbourValues)
+      if (newPossValues.length == 1) {
+        if (!matrix.isValid(notNeighbour.x, notNeighbour.y, newPossValues(0))){
+          return matrix.setInvalidMatrix()
+        }
+        return updateNotNeighbours(applyRules(matrix.setSquare(notNeighbour.setValue(newPossValues(0))),notNeighbour),
+          square,
+          idx + 1)
+      } else {
+        return updateNotNeighbours(matrix.setSquare(notNeighbour.setValues(newPossValues)), square, idx + 1)
+      }
+    }
+
+    return updateNotNeighbours(matrix, square, idx + 1)
+
   }
 
   def updateNeighbours(matrix: SquareMatrix,
