@@ -144,6 +144,7 @@ object PuzzleSolver extends App {
     val out = new PrintWriter(file)
 
     out.print(numPuzzles)
+    val t1 = System.nanoTime
 
     for (puzzle <- puzzles if puzzles.indexOf(puzzle) > 0) {
       val lines = puzzle.split("\n")
