@@ -4,63 +4,99 @@
 public final class Matrix {
   private Matrix() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
+          com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
+          com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
+            (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface SearchRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:SearchRequest)
-      com.google.protobuf.MessageOrBuilder {
+  public interface ProtoSquareOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:ProtoSquare)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string query = 1;</code>
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
      */
-    java.lang.String getQuery();
+    boolean hasPosition();
     /**
-     * <code>optional string query = 1;</code>
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getQueryBytes();
+    Matrix.ProtoSquare.Coordinate getPosition();
+    /**
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+     */
+    Matrix.ProtoSquare.CoordinateOrBuilder getPositionOrBuilder();
 
     /**
-     * <code>optional int32 page_number = 2;</code>
+     * <code>optional int32 value = 2;</code>
      */
-    int getPageNumber();
+    int getValue();
 
     /**
-     * <code>optional int32 result_per_page = 3;</code>
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
      */
-    int getResultPerPage();
+    java.util.List<Matrix.ProtoSquare.Coordinate>
+    getNeighboursList();
+    /**
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+     */
+    Matrix.ProtoSquare.Coordinate getNeighbours(int index);
+    /**
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+     */
+    int getNeighboursCount();
+    /**
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+     */
+    java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+    getNeighboursOrBuilderList();
+    /**
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+     */
+    Matrix.ProtoSquare.CoordinateOrBuilder getNeighboursOrBuilder(
+            int index);
 
     /**
-     * <code>optional .SearchRequest.Corpus corpus = 4;</code>
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
      */
-    int getCorpusValue();
+    java.util.List<Matrix.ProtoSquare.Coordinate>
+    getNotNeighboursList();
     /**
-     * <code>optional .SearchRequest.Corpus corpus = 4;</code>
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
      */
-    Matrix.SearchRequest.Corpus getCorpus();
+    Matrix.ProtoSquare.Coordinate getNotNeighbours(int index);
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    int getNotNeighboursCount();
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+    getNotNeighboursOrBuilderList();
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    Matrix.ProtoSquare.CoordinateOrBuilder getNotNeighboursOrBuilder(
+            int index);
   }
   /**
-   * Protobuf type {@code SearchRequest}
+   * Protobuf type {@code ProtoSquare}
    */
-  public  static final class SearchRequest extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:SearchRequest)
-      SearchRequestOrBuilder {
-    // Use SearchRequest.newBuilder() to construct.
-    private SearchRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  public  static final class ProtoSquare extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:ProtoSquare)
+          ProtoSquareOrBuilder {
+    // Use ProtoSquare.newBuilder() to construct.
+    private ProtoSquare(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private SearchRequest() {
-      query_ = "";
-      pageNumber_ = 0;
-      resultPerPage_ = 0;
-      corpus_ = 0;
+    private ProtoSquare() {
+      value_ = 0;
+      neighbours_ = java.util.Collections.emptyList();
+      notNeighbours_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -68,10 +104,10 @@ public final class Matrix {
     getUnknownFields() {
       return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
     }
-    private SearchRequest(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+    private ProtoSquare(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       int mutable_bitField0_ = 0;
       try {
@@ -89,1632 +125,39 @@ public final class Matrix {
               break;
             }
             case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+              Matrix.ProtoSquare.Coordinate.Builder subBuilder = null;
+              if (position_ != null) {
+                subBuilder = position_.toBuilder();
+              }
+              position_ = input.readMessage(Matrix.ProtoSquare.Coordinate.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(position_);
+                position_ = subBuilder.buildPartial();
+              }
 
-              query_ = s;
               break;
             }
             case 16: {
 
-              pageNumber_ = input.readInt32();
-              break;
-            }
-            case 24: {
-
-              resultPerPage_ = input.readInt32();
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-
-              corpus_ = rawValue;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Matrix.internal_static_SearchRequest_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Matrix.internal_static_SearchRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Matrix.SearchRequest.class, Matrix.SearchRequest.Builder.class);
-    }
-
-    /**
-     * Protobuf enum {@code SearchRequest.Corpus}
-     */
-    public enum Corpus
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>UNIVERSAL = 0;</code>
-       */
-      UNIVERSAL(0),
-      /**
-       * <code>WEB = 1;</code>
-       */
-      WEB(1),
-      /**
-       * <code>IMAGES = 2;</code>
-       */
-      IMAGES(2),
-      /**
-       * <code>LOCAL = 3;</code>
-       */
-      LOCAL(3),
-      /**
-       * <code>NEWS = 4;</code>
-       */
-      NEWS(4),
-      /**
-       * <code>PRODUCTS = 5;</code>
-       */
-      PRODUCTS(5),
-      /**
-       * <code>VIDEO = 6;</code>
-       */
-      VIDEO(6),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>UNIVERSAL = 0;</code>
-       */
-      public static final int UNIVERSAL_VALUE = 0;
-      /**
-       * <code>WEB = 1;</code>
-       */
-      public static final int WEB_VALUE = 1;
-      /**
-       * <code>IMAGES = 2;</code>
-       */
-      public static final int IMAGES_VALUE = 2;
-      /**
-       * <code>LOCAL = 3;</code>
-       */
-      public static final int LOCAL_VALUE = 3;
-      /**
-       * <code>NEWS = 4;</code>
-       */
-      public static final int NEWS_VALUE = 4;
-      /**
-       * <code>PRODUCTS = 5;</code>
-       */
-      public static final int PRODUCTS_VALUE = 5;
-      /**
-       * <code>VIDEO = 6;</code>
-       */
-      public static final int VIDEO_VALUE = 6;
-
-
-      public final int getNumber() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
-        }
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Corpus valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static Corpus forNumber(int value) {
-        switch (value) {
-          case 0: return UNIVERSAL;
-          case 1: return WEB;
-          case 2: return IMAGES;
-          case 3: return LOCAL;
-          case 4: return NEWS;
-          case 5: return PRODUCTS;
-          case 6: return VIDEO;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Corpus>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Corpus> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Corpus>() {
-              public Corpus findValueByNumber(int number) {
-                return Corpus.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return Matrix.SearchRequest.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final Corpus[] VALUES = values();
-
-      public static Corpus valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private Corpus(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:SearchRequest.Corpus)
-    }
-
-    public static final int QUERY_FIELD_NUMBER = 1;
-    private volatile java.lang.Object query_;
-    /**
-     * <code>optional string query = 1;</code>
-     */
-    public java.lang.String getQuery() {
-      java.lang.Object ref = query_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        query_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string query = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getQueryBytes() {
-      java.lang.Object ref = query_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        query_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int PAGE_NUMBER_FIELD_NUMBER = 2;
-    private int pageNumber_;
-    /**
-     * <code>optional int32 page_number = 2;</code>
-     */
-    public int getPageNumber() {
-      return pageNumber_;
-    }
-
-    public static final int RESULT_PER_PAGE_FIELD_NUMBER = 3;
-    private int resultPerPage_;
-    /**
-     * <code>optional int32 result_per_page = 3;</code>
-     */
-    public int getResultPerPage() {
-      return resultPerPage_;
-    }
-
-    public static final int CORPUS_FIELD_NUMBER = 4;
-    private int corpus_;
-    /**
-     * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-     */
-    public int getCorpusValue() {
-      return corpus_;
-    }
-    /**
-     * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-     */
-    public Matrix.SearchRequest.Corpus getCorpus() {
-      Matrix.SearchRequest.Corpus result = Matrix.SearchRequest.Corpus.valueOf(corpus_);
-      return result == null ? Matrix.SearchRequest.Corpus.UNRECOGNIZED : result;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getQueryBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, query_);
-      }
-      if (pageNumber_ != 0) {
-        output.writeInt32(2, pageNumber_);
-      }
-      if (resultPerPage_ != 0) {
-        output.writeInt32(3, resultPerPage_);
-      }
-      if (corpus_ != Matrix.SearchRequest.Corpus.UNIVERSAL.getNumber()) {
-        output.writeEnum(4, corpus_);
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getQueryBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, query_);
-      }
-      if (pageNumber_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, pageNumber_);
-      }
-      if (resultPerPage_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, resultPerPage_);
-      }
-      if (corpus_ != Matrix.SearchRequest.Corpus.UNIVERSAL.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, corpus_);
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof Matrix.SearchRequest)) {
-        return super.equals(obj);
-      }
-      Matrix.SearchRequest other = (Matrix.SearchRequest) obj;
-
-      boolean result = true;
-      result = result && getQuery()
-          .equals(other.getQuery());
-      result = result && (getPageNumber()
-          == other.getPageNumber());
-      result = result && (getResultPerPage()
-          == other.getResultPerPage());
-      result = result && corpus_ == other.corpus_;
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + QUERY_FIELD_NUMBER;
-      hash = (53 * hash) + getQuery().hashCode();
-      hash = (37 * hash) + PAGE_NUMBER_FIELD_NUMBER;
-      hash = (53 * hash) + getPageNumber();
-      hash = (37 * hash) + RESULT_PER_PAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getResultPerPage();
-      hash = (37 * hash) + CORPUS_FIELD_NUMBER;
-      hash = (53 * hash) + corpus_;
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static Matrix.SearchRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Matrix.SearchRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Matrix.SearchRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Matrix.SearchRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Matrix.SearchRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Matrix.SearchRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Matrix.SearchRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(Matrix.SearchRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code SearchRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:SearchRequest)
-        Matrix.SearchRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Matrix.internal_static_SearchRequest_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Matrix.internal_static_SearchRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Matrix.SearchRequest.class, Matrix.SearchRequest.Builder.class);
-      }
-
-      // Construct using Matrix.SearchRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        query_ = "";
-
-        pageNumber_ = 0;
-
-        resultPerPage_ = 0;
-
-        corpus_ = 0;
-
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Matrix.internal_static_SearchRequest_descriptor;
-      }
-
-      public Matrix.SearchRequest getDefaultInstanceForType() {
-        return Matrix.SearchRequest.getDefaultInstance();
-      }
-
-      public Matrix.SearchRequest build() {
-        Matrix.SearchRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public Matrix.SearchRequest buildPartial() {
-        Matrix.SearchRequest result = new Matrix.SearchRequest(this);
-        result.query_ = query_;
-        result.pageNumber_ = pageNumber_;
-        result.resultPerPage_ = resultPerPage_;
-        result.corpus_ = corpus_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Matrix.SearchRequest) {
-          return mergeFrom((Matrix.SearchRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(Matrix.SearchRequest other) {
-        if (other == Matrix.SearchRequest.getDefaultInstance()) return this;
-        if (!other.getQuery().isEmpty()) {
-          query_ = other.query_;
-          onChanged();
-        }
-        if (other.getPageNumber() != 0) {
-          setPageNumber(other.getPageNumber());
-        }
-        if (other.getResultPerPage() != 0) {
-          setResultPerPage(other.getResultPerPage());
-        }
-        if (other.corpus_ != 0) {
-          setCorpusValue(other.getCorpusValue());
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Matrix.SearchRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Matrix.SearchRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private java.lang.Object query_ = "";
-      /**
-       * <code>optional string query = 1;</code>
-       */
-      public java.lang.String getQuery() {
-        java.lang.Object ref = query_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          query_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string query = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getQueryBytes() {
-        java.lang.Object ref = query_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          query_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string query = 1;</code>
-       */
-      public Builder setQuery(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        query_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string query = 1;</code>
-       */
-      public Builder clearQuery() {
-        
-        query_ = getDefaultInstance().getQuery();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string query = 1;</code>
-       */
-      public Builder setQueryBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        query_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int pageNumber_ ;
-      /**
-       * <code>optional int32 page_number = 2;</code>
-       */
-      public int getPageNumber() {
-        return pageNumber_;
-      }
-      /**
-       * <code>optional int32 page_number = 2;</code>
-       */
-      public Builder setPageNumber(int value) {
-        
-        pageNumber_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 page_number = 2;</code>
-       */
-      public Builder clearPageNumber() {
-        
-        pageNumber_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int resultPerPage_ ;
-      /**
-       * <code>optional int32 result_per_page = 3;</code>
-       */
-      public int getResultPerPage() {
-        return resultPerPage_;
-      }
-      /**
-       * <code>optional int32 result_per_page = 3;</code>
-       */
-      public Builder setResultPerPage(int value) {
-        
-        resultPerPage_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional int32 result_per_page = 3;</code>
-       */
-      public Builder clearResultPerPage() {
-        
-        resultPerPage_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int corpus_ = 0;
-      /**
-       * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-       */
-      public int getCorpusValue() {
-        return corpus_;
-      }
-      /**
-       * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-       */
-      public Builder setCorpusValue(int value) {
-        corpus_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-       */
-      public Matrix.SearchRequest.Corpus getCorpus() {
-        Matrix.SearchRequest.Corpus result = Matrix.SearchRequest.Corpus.valueOf(corpus_);
-        return result == null ? Matrix.SearchRequest.Corpus.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-       */
-      public Builder setCorpus(Matrix.SearchRequest.Corpus value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        corpus_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional .SearchRequest.Corpus corpus = 4;</code>
-       */
-      public Builder clearCorpus() {
-        
-        corpus_ = 0;
-        onChanged();
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:SearchRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:SearchRequest)
-    private static final Matrix.SearchRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Matrix.SearchRequest();
-    }
-
-    public static Matrix.SearchRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SearchRequest>
-        PARSER = new com.google.protobuf.AbstractParser<SearchRequest>() {
-      public SearchRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new SearchRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<SearchRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SearchRequest> getParserForType() {
-      return PARSER;
-    }
-
-    public Matrix.SearchRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface SearchResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:SearchResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    java.util.List<Matrix.Result> 
-        getResultsList();
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    Matrix.Result getResults(int index);
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    int getResultsCount();
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    java.util.List<? extends Matrix.ResultOrBuilder> 
-        getResultsOrBuilderList();
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    Matrix.ResultOrBuilder getResultsOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code SearchResponse}
-   */
-  public  static final class SearchResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:SearchResponse)
-      SearchResponseOrBuilder {
-    // Use SearchResponse.newBuilder() to construct.
-    private SearchResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private SearchResponse() {
-      results_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private SearchResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-                results_ = new java.util.ArrayList<Matrix.Result>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              results_.add(
-                  input.readMessage(Matrix.Result.parser(), extensionRegistry));
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
-          results_ = java.util.Collections.unmodifiableList(results_);
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Matrix.internal_static_SearchResponse_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Matrix.internal_static_SearchResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Matrix.SearchResponse.class, Matrix.SearchResponse.Builder.class);
-    }
-
-    public static final int RESULTS_FIELD_NUMBER = 1;
-    private java.util.List<Matrix.Result> results_;
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    public java.util.List<Matrix.Result> getResultsList() {
-      return results_;
-    }
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    public java.util.List<? extends Matrix.ResultOrBuilder> 
-        getResultsOrBuilderList() {
-      return results_;
-    }
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    public int getResultsCount() {
-      return results_.size();
-    }
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    public Matrix.Result getResults(int index) {
-      return results_.get(index);
-    }
-    /**
-     * <code>repeated .Result results = 1;</code>
-     */
-    public Matrix.ResultOrBuilder getResultsOrBuilder(
-        int index) {
-      return results_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < results_.size(); i++) {
-        output.writeMessage(1, results_.get(i));
-      }
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < results_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, results_.get(i));
-      }
-      memoizedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof Matrix.SearchResponse)) {
-        return super.equals(obj);
-      }
-      Matrix.SearchResponse other = (Matrix.SearchResponse) obj;
-
-      boolean result = true;
-      result = result && getResultsList()
-          .equals(other.getResultsList());
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptorForType().hashCode();
-      if (getResultsCount() > 0) {
-        hash = (37 * hash) + RESULTS_FIELD_NUMBER;
-        hash = (53 * hash) + getResultsList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static Matrix.SearchResponse parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Matrix.SearchResponse parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Matrix.SearchResponse parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Matrix.SearchResponse parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Matrix.SearchResponse parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchResponse parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Matrix.SearchResponse parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchResponse parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Matrix.SearchResponse parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Matrix.SearchResponse parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(Matrix.SearchResponse prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code SearchResponse}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:SearchResponse)
-        Matrix.SearchResponseOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Matrix.internal_static_SearchResponse_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Matrix.internal_static_SearchResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Matrix.SearchResponse.class, Matrix.SearchResponse.Builder.class);
-      }
-
-      // Construct using Matrix.SearchResponse.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getResultsFieldBuilder();
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        if (resultsBuilder_ == null) {
-          results_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          resultsBuilder_.clear();
-        }
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Matrix.internal_static_SearchResponse_descriptor;
-      }
-
-      public Matrix.SearchResponse getDefaultInstanceForType() {
-        return Matrix.SearchResponse.getDefaultInstance();
-      }
-
-      public Matrix.SearchResponse build() {
-        Matrix.SearchResponse result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public Matrix.SearchResponse buildPartial() {
-        Matrix.SearchResponse result = new Matrix.SearchResponse(this);
-        int from_bitField0_ = bitField0_;
-        if (resultsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001)) {
-            results_ = java.util.Collections.unmodifiableList(results_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.results_ = results_;
-        } else {
-          result.results_ = resultsBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Matrix.SearchResponse) {
-          return mergeFrom((Matrix.SearchResponse)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(Matrix.SearchResponse other) {
-        if (other == Matrix.SearchResponse.getDefaultInstance()) return this;
-        if (resultsBuilder_ == null) {
-          if (!other.results_.isEmpty()) {
-            if (results_.isEmpty()) {
-              results_ = other.results_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureResultsIsMutable();
-              results_.addAll(other.results_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.results_.isEmpty()) {
-            if (resultsBuilder_.isEmpty()) {
-              resultsBuilder_.dispose();
-              resultsBuilder_ = null;
-              results_ = other.results_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              resultsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getResultsFieldBuilder() : null;
-            } else {
-              resultsBuilder_.addAllMessages(other.results_);
-            }
-          }
-        }
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Matrix.SearchResponse parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Matrix.SearchResponse) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<Matrix.Result> results_ =
-        java.util.Collections.emptyList();
-      private void ensureResultsIsMutable() {
-        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
-          results_ = new java.util.ArrayList<Matrix.Result>(results_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          Matrix.Result, Matrix.Result.Builder, Matrix.ResultOrBuilder> resultsBuilder_;
-
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public java.util.List<Matrix.Result> getResultsList() {
-        if (resultsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(results_);
-        } else {
-          return resultsBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public int getResultsCount() {
-        if (resultsBuilder_ == null) {
-          return results_.size();
-        } else {
-          return resultsBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Matrix.Result getResults(int index) {
-        if (resultsBuilder_ == null) {
-          return results_.get(index);
-        } else {
-          return resultsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder setResults(
-          int index, Matrix.Result value) {
-        if (resultsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureResultsIsMutable();
-          results_.set(index, value);
-          onChanged();
-        } else {
-          resultsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder setResults(
-          int index, Matrix.Result.Builder builderForValue) {
-        if (resultsBuilder_ == null) {
-          ensureResultsIsMutable();
-          results_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          resultsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder addResults(Matrix.Result value) {
-        if (resultsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureResultsIsMutable();
-          results_.add(value);
-          onChanged();
-        } else {
-          resultsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder addResults(
-          int index, Matrix.Result value) {
-        if (resultsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureResultsIsMutable();
-          results_.add(index, value);
-          onChanged();
-        } else {
-          resultsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder addResults(
-          Matrix.Result.Builder builderForValue) {
-        if (resultsBuilder_ == null) {
-          ensureResultsIsMutable();
-          results_.add(builderForValue.build());
-          onChanged();
-        } else {
-          resultsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder addResults(
-          int index, Matrix.Result.Builder builderForValue) {
-        if (resultsBuilder_ == null) {
-          ensureResultsIsMutable();
-          results_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          resultsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder addAllResults(
-          java.lang.Iterable<? extends Matrix.Result> values) {
-        if (resultsBuilder_ == null) {
-          ensureResultsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, results_);
-          onChanged();
-        } else {
-          resultsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder clearResults() {
-        if (resultsBuilder_ == null) {
-          results_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          resultsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Builder removeResults(int index) {
-        if (resultsBuilder_ == null) {
-          ensureResultsIsMutable();
-          results_.remove(index);
-          onChanged();
-        } else {
-          resultsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Matrix.Result.Builder getResultsBuilder(
-          int index) {
-        return getResultsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Matrix.ResultOrBuilder getResultsOrBuilder(
-          int index) {
-        if (resultsBuilder_ == null) {
-          return results_.get(index);  } else {
-          return resultsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public java.util.List<? extends Matrix.ResultOrBuilder> 
-           getResultsOrBuilderList() {
-        if (resultsBuilder_ != null) {
-          return resultsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(results_);
-        }
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Matrix.Result.Builder addResultsBuilder() {
-        return getResultsFieldBuilder().addBuilder(
-            Matrix.Result.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public Matrix.Result.Builder addResultsBuilder(
-          int index) {
-        return getResultsFieldBuilder().addBuilder(
-            index, Matrix.Result.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Result results = 1;</code>
-       */
-      public java.util.List<Matrix.Result.Builder> 
-           getResultsBuilderList() {
-        return getResultsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          Matrix.Result, Matrix.Result.Builder, Matrix.ResultOrBuilder> 
-          getResultsFieldBuilder() {
-        if (resultsBuilder_ == null) {
-          resultsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              Matrix.Result, Matrix.Result.Builder, Matrix.ResultOrBuilder>(
-                  results_,
-                  ((bitField0_ & 0x00000001) == 0x00000001),
-                  getParentForChildren(),
-                  isClean());
-          results_ = null;
-        }
-        return resultsBuilder_;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return this;
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:SearchResponse)
-    }
-
-    // @@protoc_insertion_point(class_scope:SearchResponse)
-    private static final Matrix.SearchResponse DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Matrix.SearchResponse();
-    }
-
-    public static Matrix.SearchResponse getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SearchResponse>
-        PARSER = new com.google.protobuf.AbstractParser<SearchResponse>() {
-      public SearchResponse parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new SearchResponse(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<SearchResponse> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SearchResponse> getParserForType() {
-      return PARSER;
-    }
-
-    public Matrix.SearchResponse getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ResultOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Result)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional string url = 1;</code>
-     */
-    java.lang.String getUrl();
-    /**
-     * <code>optional string url = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getUrlBytes();
-
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    java.lang.String getTitle();
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getTitleBytes();
-
-    /**
-     * <code>repeated string snippets = 3;</code>
-     */
-    java.util.List<java.lang.String>
-        getSnippetsList();
-    /**
-     * <code>repeated string snippets = 3;</code>
-     */
-    int getSnippetsCount();
-    /**
-     * <code>repeated string snippets = 3;</code>
-     */
-    java.lang.String getSnippets(int index);
-    /**
-     * <code>repeated string snippets = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getSnippetsBytes(int index);
-  }
-  /**
-   * Protobuf type {@code Result}
-   */
-  public  static final class Result extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Result)
-      ResultOrBuilder {
-    // Use Result.newBuilder() to construct.
-    private Result(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Result() {
-      url_ = "";
-      title_ = "";
-      snippets_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
-    }
-    private Result(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      int mutable_bitField0_ = 0;
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!input.skipField(tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              url_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              title_ = s;
+              value_ = input.readInt32();
               break;
             }
             case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                snippets_ = new com.google.protobuf.LazyStringArrayList();
+                neighbours_ = new java.util.ArrayList<Matrix.ProtoSquare.Coordinate>();
                 mutable_bitField0_ |= 0x00000004;
               }
-              snippets_.add(s);
+              neighbours_.add(
+                      input.readMessage(Matrix.ProtoSquare.Coordinate.parser(), extensionRegistry));
+              break;
+            }
+            case 34: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                notNeighbours_ = new java.util.ArrayList<Matrix.ProtoSquare.Coordinate>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              notNeighbours_.add(
+                      input.readMessage(Matrix.ProtoSquare.Coordinate.parser(), extensionRegistry));
               break;
             }
           }
@@ -1723,122 +166,620 @@ public final class Matrix {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          snippets_ = snippets_.getUnmodifiableView();
+          neighbours_ = java.util.Collections.unmodifiableList(neighbours_);
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          notNeighbours_ = java.util.Collections.unmodifiableList(notNeighbours_);
         }
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Matrix.internal_static_Result_descriptor;
+    getDescriptor() {
+      return Matrix.internal_static_ProtoSquare_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return Matrix.internal_static_ProtoSquare_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      Matrix.ProtoSquare.class, Matrix.ProtoSquare.Builder.class);
+    }
+
+    public interface CoordinateOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:ProtoSquare.Coordinate)
+            com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>optional int32 x = 1;</code>
+       */
+      int getX();
+
+      /**
+       * <code>optional int32 y = 2;</code>
+       */
+      int getY();
+    }
+    /**
+     * Protobuf type {@code ProtoSquare.Coordinate}
+     */
+    public  static final class Coordinate extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:ProtoSquare.Coordinate)
+            CoordinateOrBuilder {
+      // Use Coordinate.newBuilder() to construct.
+      private Coordinate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Coordinate() {
+        x_ = 0;
+        y_ = 0;
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+      }
+      private Coordinate(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        int mutable_bitField0_ = 0;
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!input.skipField(tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+
+                x_ = input.readInt32();
+                break;
+              }
+              case 16: {
+
+                y_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+                  e).setUnfinishedMessage(this);
+        } finally {
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+        return Matrix.internal_static_ProtoSquare_Coordinate_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+        return Matrix.internal_static_ProtoSquare_Coordinate_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Matrix.ProtoSquare.Coordinate.class, Matrix.ProtoSquare.Coordinate.Builder.class);
+      }
+
+      public static final int X_FIELD_NUMBER = 1;
+      private int x_;
+      /**
+       * <code>optional int32 x = 1;</code>
+       */
+      public int getX() {
+        return x_;
+      }
+
+      public static final int Y_FIELD_NUMBER = 2;
+      private int y_;
+      /**
+       * <code>optional int32 y = 2;</code>
+       */
+      public int getY() {
+        return y_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+              throws java.io.IOException {
+        if (x_ != 0) {
+          output.writeInt32(1, x_);
+        }
+        if (y_ != 0) {
+          output.writeInt32(2, y_);
+        }
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (x_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeInt32Size(1, x_);
+        }
+        if (y_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeInt32Size(2, y_);
+        }
+        memoizedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+          return true;
+        }
+        if (!(obj instanceof Matrix.ProtoSquare.Coordinate)) {
+          return super.equals(obj);
+        }
+        Matrix.ProtoSquare.Coordinate other = (Matrix.ProtoSquare.Coordinate) obj;
+
+        boolean result = true;
+        result = result && (getX()
+                == other.getX());
+        result = result && (getY()
+                == other.getY());
+        return result;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptorForType().hashCode();
+        hash = (37 * hash) + X_FIELD_NUMBER;
+        hash = (53 * hash) + getX();
+        hash = (37 * hash) + Y_FIELD_NUMBER;
+        hash = (53 * hash) + getY();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              com.google.protobuf.ByteString data)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              com.google.protobuf.ByteString data,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(byte[] data)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              byte[] data,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(java.io.InputStream input)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              java.io.InputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseDelimitedFrom(java.io.InputStream input)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseDelimitedFrom(
+              java.io.InputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              com.google.protobuf.CodedInputStream input)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+      }
+      public static Matrix.ProtoSquare.Coordinate parseFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(Matrix.ProtoSquare.Coordinate prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code ProtoSquare.Coordinate}
+       */
+      public static final class Builder extends
+              com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+              // @@protoc_insertion_point(builder_implements:ProtoSquare.Coordinate)
+              Matrix.ProtoSquare.CoordinateOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+          return Matrix.internal_static_ProtoSquare_Coordinate_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Matrix.internal_static_Result_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Matrix.Result.class, Matrix.Result.Builder.class);
+          return Matrix.internal_static_ProtoSquare_Coordinate_fieldAccessorTable
+                  .ensureFieldAccessorsInitialized(
+                          Matrix.ProtoSquare.Coordinate.class, Matrix.ProtoSquare.Coordinate.Builder.class);
+        }
+
+        // Construct using Matrix.ProtoSquare.Coordinate.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        public Builder clear() {
+          super.clear();
+          x_ = 0;
+
+          y_ = 0;
+
+          return this;
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+          return Matrix.internal_static_ProtoSquare_Coordinate_descriptor;
+        }
+
+        public Matrix.ProtoSquare.Coordinate getDefaultInstanceForType() {
+          return Matrix.ProtoSquare.Coordinate.getDefaultInstance();
+        }
+
+        public Matrix.ProtoSquare.Coordinate build() {
+          Matrix.ProtoSquare.Coordinate result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public Matrix.ProtoSquare.Coordinate buildPartial() {
+          Matrix.ProtoSquare.Coordinate result = new Matrix.ProtoSquare.Coordinate(this);
+          result.x_ = x_;
+          result.y_ = y_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder clone() {
+          return (Builder) super.clone();
+        }
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+          return (Builder) super.setField(field, value);
+        }
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return (Builder) super.clearField(field);
+        }
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return (Builder) super.clearOneof(oneof);
+        }
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+          return (Builder) super.setRepeatedField(field, index, value);
+        }
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+          return (Builder) super.addRepeatedField(field, value);
+        }
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof Matrix.ProtoSquare.Coordinate) {
+            return mergeFrom((Matrix.ProtoSquare.Coordinate)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(Matrix.ProtoSquare.Coordinate other) {
+          if (other == Matrix.ProtoSquare.Coordinate.getDefaultInstance()) return this;
+          if (other.getX() != 0) {
+            setX(other.getX());
+          }
+          if (other.getY() != 0) {
+            setY(other.getY());
+          }
+          onChanged();
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+          Matrix.ProtoSquare.Coordinate parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (Matrix.ProtoSquare.Coordinate) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private int x_ ;
+        /**
+         * <code>optional int32 x = 1;</code>
+         */
+        public int getX() {
+          return x_;
+        }
+        /**
+         * <code>optional int32 x = 1;</code>
+         */
+        public Builder setX(int value) {
+
+          x_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 x = 1;</code>
+         */
+        public Builder clearX() {
+
+          x_ = 0;
+          onChanged();
+          return this;
+        }
+
+        private int y_ ;
+        /**
+         * <code>optional int32 y = 2;</code>
+         */
+        public int getY() {
+          return y_;
+        }
+        /**
+         * <code>optional int32 y = 2;</code>
+         */
+        public Builder setY(int value) {
+
+          y_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 y = 2;</code>
+         */
+        public Builder clearY() {
+
+          y_ = 0;
+          onChanged();
+          return this;
+        }
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return this;
+        }
+
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return this;
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:ProtoSquare.Coordinate)
+      }
+
+      // @@protoc_insertion_point(class_scope:ProtoSquare.Coordinate)
+      private static final Matrix.ProtoSquare.Coordinate DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new Matrix.ProtoSquare.Coordinate();
+      }
+
+      public static Matrix.ProtoSquare.Coordinate getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Coordinate>
+              PARSER = new com.google.protobuf.AbstractParser<Coordinate>() {
+        public Coordinate parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Coordinate(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Coordinate> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Coordinate> getParserForType() {
+        return PARSER;
+      }
+
+      public Matrix.ProtoSquare.Coordinate getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
     }
 
     private int bitField0_;
-    public static final int URL_FIELD_NUMBER = 1;
-    private volatile java.lang.Object url_;
+    public static final int POSITION_FIELD_NUMBER = 1;
+    private Matrix.ProtoSquare.Coordinate position_;
     /**
-     * <code>optional string url = 1;</code>
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
      */
-    public java.lang.String getUrl() {
-      java.lang.Object ref = url_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        url_ = s;
-        return s;
-      }
+    public boolean hasPosition() {
+      return position_ != null;
     }
     /**
-     * <code>optional string url = 1;</code>
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getUrlBytes() {
-      java.lang.Object ref = url_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        url_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public Matrix.ProtoSquare.Coordinate getPosition() {
+      return position_ == null ? Matrix.ProtoSquare.Coordinate.getDefaultInstance() : position_;
+    }
+    /**
+     * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+     */
+    public Matrix.ProtoSquare.CoordinateOrBuilder getPositionOrBuilder() {
+      return getPosition();
     }
 
-    public static final int TITLE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object title_;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private int value_;
     /**
-     * <code>optional string title = 2;</code>
+     * <code>optional int32 value = 2;</code>
      */
-    public java.lang.String getTitle() {
-      java.lang.Object ref = title_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        title_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>optional string title = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTitleBytes() {
-      java.lang.Object ref = title_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        title_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getValue() {
+      return value_;
     }
 
-    public static final int SNIPPETS_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList snippets_;
+    public static final int NEIGHBOURS_FIELD_NUMBER = 3;
+    private java.util.List<Matrix.ProtoSquare.Coordinate> neighbours_;
     /**
-     * <code>repeated string snippets = 3;</code>
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
      */
-    public com.google.protobuf.ProtocolStringList
-        getSnippetsList() {
-      return snippets_;
+    public java.util.List<Matrix.ProtoSquare.Coordinate> getNeighboursList() {
+      return neighbours_;
     }
     /**
-     * <code>repeated string snippets = 3;</code>
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
      */
-    public int getSnippetsCount() {
-      return snippets_.size();
+    public java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+    getNeighboursOrBuilderList() {
+      return neighbours_;
     }
     /**
-     * <code>repeated string snippets = 3;</code>
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
      */
-    public java.lang.String getSnippets(int index) {
-      return snippets_.get(index);
+    public int getNeighboursCount() {
+      return neighbours_.size();
     }
     /**
-     * <code>repeated string snippets = 3;</code>
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
      */
-    public com.google.protobuf.ByteString
-        getSnippetsBytes(int index) {
-      return snippets_.getByteString(index);
+    public Matrix.ProtoSquare.Coordinate getNeighbours(int index) {
+      return neighbours_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+     */
+    public Matrix.ProtoSquare.CoordinateOrBuilder getNeighboursOrBuilder(
+            int index) {
+      return neighbours_.get(index);
+    }
+
+    public static final int NOTNEIGHBOURS_FIELD_NUMBER = 4;
+    private java.util.List<Matrix.ProtoSquare.Coordinate> notNeighbours_;
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    public java.util.List<Matrix.ProtoSquare.Coordinate> getNotNeighboursList() {
+      return notNeighbours_;
+    }
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    public java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+    getNotNeighboursOrBuilderList() {
+      return notNeighbours_;
+    }
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    public int getNotNeighboursCount() {
+      return notNeighbours_.size();
+    }
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    public Matrix.ProtoSquare.Coordinate getNotNeighbours(int index) {
+      return notNeighbours_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+     */
+    public Matrix.ProtoSquare.CoordinateOrBuilder getNotNeighboursOrBuilder(
+            int index) {
+      return notNeighbours_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1852,15 +793,18 @@ public final class Matrix {
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getUrlBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, url_);
+            throws java.io.IOException {
+      if (position_ != null) {
+        output.writeMessage(1, getPosition());
       }
-      if (!getTitleBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, title_);
+      if (value_ != 0) {
+        output.writeInt32(2, value_);
       }
-      for (int i = 0; i < snippets_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, snippets_.getRaw(i));
+      for (int i = 0; i < neighbours_.size(); i++) {
+        output.writeMessage(3, neighbours_.get(i));
+      }
+      for (int i = 0; i < notNeighbours_.size(); i++) {
+        output.writeMessage(4, notNeighbours_.get(i));
       }
     }
 
@@ -1869,19 +813,21 @@ public final class Matrix {
       if (size != -1) return size;
 
       size = 0;
-      if (!getUrlBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, url_);
+      if (position_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeMessageSize(1, getPosition());
       }
-      if (!getTitleBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, title_);
+      if (value_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(2, value_);
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < snippets_.size(); i++) {
-          dataSize += computeStringSizeNoTag(snippets_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getSnippetsList().size();
+      for (int i = 0; i < neighbours_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeMessageSize(3, neighbours_.get(i));
+      }
+      for (int i = 0; i < notNeighbours_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeMessageSize(4, notNeighbours_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -1891,20 +837,25 @@ public final class Matrix {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
-      if (!(obj instanceof Matrix.Result)) {
+      if (!(obj instanceof Matrix.ProtoSquare)) {
         return super.equals(obj);
       }
-      Matrix.Result other = (Matrix.Result) obj;
+      Matrix.ProtoSquare other = (Matrix.ProtoSquare) obj;
 
       boolean result = true;
-      result = result && getUrl()
-          .equals(other.getUrl());
-      result = result && getTitle()
-          .equals(other.getTitle());
-      result = result && getSnippetsList()
-          .equals(other.getSnippetsList());
+      result = result && (hasPosition() == other.hasPosition());
+      if (hasPosition()) {
+        result = result && getPosition()
+                .equals(other.getPosition());
+      }
+      result = result && (getValue()
+              == other.getValue());
+      result = result && getNeighboursList()
+              .equals(other.getNeighboursList());
+      result = result && getNotNeighboursList()
+              .equals(other.getNotNeighboursList());
       return result;
     }
 
@@ -1915,169 +866,208 @@ public final class Matrix {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + URL_FIELD_NUMBER;
-      hash = (53 * hash) + getUrl().hashCode();
-      hash = (37 * hash) + TITLE_FIELD_NUMBER;
-      hash = (53 * hash) + getTitle().hashCode();
-      if (getSnippetsCount() > 0) {
-        hash = (37 * hash) + SNIPPETS_FIELD_NUMBER;
-        hash = (53 * hash) + getSnippetsList().hashCode();
+      if (hasPosition()) {
+        hash = (37 * hash) + POSITION_FIELD_NUMBER;
+        hash = (53 * hash) + getPosition().hashCode();
+      }
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
+      if (getNeighboursCount() > 0) {
+        hash = (37 * hash) + NEIGHBOURS_FIELD_NUMBER;
+        hash = (53 * hash) + getNeighboursList().hashCode();
+      }
+      if (getNotNeighboursCount() > 0) {
+        hash = (37 * hash) + NOTNEIGHBOURS_FIELD_NUMBER;
+        hash = (53 * hash) + getNotNeighboursList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static Matrix.Result parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+    public static Matrix.ProtoSquare parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Matrix.Result parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+    public static Matrix.ProtoSquare parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Matrix.Result parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+    public static Matrix.ProtoSquare parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static Matrix.Result parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+    public static Matrix.ProtoSquare parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static Matrix.Result parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
-    public static Matrix.Result parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Matrix.Result parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
-    public static Matrix.Result parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static Matrix.Result parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
-    public static Matrix.Result parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+    public static Matrix.ProtoSquare parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(Matrix.Result prototype) {
+    public static Builder newBuilder(Matrix.ProtoSquare prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
     /**
-     * Protobuf type {@code Result}
+     * Protobuf type {@code ProtoSquare}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Result)
-        Matrix.ResultOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:ProtoSquare)
+            Matrix.ProtoSquareOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Matrix.internal_static_Result_descriptor;
+      getDescriptor() {
+        return Matrix.internal_static_ProtoSquare_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Matrix.internal_static_Result_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Matrix.Result.class, Matrix.Result.Builder.class);
+      internalGetFieldAccessorTable() {
+        return Matrix.internal_static_ProtoSquare_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Matrix.ProtoSquare.class, Matrix.ProtoSquare.Builder.class);
       }
 
-      // Construct using Matrix.Result.newBuilder()
+      // Construct using Matrix.ProtoSquare.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getNeighboursFieldBuilder();
+          getNotNeighboursFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        url_ = "";
+        if (positionBuilder_ == null) {
+          position_ = null;
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+        value_ = 0;
 
-        title_ = "";
-
-        snippets_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        if (neighboursBuilder_ == null) {
+          neighbours_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          neighboursBuilder_.clear();
+        }
+        if (notNeighboursBuilder_ == null) {
+          notNeighbours_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          notNeighboursBuilder_.clear();
+        }
         return this;
       }
 
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Matrix.internal_static_Result_descriptor;
+      getDescriptorForType() {
+        return Matrix.internal_static_ProtoSquare_descriptor;
       }
 
-      public Matrix.Result getDefaultInstanceForType() {
-        return Matrix.Result.getDefaultInstance();
+      public Matrix.ProtoSquare getDefaultInstanceForType() {
+        return Matrix.ProtoSquare.getDefaultInstance();
       }
 
-      public Matrix.Result build() {
-        Matrix.Result result = buildPartial();
+      public Matrix.ProtoSquare build() {
+        Matrix.ProtoSquare result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public Matrix.Result buildPartial() {
-        Matrix.Result result = new Matrix.Result(this);
+      public Matrix.ProtoSquare buildPartial() {
+        Matrix.ProtoSquare result = new Matrix.ProtoSquare(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.url_ = url_;
-        result.title_ = title_;
-        if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          snippets_ = snippets_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000004);
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
         }
-        result.snippets_ = snippets_;
+        result.value_ = value_;
+        if (neighboursBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            neighbours_ = java.util.Collections.unmodifiableList(neighbours_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.neighbours_ = neighbours_;
+        } else {
+          result.neighbours_ = neighboursBuilder_.build();
+        }
+        if (notNeighboursBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            notNeighbours_ = java.util.Collections.unmodifiableList(notNeighbours_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.notNeighbours_ = notNeighbours_;
+        } else {
+          result.notNeighbours_ = notNeighboursBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2087,56 +1077,96 @@ public final class Matrix {
         return (Builder) super.clone();
       }
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Matrix.Result) {
-          return mergeFrom((Matrix.Result)other);
+        if (other instanceof Matrix.ProtoSquare) {
+          return mergeFrom((Matrix.ProtoSquare)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(Matrix.Result other) {
-        if (other == Matrix.Result.getDefaultInstance()) return this;
-        if (!other.getUrl().isEmpty()) {
-          url_ = other.url_;
-          onChanged();
+      public Builder mergeFrom(Matrix.ProtoSquare other) {
+        if (other == Matrix.ProtoSquare.getDefaultInstance()) return this;
+        if (other.hasPosition()) {
+          mergePosition(other.getPosition());
         }
-        if (!other.getTitle().isEmpty()) {
-          title_ = other.title_;
-          onChanged();
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
         }
-        if (!other.snippets_.isEmpty()) {
-          if (snippets_.isEmpty()) {
-            snippets_ = other.snippets_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-          } else {
-            ensureSnippetsIsMutable();
-            snippets_.addAll(other.snippets_);
+        if (neighboursBuilder_ == null) {
+          if (!other.neighbours_.isEmpty()) {
+            if (neighbours_.isEmpty()) {
+              neighbours_ = other.neighbours_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureNeighboursIsMutable();
+              neighbours_.addAll(other.neighbours_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.neighbours_.isEmpty()) {
+            if (neighboursBuilder_.isEmpty()) {
+              neighboursBuilder_.dispose();
+              neighboursBuilder_ = null;
+              neighbours_ = other.neighbours_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              neighboursBuilder_ =
+                      com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                              getNeighboursFieldBuilder() : null;
+            } else {
+              neighboursBuilder_.addAllMessages(other.neighbours_);
+            }
+          }
+        }
+        if (notNeighboursBuilder_ == null) {
+          if (!other.notNeighbours_.isEmpty()) {
+            if (notNeighbours_.isEmpty()) {
+              notNeighbours_ = other.notNeighbours_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureNotNeighboursIsMutable();
+              notNeighbours_.addAll(other.notNeighbours_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.notNeighbours_.isEmpty()) {
+            if (notNeighboursBuilder_.isEmpty()) {
+              notNeighboursBuilder_.dispose();
+              notNeighboursBuilder_ = null;
+              notNeighbours_ = other.notNeighbours_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              notNeighboursBuilder_ =
+                      com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                              getNotNeighboursFieldBuilder() : null;
+            } else {
+              notNeighboursBuilder_.addAllMessages(other.notNeighbours_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -2147,14 +1177,14 @@ public final class Matrix {
       }
 
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Matrix.Result parsedMessage = null;
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        Matrix.ProtoSquare parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Matrix.Result) e.getUnfinishedMessage();
+          parsedMessage = (Matrix.ProtoSquare) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2165,350 +1195,1541 @@ public final class Matrix {
       }
       private int bitField0_;
 
-      private java.lang.Object url_ = "";
+      private Matrix.ProtoSquare.Coordinate position_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder> positionBuilder_;
       /**
-       * <code>optional string url = 1;</code>
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
        */
-      public java.lang.String getUrl() {
-        java.lang.Object ref = url_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          url_ = s;
-          return s;
+      public boolean hasPosition() {
+        return positionBuilder_ != null || position_ != null;
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate getPosition() {
+        if (positionBuilder_ == null) {
+          return position_ == null ? Matrix.ProtoSquare.Coordinate.getDefaultInstance() : position_;
         } else {
-          return (java.lang.String) ref;
+          return positionBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional string url = 1;</code>
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
        */
-      public com.google.protobuf.ByteString
-          getUrlBytes() {
-        java.lang.Object ref = url_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          url_ = b;
-          return b;
+      public Builder setPosition(Matrix.ProtoSquare.Coordinate value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          positionBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Builder setPosition(
+              Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Builder mergePosition(Matrix.ProtoSquare.Coordinate value) {
+        if (positionBuilder_ == null) {
+          if (position_ != null) {
+            position_ =
+                    Matrix.ProtoSquare.Coordinate.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
+        } else {
+          positionBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          position_ = null;
+          onChanged();
+        } else {
+          position_ = null;
+          positionBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder getPositionBuilder() {
+
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
+       */
+      public Matrix.ProtoSquare.CoordinateOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_ == null ?
+                  Matrix.ProtoSquare.Coordinate.getDefaultInstance() : position_;
         }
       }
       /**
-       * <code>optional string url = 1;</code>
+       * <code>optional .ProtoSquare.Coordinate position = 1;</code>
        */
-      public Builder setUrl(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        url_ = value;
+      private com.google.protobuf.SingleFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>
+      getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                  Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>(
+                  getPosition(),
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
+      }
+
+      private int value_ ;
+      /**
+       * <code>optional int32 value = 2;</code>
+       */
+      public int getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional int32 value = 2;</code>
+       */
+      public Builder setValue(int value) {
+
+        value_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string url = 1;</code>
+       * <code>optional int32 value = 2;</code>
        */
-      public Builder clearUrl() {
-        
-        url_ = getDefaultInstance().getUrl();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string url = 1;</code>
-       */
-      public Builder setUrlBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        url_ = value;
+      public Builder clearValue() {
+
+        value_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object title_ = "";
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public java.lang.String getTitle() {
-        java.lang.Object ref = title_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          title_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTitleBytes() {
-        java.lang.Object ref = title_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          title_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder setTitle(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        title_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder clearTitle() {
-        
-        title_ = getDefaultInstance().getTitle();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional string title = 2;</code>
-       */
-      public Builder setTitleBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        title_ = value;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.LazyStringList snippets_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureSnippetsIsMutable() {
+      private java.util.List<Matrix.ProtoSquare.Coordinate> neighbours_ =
+              java.util.Collections.emptyList();
+      private void ensureNeighboursIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          snippets_ = new com.google.protobuf.LazyStringArrayList(snippets_);
+          neighbours_ = new java.util.ArrayList<Matrix.ProtoSquare.Coordinate>(neighbours_);
           bitField0_ |= 0x00000004;
-         }
+        }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder> neighboursBuilder_;
+
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare.Coordinate> getNeighboursList() {
+        if (neighboursBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(neighbours_);
+        } else {
+          return neighboursBuilder_.getMessageList();
+        }
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public com.google.protobuf.ProtocolStringList
-          getSnippetsList() {
-        return snippets_.getUnmodifiableView();
+      public int getNeighboursCount() {
+        if (neighboursBuilder_ == null) {
+          return neighbours_.size();
+        } else {
+          return neighboursBuilder_.getCount();
+        }
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public int getSnippetsCount() {
-        return snippets_.size();
+      public Matrix.ProtoSquare.Coordinate getNeighbours(int index) {
+        if (neighboursBuilder_ == null) {
+          return neighbours_.get(index);
+        } else {
+          return neighboursBuilder_.getMessage(index);
+        }
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public java.lang.String getSnippets(int index) {
-        return snippets_.get(index);
-      }
-      /**
-       * <code>repeated string snippets = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getSnippetsBytes(int index) {
-        return snippets_.getByteString(index);
-      }
-      /**
-       * <code>repeated string snippets = 3;</code>
-       */
-      public Builder setSnippets(
-          int index, java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSnippetsIsMutable();
-        snippets_.set(index, value);
-        onChanged();
+      public Builder setNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate value) {
+        if (neighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNeighboursIsMutable();
+          neighbours_.set(index, value);
+          onChanged();
+        } else {
+          neighboursBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public Builder addSnippets(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureSnippetsIsMutable();
-        snippets_.add(value);
-        onChanged();
+      public Builder setNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (neighboursBuilder_ == null) {
+          ensureNeighboursIsMutable();
+          neighbours_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          neighboursBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public Builder addAllSnippets(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureSnippetsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, snippets_);
-        onChanged();
+      public Builder addNeighbours(Matrix.ProtoSquare.Coordinate value) {
+        if (neighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNeighboursIsMutable();
+          neighbours_.add(value);
+          onChanged();
+        } else {
+          neighboursBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public Builder clearSnippets() {
-        snippets_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        onChanged();
+      public Builder addNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate value) {
+        if (neighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNeighboursIsMutable();
+          neighbours_.add(index, value);
+          onChanged();
+        } else {
+          neighboursBuilder_.addMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>repeated string snippets = 3;</code>
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
        */
-      public Builder addSnippetsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        ensureSnippetsIsMutable();
-        snippets_.add(value);
-        onChanged();
+      public Builder addNeighbours(
+              Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (neighboursBuilder_ == null) {
+          ensureNeighboursIsMutable();
+          neighbours_.add(builderForValue.build());
+          onChanged();
+        } else {
+          neighboursBuilder_.addMessage(builderForValue.build());
+        }
         return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Builder addNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (neighboursBuilder_ == null) {
+          ensureNeighboursIsMutable();
+          neighbours_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          neighboursBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Builder addAllNeighbours(
+              java.lang.Iterable<? extends Matrix.ProtoSquare.Coordinate> values) {
+        if (neighboursBuilder_ == null) {
+          ensureNeighboursIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                  values, neighbours_);
+          onChanged();
+        } else {
+          neighboursBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Builder clearNeighbours() {
+        if (neighboursBuilder_ == null) {
+          neighbours_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          neighboursBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Builder removeNeighbours(int index) {
+        if (neighboursBuilder_ == null) {
+          ensureNeighboursIsMutable();
+          neighbours_.remove(index);
+          onChanged();
+        } else {
+          neighboursBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder getNeighboursBuilder(
+              int index) {
+        return getNeighboursFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Matrix.ProtoSquare.CoordinateOrBuilder getNeighboursOrBuilder(
+              int index) {
+        if (neighboursBuilder_ == null) {
+          return neighbours_.get(index);  } else {
+          return neighboursBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+      getNeighboursOrBuilderList() {
+        if (neighboursBuilder_ != null) {
+          return neighboursBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(neighbours_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder addNeighboursBuilder() {
+        return getNeighboursFieldBuilder().addBuilder(
+                Matrix.ProtoSquare.Coordinate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder addNeighboursBuilder(
+              int index) {
+        return getNeighboursFieldBuilder().addBuilder(
+                index, Matrix.ProtoSquare.Coordinate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate neighbours = 3;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare.Coordinate.Builder>
+      getNeighboursBuilderList() {
+        return getNeighboursFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>
+      getNeighboursFieldBuilder() {
+        if (neighboursBuilder_ == null) {
+          neighboursBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                  Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>(
+                  neighbours_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          neighbours_ = null;
+        }
+        return neighboursBuilder_;
+      }
+
+      private java.util.List<Matrix.ProtoSquare.Coordinate> notNeighbours_ =
+              java.util.Collections.emptyList();
+      private void ensureNotNeighboursIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          notNeighbours_ = new java.util.ArrayList<Matrix.ProtoSquare.Coordinate>(notNeighbours_);
+          bitField0_ |= 0x00000008;
+        }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder> notNeighboursBuilder_;
+
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare.Coordinate> getNotNeighboursList() {
+        if (notNeighboursBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(notNeighbours_);
+        } else {
+          return notNeighboursBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public int getNotNeighboursCount() {
+        if (notNeighboursBuilder_ == null) {
+          return notNeighbours_.size();
+        } else {
+          return notNeighboursBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate getNotNeighbours(int index) {
+        if (notNeighboursBuilder_ == null) {
+          return notNeighbours_.get(index);
+        } else {
+          return notNeighboursBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder setNotNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate value) {
+        if (notNeighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.set(index, value);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder setNotNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (notNeighboursBuilder_ == null) {
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          notNeighboursBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder addNotNeighbours(Matrix.ProtoSquare.Coordinate value) {
+        if (notNeighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.add(value);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder addNotNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate value) {
+        if (notNeighboursBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.add(index, value);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder addNotNeighbours(
+              Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (notNeighboursBuilder_ == null) {
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.add(builderForValue.build());
+          onChanged();
+        } else {
+          notNeighboursBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder addNotNeighbours(
+              int index, Matrix.ProtoSquare.Coordinate.Builder builderForValue) {
+        if (notNeighboursBuilder_ == null) {
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          notNeighboursBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder addAllNotNeighbours(
+              java.lang.Iterable<? extends Matrix.ProtoSquare.Coordinate> values) {
+        if (notNeighboursBuilder_ == null) {
+          ensureNotNeighboursIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                  values, notNeighbours_);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder clearNotNeighbours() {
+        if (notNeighboursBuilder_ == null) {
+          notNeighbours_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Builder removeNotNeighbours(int index) {
+        if (notNeighboursBuilder_ == null) {
+          ensureNotNeighboursIsMutable();
+          notNeighbours_.remove(index);
+          onChanged();
+        } else {
+          notNeighboursBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder getNotNeighboursBuilder(
+              int index) {
+        return getNotNeighboursFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Matrix.ProtoSquare.CoordinateOrBuilder getNotNeighboursOrBuilder(
+              int index) {
+        if (notNeighboursBuilder_ == null) {
+          return notNeighbours_.get(index);  } else {
+          return notNeighboursBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public java.util.List<? extends Matrix.ProtoSquare.CoordinateOrBuilder>
+      getNotNeighboursOrBuilderList() {
+        if (notNeighboursBuilder_ != null) {
+          return notNeighboursBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(notNeighbours_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder addNotNeighboursBuilder() {
+        return getNotNeighboursFieldBuilder().addBuilder(
+                Matrix.ProtoSquare.Coordinate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public Matrix.ProtoSquare.Coordinate.Builder addNotNeighboursBuilder(
+              int index) {
+        return getNotNeighboursFieldBuilder().addBuilder(
+                index, Matrix.ProtoSquare.Coordinate.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare.Coordinate notNeighbours = 4;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare.Coordinate.Builder>
+      getNotNeighboursBuilderList() {
+        return getNotNeighboursFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>
+      getNotNeighboursFieldBuilder() {
+        if (notNeighboursBuilder_ == null) {
+          notNeighboursBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                  Matrix.ProtoSquare.Coordinate, Matrix.ProtoSquare.Coordinate.Builder, Matrix.ProtoSquare.CoordinateOrBuilder>(
+                  notNeighbours_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          notNeighbours_ = null;
+        }
+        return notNeighboursBuilder_;
       }
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return this;
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Result)
+      // @@protoc_insertion_point(builder_scope:ProtoSquare)
     }
 
-    // @@protoc_insertion_point(class_scope:Result)
-    private static final Matrix.Result DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:ProtoSquare)
+    private static final Matrix.ProtoSquare DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new Matrix.Result();
+      DEFAULT_INSTANCE = new Matrix.ProtoSquare();
     }
 
-    public static Matrix.Result getDefaultInstance() {
+    public static Matrix.ProtoSquare getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<Result>
-        PARSER = new com.google.protobuf.AbstractParser<Result>() {
-      public Result parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-          return new Result(input, extensionRegistry);
+    private static final com.google.protobuf.Parser<ProtoSquare>
+            PARSER = new com.google.protobuf.AbstractParser<ProtoSquare>() {
+      public ProtoSquare parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProtoSquare(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<Result> parser() {
+    public static com.google.protobuf.Parser<ProtoSquare> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<Result> getParserForType() {
+    public com.google.protobuf.Parser<ProtoSquare> getParserForType() {
       return PARSER;
     }
 
-    public Matrix.Result getDefaultInstanceForType() {
+    public Matrix.ProtoSquare getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ProtoMatrixOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:ProtoMatrix)
+          com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 size = 1;</code>
+     */
+    int getSize();
+
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    java.util.List<Matrix.ProtoSquare>
+    getSquaresList();
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    Matrix.ProtoSquare getSquares(int index);
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    int getSquaresCount();
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    java.util.List<? extends Matrix.ProtoSquareOrBuilder>
+    getSquaresOrBuilderList();
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    Matrix.ProtoSquareOrBuilder getSquaresOrBuilder(
+            int index);
+  }
+  /**
+   * Protobuf type {@code ProtoMatrix}
+   */
+  public  static final class ProtoMatrix extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:ProtoMatrix)
+          ProtoMatrixOrBuilder {
+    // Use ProtoMatrix.newBuilder() to construct.
+    private ProtoMatrix(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ProtoMatrix() {
+      size_ = 0;
+      squares_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ProtoMatrix(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              size_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                squares_ = new java.util.ArrayList<Matrix.ProtoSquare>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              squares_.add(
+                      input.readMessage(Matrix.ProtoSquare.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          squares_ = java.util.Collections.unmodifiableList(squares_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return Matrix.internal_static_ProtoMatrix_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return Matrix.internal_static_ProtoMatrix_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      Matrix.ProtoMatrix.class, Matrix.ProtoMatrix.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int SIZE_FIELD_NUMBER = 1;
+    private int size_;
+    /**
+     * <code>optional int32 size = 1;</code>
+     */
+    public int getSize() {
+      return size_;
+    }
+
+    public static final int SQUARES_FIELD_NUMBER = 2;
+    private java.util.List<Matrix.ProtoSquare> squares_;
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    public java.util.List<Matrix.ProtoSquare> getSquaresList() {
+      return squares_;
+    }
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    public java.util.List<? extends Matrix.ProtoSquareOrBuilder>
+    getSquaresOrBuilderList() {
+      return squares_;
+    }
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    public int getSquaresCount() {
+      return squares_.size();
+    }
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    public Matrix.ProtoSquare getSquares(int index) {
+      return squares_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoSquare squares = 2;</code>
+     */
+    public Matrix.ProtoSquareOrBuilder getSquaresOrBuilder(
+            int index) {
+      return squares_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+      if (size_ != 0) {
+        output.writeInt32(1, size_);
+      }
+      for (int i = 0; i < squares_.size(); i++) {
+        output.writeMessage(2, squares_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (size_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(1, size_);
+      }
+      for (int i = 0; i < squares_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeMessageSize(2, squares_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+        return true;
+      }
+      if (!(obj instanceof Matrix.ProtoMatrix)) {
+        return super.equals(obj);
+      }
+      Matrix.ProtoMatrix other = (Matrix.ProtoMatrix) obj;
+
+      boolean result = true;
+      result = result && (getSize()
+              == other.getSize());
+      result = result && getSquaresList()
+              .equals(other.getSquaresList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + getSize();
+      if (getSquaresCount() > 0) {
+        hash = (37 * hash) + SQUARES_FIELD_NUMBER;
+        hash = (53 * hash) + getSquaresList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static Matrix.ProtoMatrix parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Matrix.ProtoMatrix parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Matrix.ProtoMatrix parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Matrix.ProtoMatrix parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Matrix.ProtoMatrix parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoMatrix parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static Matrix.ProtoMatrix parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoMatrix parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static Matrix.ProtoMatrix parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoMatrix parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Matrix.ProtoMatrix prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ProtoMatrix}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:ProtoMatrix)
+            Matrix.ProtoMatrixOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+        return Matrix.internal_static_ProtoMatrix_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+        return Matrix.internal_static_ProtoMatrix_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Matrix.ProtoMatrix.class, Matrix.ProtoMatrix.Builder.class);
+      }
+
+      // Construct using Matrix.ProtoMatrix.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getSquaresFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        size_ = 0;
+
+        if (squaresBuilder_ == null) {
+          squares_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          squaresBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+      getDescriptorForType() {
+        return Matrix.internal_static_ProtoMatrix_descriptor;
+      }
+
+      public Matrix.ProtoMatrix getDefaultInstanceForType() {
+        return Matrix.ProtoMatrix.getDefaultInstance();
+      }
+
+      public Matrix.ProtoMatrix build() {
+        Matrix.ProtoMatrix result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Matrix.ProtoMatrix buildPartial() {
+        Matrix.ProtoMatrix result = new Matrix.ProtoMatrix(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.size_ = size_;
+        if (squaresBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            squares_ = java.util.Collections.unmodifiableList(squares_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.squares_ = squares_;
+        } else {
+          result.squares_ = squaresBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Matrix.ProtoMatrix) {
+          return mergeFrom((Matrix.ProtoMatrix)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Matrix.ProtoMatrix other) {
+        if (other == Matrix.ProtoMatrix.getDefaultInstance()) return this;
+        if (other.getSize() != 0) {
+          setSize(other.getSize());
+        }
+        if (squaresBuilder_ == null) {
+          if (!other.squares_.isEmpty()) {
+            if (squares_.isEmpty()) {
+              squares_ = other.squares_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureSquaresIsMutable();
+              squares_.addAll(other.squares_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.squares_.isEmpty()) {
+            if (squaresBuilder_.isEmpty()) {
+              squaresBuilder_.dispose();
+              squaresBuilder_ = null;
+              squares_ = other.squares_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              squaresBuilder_ =
+                      com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                              getSquaresFieldBuilder() : null;
+            } else {
+              squaresBuilder_.addAllMessages(other.squares_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        Matrix.ProtoMatrix parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Matrix.ProtoMatrix) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int size_ ;
+      /**
+       * <code>optional int32 size = 1;</code>
+       */
+      public int getSize() {
+        return size_;
+      }
+      /**
+       * <code>optional int32 size = 1;</code>
+       */
+      public Builder setSize(int value) {
+
+        size_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 size = 1;</code>
+       */
+      public Builder clearSize() {
+
+        size_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<Matrix.ProtoSquare> squares_ =
+              java.util.Collections.emptyList();
+      private void ensureSquaresIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          squares_ = new java.util.ArrayList<Matrix.ProtoSquare>(squares_);
+          bitField0_ |= 0x00000002;
+        }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare, Matrix.ProtoSquare.Builder, Matrix.ProtoSquareOrBuilder> squaresBuilder_;
+
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare> getSquaresList() {
+        if (squaresBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(squares_);
+        } else {
+          return squaresBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public int getSquaresCount() {
+        if (squaresBuilder_ == null) {
+          return squares_.size();
+        } else {
+          return squaresBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Matrix.ProtoSquare getSquares(int index) {
+        if (squaresBuilder_ == null) {
+          return squares_.get(index);
+        } else {
+          return squaresBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder setSquares(
+              int index, Matrix.ProtoSquare value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.set(index, value);
+          onChanged();
+        } else {
+          squaresBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder setSquares(
+              int index, Matrix.ProtoSquare.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder addSquares(Matrix.ProtoSquare value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.add(value);
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder addSquares(
+              int index, Matrix.ProtoSquare value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.add(index, value);
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder addSquares(
+              Matrix.ProtoSquare.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.add(builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder addSquares(
+              int index, Matrix.ProtoSquare.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder addAllSquares(
+              java.lang.Iterable<? extends Matrix.ProtoSquare> values) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                  values, squares_);
+          onChanged();
+        } else {
+          squaresBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder clearSquares() {
+        if (squaresBuilder_ == null) {
+          squares_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          squaresBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Builder removeSquares(int index) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.remove(index);
+          onChanged();
+        } else {
+          squaresBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Matrix.ProtoSquare.Builder getSquaresBuilder(
+              int index) {
+        return getSquaresFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Matrix.ProtoSquareOrBuilder getSquaresOrBuilder(
+              int index) {
+        if (squaresBuilder_ == null) {
+          return squares_.get(index);  } else {
+          return squaresBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public java.util.List<? extends Matrix.ProtoSquareOrBuilder>
+      getSquaresOrBuilderList() {
+        if (squaresBuilder_ != null) {
+          return squaresBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(squares_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Matrix.ProtoSquare.Builder addSquaresBuilder() {
+        return getSquaresFieldBuilder().addBuilder(
+                Matrix.ProtoSquare.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public Matrix.ProtoSquare.Builder addSquaresBuilder(
+              int index) {
+        return getSquaresFieldBuilder().addBuilder(
+                index, Matrix.ProtoSquare.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoSquare squares = 2;</code>
+       */
+      public java.util.List<Matrix.ProtoSquare.Builder>
+      getSquaresBuilderList() {
+        return getSquaresFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoSquare, Matrix.ProtoSquare.Builder, Matrix.ProtoSquareOrBuilder>
+      getSquaresFieldBuilder() {
+        if (squaresBuilder_ == null) {
+          squaresBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                  Matrix.ProtoSquare, Matrix.ProtoSquare.Builder, Matrix.ProtoSquareOrBuilder>(
+                  squares_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          squares_ = null;
+        }
+        return squaresBuilder_;
+      }
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ProtoMatrix)
+    }
+
+    // @@protoc_insertion_point(class_scope:ProtoMatrix)
+    private static final Matrix.ProtoMatrix DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Matrix.ProtoMatrix();
+    }
+
+    public static Matrix.ProtoMatrix getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ProtoMatrix>
+            PARSER = new com.google.protobuf.AbstractParser<ProtoMatrix>() {
+      public ProtoMatrix parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProtoMatrix(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ProtoMatrix> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ProtoMatrix> getParserForType() {
+      return PARSER;
+    }
+
+    public Matrix.ProtoMatrix getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SearchRequest_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SearchRequest_fieldAccessorTable;
+          internal_static_ProtoSquare_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_ProtoSquare_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_SearchResponse_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_SearchResponse_fieldAccessorTable;
+          internal_static_ProtoSquare_Coordinate_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_ProtoSquare_Coordinate_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Result_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Result_fieldAccessorTable;
+          internal_static_ProtoMatrix_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_ProtoMatrix_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  getDescriptor() {
     return descriptor;
   }
   private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
+          descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014matrix.proto\"\317\001\n\rSearchRequest\022\r\n\005quer" +
-      "y\030\001 \001(\t\022\023\n\013page_number\030\002 \001(\005\022\027\n\017result_p" +
-      "er_page\030\003 \001(\005\022%\n\006corpus\030\004 \001(\0162\025.SearchRe" +
-      "quest.Corpus\"Z\n\006Corpus\022\r\n\tUNIVERSAL\020\000\022\007\n" +
-      "\003WEB\020\001\022\n\n\006IMAGES\020\002\022\t\n\005LOCAL\020\003\022\010\n\004NEWS\020\004\022" +
-      "\014\n\010PRODUCTS\020\005\022\t\n\005VIDEO\020\006\"*\n\016SearchRespon" +
-      "se\022\030\n\007results\030\001 \003(\0132\007.Result\"6\n\006Result\022\013" +
-      "\n\003url\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022\020\n\010snippets\030\003" +
-      " \003(\tb\006proto3"
+            "\n\014matrix.proto\"\310\001\n\013ProtoSquare\022)\n\010positi" +
+                    "on\030\001 \001(\0132\027.ProtoSquare.Coordinate\022\r\n\005val" +
+                    "ue\030\002 \001(\005\022+\n\nneighbours\030\003 \003(\0132\027.ProtoSqua" +
+                    "re.Coordinate\022.\n\rnotNeighbours\030\004 \003(\0132\027.P" +
+                    "rotoSquare.Coordinate\032\"\n\nCoordinate\022\t\n\001x" +
+                    "\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\":\n\013ProtoMatrix\022\014\n\004size" +
+                    "\030\001 \001(\005\022\035\n\007squares\030\002 \003(\0132\014.ProtoSquareb\006p" +
+                    "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
+            new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+              public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                      com.google.protobuf.Descriptors.FileDescriptor root) {
+                descriptor = root;
+                return null;
+              }
+            };
     com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_SearchRequest_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_SearchRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SearchRequest_descriptor,
-        new java.lang.String[] { "Query", "PageNumber", "ResultPerPage", "Corpus", });
-    internal_static_SearchResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_SearchResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_SearchResponse_descriptor,
-        new java.lang.String[] { "Results", });
-    internal_static_Result_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_Result_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Result_descriptor,
-        new java.lang.String[] { "Url", "Title", "Snippets", });
+            .internalBuildGeneratedFileFrom(descriptorData,
+                    new com.google.protobuf.Descriptors.FileDescriptor[] {
+                    }, assigner);
+    internal_static_ProtoSquare_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+    internal_static_ProtoSquare_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_ProtoSquare_descriptor,
+            new java.lang.String[] { "Position", "Value", "Neighbours", "NotNeighbours", });
+    internal_static_ProtoSquare_Coordinate_descriptor =
+            internal_static_ProtoSquare_descriptor.getNestedTypes().get(0);
+    internal_static_ProtoSquare_Coordinate_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_ProtoSquare_Coordinate_descriptor,
+            new java.lang.String[] { "X", "Y", });
+    internal_static_ProtoMatrix_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+    internal_static_ProtoMatrix_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_ProtoMatrix_descriptor,
+            new java.lang.String[] { "Size", "Squares", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

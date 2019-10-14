@@ -5,7 +5,7 @@ object PuzzleSolver extends App {
   val inputdir = "puzzle_unsolved.txt"
   val outputdir = "puzzle_solved.txt"
 
-  val reader :Yolo = new Yolo()
+  val reader :SquareMatrixReader = new SquareMatrixReader()
   reader.read
 
   val dir = new File(inputdir)
