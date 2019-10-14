@@ -1,4 +1,4 @@
-class BruteForce(val squareMatrix: SquareMatrix) {
+class BruteForce(squareMatrix: SquareMatrix) {
   def solve(): (Boolean, SquareMatrix) = {
     val rules = new Rules
     val matrix = rules.applyRules(squareMatrix)

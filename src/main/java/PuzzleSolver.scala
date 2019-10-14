@@ -6,10 +6,10 @@ object PuzzleSolver extends App {
   val outputdir = "puzzle_solved.txt"
 
   val reader :SquareMatrixReader = new SquareMatrixReader()
-  reader.read
 
   val dir = new File(inputdir)
-  solveSlitherLinks(dir)
+  solveSingleMatrix(reader.readMatrix())
+  //solveSlitherLinks(dir)
 
   def connectNeighbours(s1: Square,
                         s2: Square,
@@ -178,6 +178,14 @@ object PuzzleSolver extends App {
 
     }
     out.close()
+  }
+
+  def solveSingleMatrix(m: SquareMatrix) = {
+    m.printIt()
+    val brute: BruteForce = new BruteForce(m)
+    val solved = brute.solve()
+    val matrix = solved._2
+    matrix.printIt()
   }
 
 
