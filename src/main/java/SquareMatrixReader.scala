@@ -24,6 +24,19 @@ class SquareMatrixReader() {
 
   }
 
-  def parseSquare(matrix: Matrix.ProtoSquare)
+  def parseSquare(matrixSquare: Matrix.ProtoSquare, size: Int): Square = {
+    val pos = matrixSquare.getPosition
+    val possVal =
+      if(matrixSquare.getValue == -1) { List.range(1,size+1)}
+      else {List(matrixSquare.getValue) }
+    val neighbours = List()
+    for (neighbour <- matrixSquare.getNeighboursList) { neighbours :+ parseCoordinates(neighbour) }
+    val nonNeighbours =
+    return new Square(pos.getX,pos.getY,possVal, neighbours)
+  }
+
+  def parseCoordinates(matrixCoord: Matrix.ProtoSquare.Coordinate):Array[Int] = {
+    return Array(matrixCoord.getX,matrixCoord.getY)
+  }
 
 }
