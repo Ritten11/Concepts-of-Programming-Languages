@@ -5,8 +5,8 @@ object PuzzleSolver extends App {
   val inputdir = "puzzle_unsolved.txt"
   val outputdir = "puzzle_solved.txt"
 
-  val reader :SquareMatrixReader = new SquareMatrixReader()
-  reader.read
+ // val reader :SquareMatrixReader = new SquareMatrixReader()
+ // reader.read
 
   val dir = new File(inputdir)
   solveSlitherLinks(dir)
@@ -165,6 +165,9 @@ object PuzzleSolver extends App {
       out.print("size " + size + "x" + size + "\n")
 
       if ((matrix.allSquares.filter((s: Square) => s.isSolved == true)).length == (size * size)) {
+
+        createBinFile(matrix, size) //transfer it to python
+
         for (y <- List.range(1, size + 1)) {
           for (x <- List.range(1, size + 1)) {
             val s = matrix.getSquare(x, y)
@@ -188,6 +191,11 @@ object PuzzleSolver extends App {
       return true
     }
     return false
+  }
+
+  def createBinFile(matrix: SquareMatrix, size:Int) = {
+    val protoWriter = new ProtoWriter(matrix, size)
+    protoWriter.writeBin()
   }
 
 }
