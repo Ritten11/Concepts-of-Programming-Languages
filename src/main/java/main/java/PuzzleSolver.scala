@@ -8,7 +8,7 @@ object PuzzleSolver extends App {
   val reader :SquareMatrixReader = new SquareMatrixReader()
 
   val dir = new File(inputdir)
-  solveSingleMatrix(reader.readMatrix())
+  solveMultipleMatrices(reader.readMatrices())
   //solveSlitherLinks(dir)
 
   def connectNeighbours(s1: Square,
@@ -166,7 +166,7 @@ object PuzzleSolver extends App {
 
       if ((matrix.allSquares.filter((s: Square) => s.isSolved == true)).length == (size * size)) {
 
-        createBinFile(matrix, size) //transfer it to python
+        //createBinFile(matrix, size) //transfer it to python
 
         for (y <- List.range(1, size + 1)) {
           for (x <- List.range(1, size + 1)) {
@@ -191,6 +191,16 @@ object PuzzleSolver extends App {
     matrix.printIt()
   }
 
+  def solveMultipleMatrices(unsolvedMatrices: List[SquareMatrix]) = {
+    var solvedMatrices = List[SquareMatrix]()
+    for (unsolvedMatrix <- unsolvedMatrices) {
+      val brute: BruteForce = new BruteForce(unsolvedMatrix)
+      val solved = brute.solve()
+      solvedMatrices = solvedMatrices :+ solved._2
+    }
+    createBinFile(solvedMatrices)
+  }
+
 
   def isCoordinateInRange(x: Int,
                           y: Int,
@@ -201,8 +211,8 @@ object PuzzleSolver extends App {
     return false
   }
 
-  def createBinFile(matrix: SquareMatrix, size:Int) = {
-    val protoWriter = new ProtoWriter(matrix, size)
+  def createBinFile(matrices: List[SquareMatrix]) = {
+    val protoWriter = new ProtoWriter(matrices)
     protoWriter.writeBin()
   }
 

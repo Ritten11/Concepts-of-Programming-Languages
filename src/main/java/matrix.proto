@@ -17,3 +17,8 @@ message ProtoMatrix {
     int32 size = 1;
     repeated ProtoSquare squares = 2;
 }
+
+message ProtoAllMatrices {
+    int32 quantity = 1;
+    repeated ProtoMatrix matrices = 2;
+}

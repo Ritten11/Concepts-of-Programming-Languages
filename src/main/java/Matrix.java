@@ -2667,6 +2667,807 @@ public final class Matrix {
 
   }
 
+  public interface ProtoAllMatricesOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:ProtoAllMatrices)
+          com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 quantity = 1;</code>
+     */
+    int getQuantity();
+
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    java.util.List<Matrix.ProtoMatrix>
+    getMatricesList();
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    Matrix.ProtoMatrix getMatrices(int index);
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    int getMatricesCount();
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    java.util.List<? extends Matrix.ProtoMatrixOrBuilder>
+    getMatricesOrBuilderList();
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    Matrix.ProtoMatrixOrBuilder getMatricesOrBuilder(
+            int index);
+  }
+  /**
+   * Protobuf type {@code ProtoAllMatrices}
+   */
+  public  static final class ProtoAllMatrices extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:ProtoAllMatrices)
+          ProtoAllMatricesOrBuilder {
+    // Use ProtoAllMatrices.newBuilder() to construct.
+    private ProtoAllMatrices(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ProtoAllMatrices() {
+      quantity_ = 0;
+      matrices_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private ProtoAllMatrices(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              quantity_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                matrices_ = new java.util.ArrayList<Matrix.ProtoMatrix>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              matrices_.add(
+                      input.readMessage(Matrix.ProtoMatrix.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          matrices_ = java.util.Collections.unmodifiableList(matrices_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return Matrix.internal_static_ProtoAllMatrices_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return Matrix.internal_static_ProtoAllMatrices_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      Matrix.ProtoAllMatrices.class, Matrix.ProtoAllMatrices.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int QUANTITY_FIELD_NUMBER = 1;
+    private int quantity_;
+    /**
+     * <code>optional int32 quantity = 1;</code>
+     */
+    public int getQuantity() {
+      return quantity_;
+    }
+
+    public static final int MATRICES_FIELD_NUMBER = 2;
+    private java.util.List<Matrix.ProtoMatrix> matrices_;
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    public java.util.List<Matrix.ProtoMatrix> getMatricesList() {
+      return matrices_;
+    }
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    public java.util.List<? extends Matrix.ProtoMatrixOrBuilder>
+    getMatricesOrBuilderList() {
+      return matrices_;
+    }
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    public int getMatricesCount() {
+      return matrices_.size();
+    }
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    public Matrix.ProtoMatrix getMatrices(int index) {
+      return matrices_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoMatrix matrices = 2;</code>
+     */
+    public Matrix.ProtoMatrixOrBuilder getMatricesOrBuilder(
+            int index) {
+      return matrices_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+      if (quantity_ != 0) {
+        output.writeInt32(1, quantity_);
+      }
+      for (int i = 0; i < matrices_.size(); i++) {
+        output.writeMessage(2, matrices_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (quantity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(1, quantity_);
+      }
+      for (int i = 0; i < matrices_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+                .computeMessageSize(2, matrices_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+        return true;
+      }
+      if (!(obj instanceof Matrix.ProtoAllMatrices)) {
+        return super.equals(obj);
+      }
+      Matrix.ProtoAllMatrices other = (Matrix.ProtoAllMatrices) obj;
+
+      boolean result = true;
+      result = result && (getQuantity()
+              == other.getQuantity());
+      result = result && getMatricesList()
+              .equals(other.getMatricesList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
+      hash = (53 * hash) + getQuantity();
+      if (getMatricesCount() > 0) {
+        hash = (37 * hash) + MATRICES_FIELD_NUMBER;
+        hash = (53 * hash) + getMatricesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static Matrix.ProtoAllMatrices parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static Matrix.ProtoAllMatrices parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoAllMatrices parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+    }
+    public static Matrix.ProtoAllMatrices parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(Matrix.ProtoAllMatrices prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ProtoAllMatrices}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:ProtoAllMatrices)
+            Matrix.ProtoAllMatricesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+        return Matrix.internal_static_ProtoAllMatrices_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+        return Matrix.internal_static_ProtoAllMatrices_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Matrix.ProtoAllMatrices.class, Matrix.ProtoAllMatrices.Builder.class);
+      }
+
+      // Construct using Matrix.ProtoAllMatrices.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getMatricesFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        quantity_ = 0;
+
+        if (matricesBuilder_ == null) {
+          matrices_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          matricesBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+      getDescriptorForType() {
+        return Matrix.internal_static_ProtoAllMatrices_descriptor;
+      }
+
+      public Matrix.ProtoAllMatrices getDefaultInstanceForType() {
+        return Matrix.ProtoAllMatrices.getDefaultInstance();
+      }
+
+      public Matrix.ProtoAllMatrices build() {
+        Matrix.ProtoAllMatrices result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public Matrix.ProtoAllMatrices buildPartial() {
+        Matrix.ProtoAllMatrices result = new Matrix.ProtoAllMatrices(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.quantity_ = quantity_;
+        if (matricesBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            matrices_ = java.util.Collections.unmodifiableList(matrices_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.matrices_ = matrices_;
+        } else {
+          result.matrices_ = matricesBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof Matrix.ProtoAllMatrices) {
+          return mergeFrom((Matrix.ProtoAllMatrices)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(Matrix.ProtoAllMatrices other) {
+        if (other == Matrix.ProtoAllMatrices.getDefaultInstance()) return this;
+        if (other.getQuantity() != 0) {
+          setQuantity(other.getQuantity());
+        }
+        if (matricesBuilder_ == null) {
+          if (!other.matrices_.isEmpty()) {
+            if (matrices_.isEmpty()) {
+              matrices_ = other.matrices_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureMatricesIsMutable();
+              matrices_.addAll(other.matrices_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.matrices_.isEmpty()) {
+            if (matricesBuilder_.isEmpty()) {
+              matricesBuilder_.dispose();
+              matricesBuilder_ = null;
+              matrices_ = other.matrices_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              matricesBuilder_ =
+                      com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                              getMatricesFieldBuilder() : null;
+            } else {
+              matricesBuilder_.addAllMessages(other.matrices_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+        Matrix.ProtoAllMatrices parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (Matrix.ProtoAllMatrices) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int quantity_ ;
+      /**
+       * <code>optional int32 quantity = 1;</code>
+       */
+      public int getQuantity() {
+        return quantity_;
+      }
+      /**
+       * <code>optional int32 quantity = 1;</code>
+       */
+      public Builder setQuantity(int value) {
+
+        quantity_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 quantity = 1;</code>
+       */
+      public Builder clearQuantity() {
+
+        quantity_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<Matrix.ProtoMatrix> matrices_ =
+              java.util.Collections.emptyList();
+      private void ensureMatricesIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          matrices_ = new java.util.ArrayList<Matrix.ProtoMatrix>(matrices_);
+          bitField0_ |= 0x00000002;
+        }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoMatrix, Matrix.ProtoMatrix.Builder, Matrix.ProtoMatrixOrBuilder> matricesBuilder_;
+
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public java.util.List<Matrix.ProtoMatrix> getMatricesList() {
+        if (matricesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(matrices_);
+        } else {
+          return matricesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public int getMatricesCount() {
+        if (matricesBuilder_ == null) {
+          return matrices_.size();
+        } else {
+          return matricesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Matrix.ProtoMatrix getMatrices(int index) {
+        if (matricesBuilder_ == null) {
+          return matrices_.get(index);
+        } else {
+          return matricesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder setMatrices(
+              int index, Matrix.ProtoMatrix value) {
+        if (matricesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMatricesIsMutable();
+          matrices_.set(index, value);
+          onChanged();
+        } else {
+          matricesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder setMatrices(
+              int index, Matrix.ProtoMatrix.Builder builderForValue) {
+        if (matricesBuilder_ == null) {
+          ensureMatricesIsMutable();
+          matrices_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          matricesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder addMatrices(Matrix.ProtoMatrix value) {
+        if (matricesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMatricesIsMutable();
+          matrices_.add(value);
+          onChanged();
+        } else {
+          matricesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder addMatrices(
+              int index, Matrix.ProtoMatrix value) {
+        if (matricesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMatricesIsMutable();
+          matrices_.add(index, value);
+          onChanged();
+        } else {
+          matricesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder addMatrices(
+              Matrix.ProtoMatrix.Builder builderForValue) {
+        if (matricesBuilder_ == null) {
+          ensureMatricesIsMutable();
+          matrices_.add(builderForValue.build());
+          onChanged();
+        } else {
+          matricesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder addMatrices(
+              int index, Matrix.ProtoMatrix.Builder builderForValue) {
+        if (matricesBuilder_ == null) {
+          ensureMatricesIsMutable();
+          matrices_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          matricesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder addAllMatrices(
+              java.lang.Iterable<? extends Matrix.ProtoMatrix> values) {
+        if (matricesBuilder_ == null) {
+          ensureMatricesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                  values, matrices_);
+          onChanged();
+        } else {
+          matricesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder clearMatrices() {
+        if (matricesBuilder_ == null) {
+          matrices_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          matricesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Builder removeMatrices(int index) {
+        if (matricesBuilder_ == null) {
+          ensureMatricesIsMutable();
+          matrices_.remove(index);
+          onChanged();
+        } else {
+          matricesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Matrix.ProtoMatrix.Builder getMatricesBuilder(
+              int index) {
+        return getMatricesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Matrix.ProtoMatrixOrBuilder getMatricesOrBuilder(
+              int index) {
+        if (matricesBuilder_ == null) {
+          return matrices_.get(index);  } else {
+          return matricesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public java.util.List<? extends Matrix.ProtoMatrixOrBuilder>
+      getMatricesOrBuilderList() {
+        if (matricesBuilder_ != null) {
+          return matricesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(matrices_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Matrix.ProtoMatrix.Builder addMatricesBuilder() {
+        return getMatricesFieldBuilder().addBuilder(
+                Matrix.ProtoMatrix.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public Matrix.ProtoMatrix.Builder addMatricesBuilder(
+              int index) {
+        return getMatricesFieldBuilder().addBuilder(
+                index, Matrix.ProtoMatrix.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoMatrix matrices = 2;</code>
+       */
+      public java.util.List<Matrix.ProtoMatrix.Builder>
+      getMatricesBuilderList() {
+        return getMatricesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+              Matrix.ProtoMatrix, Matrix.ProtoMatrix.Builder, Matrix.ProtoMatrixOrBuilder>
+      getMatricesFieldBuilder() {
+        if (matricesBuilder_ == null) {
+          matricesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                  Matrix.ProtoMatrix, Matrix.ProtoMatrix.Builder, Matrix.ProtoMatrixOrBuilder>(
+                  matrices_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          matrices_ = null;
+        }
+        return matricesBuilder_;
+      }
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ProtoAllMatrices)
+    }
+
+    // @@protoc_insertion_point(class_scope:ProtoAllMatrices)
+    private static final Matrix.ProtoAllMatrices DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Matrix.ProtoAllMatrices();
+    }
+
+    public static Matrix.ProtoAllMatrices getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ProtoAllMatrices>
+            PARSER = new com.google.protobuf.AbstractParser<ProtoAllMatrices>() {
+      public ProtoAllMatrices parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProtoAllMatrices(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ProtoAllMatrices> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ProtoAllMatrices> getParserForType() {
+      return PARSER;
+    }
+
+    public Matrix.ProtoAllMatrices getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
           internal_static_ProtoSquare_descriptor;
   private static final
@@ -2682,6 +3483,11 @@ public final class Matrix {
   private static final
   com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internal_static_ProtoMatrix_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+          internal_static_ProtoAllMatrices_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_ProtoAllMatrices_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
   getDescriptor() {
@@ -2697,8 +3503,9 @@ public final class Matrix {
                     "re.Coordinate\022.\n\rnotNeighbours\030\004 \003(\0132\027.P" +
                     "rotoSquare.Coordinate\032\"\n\nCoordinate\022\t\n\001x" +
                     "\030\001 \001(\005\022\t\n\001y\030\002 \001(\005\":\n\013ProtoMatrix\022\014\n\004size" +
-                    "\030\001 \001(\005\022\035\n\007squares\030\002 \003(\0132\014.ProtoSquareb\006p" +
-                    "roto3"
+                    "\030\001 \001(\005\022\035\n\007squares\030\002 \003(\0132\014.ProtoSquare\"D\n" +
+                    "\020ProtoAllMatrices\022\020\n\010quantity\030\001 \001(\005\022\036\n\010m" +
+                    "atrices\030\002 \003(\0132\014.ProtoMatrixb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
             new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2730,6 +3537,12 @@ public final class Matrix {
             com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_ProtoMatrix_descriptor,
             new java.lang.String[] { "Size", "Squares", });
+    internal_static_ProtoAllMatrices_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+    internal_static_ProtoAllMatrices_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_ProtoAllMatrices_descriptor,
+            new java.lang.String[] { "Quantity", "Matrices", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
