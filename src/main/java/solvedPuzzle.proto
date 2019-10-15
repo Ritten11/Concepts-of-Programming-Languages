@@ -1,5 +1,18 @@
 syntax = "proto3";
 
+message Solutions {
+    int32 numberOfPuzzles = 1;
+    repeated Puzzle puzzles = 2;
+}
+
 message Puzzle {
-    string puzzle = 1;
+    int32 size = 1;
+    repeated Square squares = 2;
+
+}
+
+message Square {
+    int32 x = 1;
+    int32 y = 2;
+    int32 value = 3;
 }

@@ -12,19 +12,839 @@ public final class SolvedPuzzle {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface SolutionsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Solutions)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 numberOfPuzzles = 1;</code>
+     */
+    int getNumberOfPuzzles();
+
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    java.util.List<SolvedPuzzle.Puzzle> 
+        getPuzzlesList();
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    SolvedPuzzle.Puzzle getPuzzles(int index);
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    int getPuzzlesCount();
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    java.util.List<? extends SolvedPuzzle.PuzzleOrBuilder> 
+        getPuzzlesOrBuilderList();
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    SolvedPuzzle.PuzzleOrBuilder getPuzzlesOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code Solutions}
+   */
+  public  static final class Solutions extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Solutions)
+      SolutionsOrBuilder {
+    // Use Solutions.newBuilder() to construct.
+    private Solutions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Solutions() {
+      numberOfPuzzles_ = 0;
+      puzzles_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Solutions(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              numberOfPuzzles_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                puzzles_ = new java.util.ArrayList<SolvedPuzzle.Puzzle>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              puzzles_.add(
+                  input.readMessage(SolvedPuzzle.Puzzle.parser(), extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          puzzles_ = java.util.Collections.unmodifiableList(puzzles_);
+        }
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return SolvedPuzzle.internal_static_Solutions_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return SolvedPuzzle.internal_static_Solutions_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              SolvedPuzzle.Solutions.class, SolvedPuzzle.Solutions.Builder.class);
+    }
+
+    private int bitField0_;
+    public static final int NUMBEROFPUZZLES_FIELD_NUMBER = 1;
+    private int numberOfPuzzles_;
+    /**
+     * <code>optional int32 numberOfPuzzles = 1;</code>
+     */
+    public int getNumberOfPuzzles() {
+      return numberOfPuzzles_;
+    }
+
+    public static final int PUZZLES_FIELD_NUMBER = 2;
+    private java.util.List<SolvedPuzzle.Puzzle> puzzles_;
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    public java.util.List<SolvedPuzzle.Puzzle> getPuzzlesList() {
+      return puzzles_;
+    }
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    public java.util.List<? extends SolvedPuzzle.PuzzleOrBuilder> 
+        getPuzzlesOrBuilderList() {
+      return puzzles_;
+    }
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    public int getPuzzlesCount() {
+      return puzzles_.size();
+    }
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    public SolvedPuzzle.Puzzle getPuzzles(int index) {
+      return puzzles_.get(index);
+    }
+    /**
+     * <code>repeated .Puzzle puzzles = 2;</code>
+     */
+    public SolvedPuzzle.PuzzleOrBuilder getPuzzlesOrBuilder(
+        int index) {
+      return puzzles_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (numberOfPuzzles_ != 0) {
+        output.writeInt32(1, numberOfPuzzles_);
+      }
+      for (int i = 0; i < puzzles_.size(); i++) {
+        output.writeMessage(2, puzzles_.get(i));
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (numberOfPuzzles_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, numberOfPuzzles_);
+      }
+      for (int i = 0; i < puzzles_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, puzzles_.get(i));
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof SolvedPuzzle.Solutions)) {
+        return super.equals(obj);
+      }
+      SolvedPuzzle.Solutions other = (SolvedPuzzle.Solutions) obj;
+
+      boolean result = true;
+      result = result && (getNumberOfPuzzles()
+          == other.getNumberOfPuzzles());
+      result = result && getPuzzlesList()
+          .equals(other.getPuzzlesList());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + NUMBEROFPUZZLES_FIELD_NUMBER;
+      hash = (53 * hash) + getNumberOfPuzzles();
+      if (getPuzzlesCount() > 0) {
+        hash = (37 * hash) + PUZZLES_FIELD_NUMBER;
+        hash = (53 * hash) + getPuzzlesList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static SolvedPuzzle.Solutions parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SolvedPuzzle.Solutions parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Solutions parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Solutions parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(SolvedPuzzle.Solutions prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Solutions}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Solutions)
+        SolvedPuzzle.SolutionsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return SolvedPuzzle.internal_static_Solutions_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return SolvedPuzzle.internal_static_Solutions_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                SolvedPuzzle.Solutions.class, SolvedPuzzle.Solutions.Builder.class);
+      }
+
+      // Construct using SolvedPuzzle.Solutions.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getPuzzlesFieldBuilder();
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        numberOfPuzzles_ = 0;
+
+        if (puzzlesBuilder_ == null) {
+          puzzles_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          puzzlesBuilder_.clear();
+        }
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return SolvedPuzzle.internal_static_Solutions_descriptor;
+      }
+
+      public SolvedPuzzle.Solutions getDefaultInstanceForType() {
+        return SolvedPuzzle.Solutions.getDefaultInstance();
+      }
+
+      public SolvedPuzzle.Solutions build() {
+        SolvedPuzzle.Solutions result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public SolvedPuzzle.Solutions buildPartial() {
+        SolvedPuzzle.Solutions result = new SolvedPuzzle.Solutions(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.numberOfPuzzles_ = numberOfPuzzles_;
+        if (puzzlesBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            puzzles_ = java.util.Collections.unmodifiableList(puzzles_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.puzzles_ = puzzles_;
+        } else {
+          result.puzzles_ = puzzlesBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof SolvedPuzzle.Solutions) {
+          return mergeFrom((SolvedPuzzle.Solutions)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(SolvedPuzzle.Solutions other) {
+        if (other == SolvedPuzzle.Solutions.getDefaultInstance()) return this;
+        if (other.getNumberOfPuzzles() != 0) {
+          setNumberOfPuzzles(other.getNumberOfPuzzles());
+        }
+        if (puzzlesBuilder_ == null) {
+          if (!other.puzzles_.isEmpty()) {
+            if (puzzles_.isEmpty()) {
+              puzzles_ = other.puzzles_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensurePuzzlesIsMutable();
+              puzzles_.addAll(other.puzzles_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.puzzles_.isEmpty()) {
+            if (puzzlesBuilder_.isEmpty()) {
+              puzzlesBuilder_.dispose();
+              puzzlesBuilder_ = null;
+              puzzles_ = other.puzzles_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              puzzlesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getPuzzlesFieldBuilder() : null;
+            } else {
+              puzzlesBuilder_.addAllMessages(other.puzzles_);
+            }
+          }
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        SolvedPuzzle.Solutions parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (SolvedPuzzle.Solutions) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int numberOfPuzzles_ ;
+      /**
+       * <code>optional int32 numberOfPuzzles = 1;</code>
+       */
+      public int getNumberOfPuzzles() {
+        return numberOfPuzzles_;
+      }
+      /**
+       * <code>optional int32 numberOfPuzzles = 1;</code>
+       */
+      public Builder setNumberOfPuzzles(int value) {
+        
+        numberOfPuzzles_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 numberOfPuzzles = 1;</code>
+       */
+      public Builder clearNumberOfPuzzles() {
+        
+        numberOfPuzzles_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<SolvedPuzzle.Puzzle> puzzles_ =
+        java.util.Collections.emptyList();
+      private void ensurePuzzlesIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          puzzles_ = new java.util.ArrayList<SolvedPuzzle.Puzzle>(puzzles_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          SolvedPuzzle.Puzzle, SolvedPuzzle.Puzzle.Builder, SolvedPuzzle.PuzzleOrBuilder> puzzlesBuilder_;
+
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public java.util.List<SolvedPuzzle.Puzzle> getPuzzlesList() {
+        if (puzzlesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(puzzles_);
+        } else {
+          return puzzlesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public int getPuzzlesCount() {
+        if (puzzlesBuilder_ == null) {
+          return puzzles_.size();
+        } else {
+          return puzzlesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public SolvedPuzzle.Puzzle getPuzzles(int index) {
+        if (puzzlesBuilder_ == null) {
+          return puzzles_.get(index);
+        } else {
+          return puzzlesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder setPuzzles(
+          int index, SolvedPuzzle.Puzzle value) {
+        if (puzzlesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePuzzlesIsMutable();
+          puzzles_.set(index, value);
+          onChanged();
+        } else {
+          puzzlesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder setPuzzles(
+          int index, SolvedPuzzle.Puzzle.Builder builderForValue) {
+        if (puzzlesBuilder_ == null) {
+          ensurePuzzlesIsMutable();
+          puzzles_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          puzzlesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder addPuzzles(SolvedPuzzle.Puzzle value) {
+        if (puzzlesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePuzzlesIsMutable();
+          puzzles_.add(value);
+          onChanged();
+        } else {
+          puzzlesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder addPuzzles(
+          int index, SolvedPuzzle.Puzzle value) {
+        if (puzzlesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensurePuzzlesIsMutable();
+          puzzles_.add(index, value);
+          onChanged();
+        } else {
+          puzzlesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder addPuzzles(
+          SolvedPuzzle.Puzzle.Builder builderForValue) {
+        if (puzzlesBuilder_ == null) {
+          ensurePuzzlesIsMutable();
+          puzzles_.add(builderForValue.build());
+          onChanged();
+        } else {
+          puzzlesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder addPuzzles(
+          int index, SolvedPuzzle.Puzzle.Builder builderForValue) {
+        if (puzzlesBuilder_ == null) {
+          ensurePuzzlesIsMutable();
+          puzzles_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          puzzlesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder addAllPuzzles(
+          java.lang.Iterable<? extends SolvedPuzzle.Puzzle> values) {
+        if (puzzlesBuilder_ == null) {
+          ensurePuzzlesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, puzzles_);
+          onChanged();
+        } else {
+          puzzlesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder clearPuzzles() {
+        if (puzzlesBuilder_ == null) {
+          puzzles_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          puzzlesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public Builder removePuzzles(int index) {
+        if (puzzlesBuilder_ == null) {
+          ensurePuzzlesIsMutable();
+          puzzles_.remove(index);
+          onChanged();
+        } else {
+          puzzlesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public SolvedPuzzle.Puzzle.Builder getPuzzlesBuilder(
+          int index) {
+        return getPuzzlesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public SolvedPuzzle.PuzzleOrBuilder getPuzzlesOrBuilder(
+          int index) {
+        if (puzzlesBuilder_ == null) {
+          return puzzles_.get(index);  } else {
+          return puzzlesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public java.util.List<? extends SolvedPuzzle.PuzzleOrBuilder> 
+           getPuzzlesOrBuilderList() {
+        if (puzzlesBuilder_ != null) {
+          return puzzlesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(puzzles_);
+        }
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public SolvedPuzzle.Puzzle.Builder addPuzzlesBuilder() {
+        return getPuzzlesFieldBuilder().addBuilder(
+            SolvedPuzzle.Puzzle.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public SolvedPuzzle.Puzzle.Builder addPuzzlesBuilder(
+          int index) {
+        return getPuzzlesFieldBuilder().addBuilder(
+            index, SolvedPuzzle.Puzzle.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Puzzle puzzles = 2;</code>
+       */
+      public java.util.List<SolvedPuzzle.Puzzle.Builder> 
+           getPuzzlesBuilderList() {
+        return getPuzzlesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          SolvedPuzzle.Puzzle, SolvedPuzzle.Puzzle.Builder, SolvedPuzzle.PuzzleOrBuilder> 
+          getPuzzlesFieldBuilder() {
+        if (puzzlesBuilder_ == null) {
+          puzzlesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              SolvedPuzzle.Puzzle, SolvedPuzzle.Puzzle.Builder, SolvedPuzzle.PuzzleOrBuilder>(
+                  puzzles_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          puzzles_ = null;
+        }
+        return puzzlesBuilder_;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Solutions)
+    }
+
+    // @@protoc_insertion_point(class_scope:Solutions)
+    private static final SolvedPuzzle.Solutions DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SolvedPuzzle.Solutions();
+    }
+
+    public static SolvedPuzzle.Solutions getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Solutions>
+        PARSER = new com.google.protobuf.AbstractParser<Solutions>() {
+      public Solutions parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Solutions(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Solutions> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Solutions> getParserForType() {
+      return PARSER;
+    }
+
+    public SolvedPuzzle.Solutions getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PuzzleOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Puzzle)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional string puzzle = 1;</code>
+     * <code>optional int32 size = 1;</code>
      */
-    java.lang.String getPuzzle();
+    int getSize();
+
     /**
-     * <code>optional string puzzle = 1;</code>
+     * <code>repeated .Square squares = 2;</code>
      */
-    com.google.protobuf.ByteString
-        getPuzzleBytes();
+    java.util.List<SolvedPuzzle.Square> 
+        getSquaresList();
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    SolvedPuzzle.Square getSquares(int index);
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    int getSquaresCount();
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    java.util.List<? extends SolvedPuzzle.SquareOrBuilder> 
+        getSquaresOrBuilderList();
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    SolvedPuzzle.SquareOrBuilder getSquaresOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code Puzzle}
@@ -38,7 +858,8 @@ public final class SolvedPuzzle {
       super(builder);
     }
     private Puzzle() {
-      puzzle_ = "";
+      size_ = 0;
+      squares_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -66,10 +887,18 @@ public final class SolvedPuzzle {
               }
               break;
             }
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
+            case 8: {
 
-              puzzle_ = s;
+              size_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                squares_ = new java.util.ArrayList<SolvedPuzzle.Square>();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              squares_.add(
+                  input.readMessage(SolvedPuzzle.Square.parser(), extensionRegistry));
               break;
             }
           }
@@ -80,6 +909,9 @@ public final class SolvedPuzzle {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          squares_ = java.util.Collections.unmodifiableList(squares_);
+        }
         makeExtensionsImmutable();
       }
     }
@@ -95,38 +927,49 @@ public final class SolvedPuzzle {
               SolvedPuzzle.Puzzle.class, SolvedPuzzle.Puzzle.Builder.class);
     }
 
-    public static final int PUZZLE_FIELD_NUMBER = 1;
-    private volatile java.lang.Object puzzle_;
+    private int bitField0_;
+    public static final int SIZE_FIELD_NUMBER = 1;
+    private int size_;
     /**
-     * <code>optional string puzzle = 1;</code>
+     * <code>optional int32 size = 1;</code>
      */
-    public java.lang.String getPuzzle() {
-      java.lang.Object ref = puzzle_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        puzzle_ = s;
-        return s;
-      }
+    public int getSize() {
+      return size_;
+    }
+
+    public static final int SQUARES_FIELD_NUMBER = 2;
+    private java.util.List<SolvedPuzzle.Square> squares_;
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    public java.util.List<SolvedPuzzle.Square> getSquaresList() {
+      return squares_;
     }
     /**
-     * <code>optional string puzzle = 1;</code>
+     * <code>repeated .Square squares = 2;</code>
      */
-    public com.google.protobuf.ByteString
-        getPuzzleBytes() {
-      java.lang.Object ref = puzzle_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        puzzle_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public java.util.List<? extends SolvedPuzzle.SquareOrBuilder> 
+        getSquaresOrBuilderList() {
+      return squares_;
+    }
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    public int getSquaresCount() {
+      return squares_.size();
+    }
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    public SolvedPuzzle.Square getSquares(int index) {
+      return squares_.get(index);
+    }
+    /**
+     * <code>repeated .Square squares = 2;</code>
+     */
+    public SolvedPuzzle.SquareOrBuilder getSquaresOrBuilder(
+        int index) {
+      return squares_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -141,8 +984,11 @@ public final class SolvedPuzzle {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getPuzzleBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, puzzle_);
+      if (size_ != 0) {
+        output.writeInt32(1, size_);
+      }
+      for (int i = 0; i < squares_.size(); i++) {
+        output.writeMessage(2, squares_.get(i));
       }
     }
 
@@ -151,8 +997,13 @@ public final class SolvedPuzzle {
       if (size != -1) return size;
 
       size = 0;
-      if (!getPuzzleBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, puzzle_);
+      if (size_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, size_);
+      }
+      for (int i = 0; i < squares_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, squares_.get(i));
       }
       memoizedSize = size;
       return size;
@@ -170,8 +1021,10 @@ public final class SolvedPuzzle {
       SolvedPuzzle.Puzzle other = (SolvedPuzzle.Puzzle) obj;
 
       boolean result = true;
-      result = result && getPuzzle()
-          .equals(other.getPuzzle());
+      result = result && (getSize()
+          == other.getSize());
+      result = result && getSquaresList()
+          .equals(other.getSquaresList());
       return result;
     }
 
@@ -182,8 +1035,12 @@ public final class SolvedPuzzle {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptorForType().hashCode();
-      hash = (37 * hash) + PUZZLE_FIELD_NUMBER;
-      hash = (53 * hash) + getPuzzle().hashCode();
+      hash = (37 * hash) + SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + getSize();
+      if (getSquaresCount() > 0) {
+        hash = (37 * hash) + SQUARES_FIELD_NUMBER;
+        hash = (53 * hash) + getSquaresList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -298,12 +1155,19 @@ public final class SolvedPuzzle {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getSquaresFieldBuilder();
         }
       }
       public Builder clear() {
         super.clear();
-        puzzle_ = "";
+        size_ = 0;
 
+        if (squaresBuilder_ == null) {
+          squares_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          squaresBuilder_.clear();
+        }
         return this;
       }
 
@@ -326,7 +1190,19 @@ public final class SolvedPuzzle {
 
       public SolvedPuzzle.Puzzle buildPartial() {
         SolvedPuzzle.Puzzle result = new SolvedPuzzle.Puzzle(this);
-        result.puzzle_ = puzzle_;
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        result.size_ = size_;
+        if (squaresBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            squares_ = java.util.Collections.unmodifiableList(squares_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.squares_ = squares_;
+        } else {
+          result.squares_ = squaresBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -368,9 +1244,34 @@ public final class SolvedPuzzle {
 
       public Builder mergeFrom(SolvedPuzzle.Puzzle other) {
         if (other == SolvedPuzzle.Puzzle.getDefaultInstance()) return this;
-        if (!other.getPuzzle().isEmpty()) {
-          puzzle_ = other.puzzle_;
-          onChanged();
+        if (other.getSize() != 0) {
+          setSize(other.getSize());
+        }
+        if (squaresBuilder_ == null) {
+          if (!other.squares_.isEmpty()) {
+            if (squares_.isEmpty()) {
+              squares_ = other.squares_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureSquaresIsMutable();
+              squares_.addAll(other.squares_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.squares_.isEmpty()) {
+            if (squaresBuilder_.isEmpty()) {
+              squaresBuilder_.dispose();
+              squaresBuilder_ = null;
+              squares_ = other.squares_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              squaresBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getSquaresFieldBuilder() : null;
+            } else {
+              squaresBuilder_.addAllMessages(other.squares_);
+            }
+          }
         }
         onChanged();
         return this;
@@ -397,74 +1298,272 @@ public final class SolvedPuzzle {
         }
         return this;
       }
+      private int bitField0_;
 
-      private java.lang.Object puzzle_ = "";
+      private int size_ ;
       /**
-       * <code>optional string puzzle = 1;</code>
+       * <code>optional int32 size = 1;</code>
        */
-      public java.lang.String getPuzzle() {
-        java.lang.Object ref = puzzle_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          puzzle_ = s;
-          return s;
+      public int getSize() {
+        return size_;
+      }
+      /**
+       * <code>optional int32 size = 1;</code>
+       */
+      public Builder setSize(int value) {
+        
+        size_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 size = 1;</code>
+       */
+      public Builder clearSize() {
+        
+        size_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<SolvedPuzzle.Square> squares_ =
+        java.util.Collections.emptyList();
+      private void ensureSquaresIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          squares_ = new java.util.ArrayList<SolvedPuzzle.Square>(squares_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          SolvedPuzzle.Square, SolvedPuzzle.Square.Builder, SolvedPuzzle.SquareOrBuilder> squaresBuilder_;
+
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public java.util.List<SolvedPuzzle.Square> getSquaresList() {
+        if (squaresBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(squares_);
         } else {
-          return (java.lang.String) ref;
+          return squaresBuilder_.getMessageList();
         }
       }
       /**
-       * <code>optional string puzzle = 1;</code>
+       * <code>repeated .Square squares = 2;</code>
        */
-      public com.google.protobuf.ByteString
-          getPuzzleBytes() {
-        java.lang.Object ref = puzzle_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          puzzle_ = b;
-          return b;
+      public int getSquaresCount() {
+        if (squaresBuilder_ == null) {
+          return squares_.size();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          return squaresBuilder_.getCount();
         }
       }
       /**
-       * <code>optional string puzzle = 1;</code>
+       * <code>repeated .Square squares = 2;</code>
        */
-      public Builder setPuzzle(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        puzzle_ = value;
-        onChanged();
+      public SolvedPuzzle.Square getSquares(int index) {
+        if (squaresBuilder_ == null) {
+          return squares_.get(index);
+        } else {
+          return squaresBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder setSquares(
+          int index, SolvedPuzzle.Square value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.set(index, value);
+          onChanged();
+        } else {
+          squaresBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>optional string puzzle = 1;</code>
+       * <code>repeated .Square squares = 2;</code>
        */
-      public Builder clearPuzzle() {
-        
-        puzzle_ = getDefaultInstance().getPuzzle();
-        onChanged();
+      public Builder setSquares(
+          int index, SolvedPuzzle.Square.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>optional string puzzle = 1;</code>
+       * <code>repeated .Square squares = 2;</code>
        */
-      public Builder setPuzzleBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        puzzle_ = value;
-        onChanged();
+      public Builder addSquares(SolvedPuzzle.Square value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.add(value);
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder addSquares(
+          int index, SolvedPuzzle.Square value) {
+        if (squaresBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureSquaresIsMutable();
+          squares_.add(index, value);
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder addSquares(
+          SolvedPuzzle.Square.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.add(builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder addSquares(
+          int index, SolvedPuzzle.Square.Builder builderForValue) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          squaresBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder addAllSquares(
+          java.lang.Iterable<? extends SolvedPuzzle.Square> values) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, squares_);
+          onChanged();
+        } else {
+          squaresBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder clearSquares() {
+        if (squaresBuilder_ == null) {
+          squares_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          squaresBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public Builder removeSquares(int index) {
+        if (squaresBuilder_ == null) {
+          ensureSquaresIsMutable();
+          squares_.remove(index);
+          onChanged();
+        } else {
+          squaresBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public SolvedPuzzle.Square.Builder getSquaresBuilder(
+          int index) {
+        return getSquaresFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public SolvedPuzzle.SquareOrBuilder getSquaresOrBuilder(
+          int index) {
+        if (squaresBuilder_ == null) {
+          return squares_.get(index);  } else {
+          return squaresBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public java.util.List<? extends SolvedPuzzle.SquareOrBuilder> 
+           getSquaresOrBuilderList() {
+        if (squaresBuilder_ != null) {
+          return squaresBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(squares_);
+        }
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public SolvedPuzzle.Square.Builder addSquaresBuilder() {
+        return getSquaresFieldBuilder().addBuilder(
+            SolvedPuzzle.Square.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public SolvedPuzzle.Square.Builder addSquaresBuilder(
+          int index) {
+        return getSquaresFieldBuilder().addBuilder(
+            index, SolvedPuzzle.Square.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Square squares = 2;</code>
+       */
+      public java.util.List<SolvedPuzzle.Square.Builder> 
+           getSquaresBuilderList() {
+        return getSquaresFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          SolvedPuzzle.Square, SolvedPuzzle.Square.Builder, SolvedPuzzle.SquareOrBuilder> 
+          getSquaresFieldBuilder() {
+        if (squaresBuilder_ == null) {
+          squaresBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              SolvedPuzzle.Square, SolvedPuzzle.Square.Builder, SolvedPuzzle.SquareOrBuilder>(
+                  squares_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          squares_ = null;
+        }
+        return squaresBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -515,11 +1614,576 @@ public final class SolvedPuzzle {
 
   }
 
+  public interface SquareOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Square)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional int32 x = 1;</code>
+     */
+    int getX();
+
+    /**
+     * <code>optional int32 y = 2;</code>
+     */
+    int getY();
+
+    /**
+     * <code>optional int32 value = 3;</code>
+     */
+    int getValue();
+  }
+  /**
+   * Protobuf type {@code Square}
+   */
+  public  static final class Square extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Square)
+      SquareOrBuilder {
+    // Use Square.newBuilder() to construct.
+    private Square(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private Square() {
+      x_ = 0;
+      y_ = 0;
+      value_ = 0;
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return com.google.protobuf.UnknownFieldSet.getDefaultInstance();
+    }
+    private Square(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      int mutable_bitField0_ = 0;
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!input.skipField(tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+
+              x_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              y_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              value_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return SolvedPuzzle.internal_static_Square_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return SolvedPuzzle.internal_static_Square_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              SolvedPuzzle.Square.class, SolvedPuzzle.Square.Builder.class);
+    }
+
+    public static final int X_FIELD_NUMBER = 1;
+    private int x_;
+    /**
+     * <code>optional int32 x = 1;</code>
+     */
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private int y_;
+    /**
+     * <code>optional int32 y = 2;</code>
+     */
+    public int getY() {
+      return y_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 3;
+    private int value_;
+    /**
+     * <code>optional int32 value = 3;</code>
+     */
+    public int getValue() {
+      return value_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (x_ != 0) {
+        output.writeInt32(1, x_);
+      }
+      if (y_ != 0) {
+        output.writeInt32(2, y_);
+      }
+      if (value_ != 0) {
+        output.writeInt32(3, value_);
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (x_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, x_);
+      }
+      if (y_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, y_);
+      }
+      if (value_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, value_);
+      }
+      memoizedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof SolvedPuzzle.Square)) {
+        return super.equals(obj);
+      }
+      SolvedPuzzle.Square other = (SolvedPuzzle.Square) obj;
+
+      boolean result = true;
+      result = result && (getX()
+          == other.getX());
+      result = result && (getY()
+          == other.getY());
+      result = result && (getValue()
+          == other.getValue());
+      return result;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptorForType().hashCode();
+      hash = (37 * hash) + X_FIELD_NUMBER;
+      hash = (53 * hash) + getX();
+      hash = (37 * hash) + Y_FIELD_NUMBER;
+      hash = (53 * hash) + getY();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static SolvedPuzzle.Square parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SolvedPuzzle.Square parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SolvedPuzzle.Square parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static SolvedPuzzle.Square parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static SolvedPuzzle.Square parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Square parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SolvedPuzzle.Square parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Square parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static SolvedPuzzle.Square parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static SolvedPuzzle.Square parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(SolvedPuzzle.Square prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Square}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Square)
+        SolvedPuzzle.SquareOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return SolvedPuzzle.internal_static_Square_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return SolvedPuzzle.internal_static_Square_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                SolvedPuzzle.Square.class, SolvedPuzzle.Square.Builder.class);
+      }
+
+      // Construct using SolvedPuzzle.Square.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+
+        y_ = 0;
+
+        value_ = 0;
+
+        return this;
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return SolvedPuzzle.internal_static_Square_descriptor;
+      }
+
+      public SolvedPuzzle.Square getDefaultInstanceForType() {
+        return SolvedPuzzle.Square.getDefaultInstance();
+      }
+
+      public SolvedPuzzle.Square build() {
+        SolvedPuzzle.Square result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public SolvedPuzzle.Square buildPartial() {
+        SolvedPuzzle.Square result = new SolvedPuzzle.Square(this);
+        result.x_ = x_;
+        result.y_ = y_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder clone() {
+        return (Builder) super.clone();
+      }
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.setField(field, value);
+      }
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return (Builder) super.clearField(field);
+      }
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return (Builder) super.clearOneof(oneof);
+      }
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, Object value) {
+        return (Builder) super.setRepeatedField(field, index, value);
+      }
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          Object value) {
+        return (Builder) super.addRepeatedField(field, value);
+      }
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof SolvedPuzzle.Square) {
+          return mergeFrom((SolvedPuzzle.Square)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(SolvedPuzzle.Square other) {
+        if (other == SolvedPuzzle.Square.getDefaultInstance()) return this;
+        if (other.getX() != 0) {
+          setX(other.getX());
+        }
+        if (other.getY() != 0) {
+          setY(other.getY());
+        }
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
+        }
+        onChanged();
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        SolvedPuzzle.Square parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (SolvedPuzzle.Square) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int x_ ;
+      /**
+       * <code>optional int32 x = 1;</code>
+       */
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>optional int32 x = 1;</code>
+       */
+      public Builder setX(int value) {
+        
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 x = 1;</code>
+       */
+      public Builder clearX() {
+        
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>optional int32 y = 2;</code>
+       */
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>optional int32 y = 2;</code>
+       */
+      public Builder setY(int value) {
+        
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 y = 2;</code>
+       */
+      public Builder clearY() {
+        
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int value_ ;
+      /**
+       * <code>optional int32 value = 3;</code>
+       */
+      public int getValue() {
+        return value_;
+      }
+      /**
+       * <code>optional int32 value = 3;</code>
+       */
+      public Builder setValue(int value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 value = 3;</code>
+       */
+      public Builder clearValue() {
+        
+        value_ = 0;
+        onChanged();
+        return this;
+      }
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return this;
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Square)
+    }
+
+    // @@protoc_insertion_point(class_scope:Square)
+    private static final SolvedPuzzle.Square DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new SolvedPuzzle.Square();
+    }
+
+    public static SolvedPuzzle.Square getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Square>
+        PARSER = new com.google.protobuf.AbstractParser<Square>() {
+      public Square parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Square(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<Square> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Square> getParserForType() {
+      return PARSER;
+    }
+
+    public SolvedPuzzle.Square getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Solutions_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Solutions_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Puzzle_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Puzzle_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Square_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Square_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -529,8 +2193,11 @@ public final class SolvedPuzzle {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022solvedPuzzle.proto\"\030\n\006Puzzle\022\016\n\006puzzle" +
-      "\030\001 \001(\tb\006proto3"
+      "\n\022solvedPuzzle.proto\">\n\tSolutions\022\027\n\017num" +
+      "berOfPuzzles\030\001 \001(\005\022\030\n\007puzzles\030\002 \003(\0132\007.Pu" +
+      "zzle\"0\n\006Puzzle\022\014\n\004size\030\001 \001(\005\022\030\n\007squares\030" +
+      "\002 \003(\0132\007.Square\"-\n\006Square\022\t\n\001x\030\001 \001(\005\022\t\n\001y" +
+      "\030\002 \001(\005\022\r\n\005value\030\003 \001(\005b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -544,12 +2211,24 @@ public final class SolvedPuzzle {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_Puzzle_descriptor =
+    internal_static_Solutions_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_Solutions_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Solutions_descriptor,
+        new java.lang.String[] { "NumberOfPuzzles", "Puzzles", });
+    internal_static_Puzzle_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_Puzzle_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Puzzle_descriptor,
-        new java.lang.String[] { "Puzzle", });
+        new java.lang.String[] { "Size", "Squares", });
+    internal_static_Square_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Square_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Square_descriptor,
+        new java.lang.String[] { "X", "Y", "Value", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
